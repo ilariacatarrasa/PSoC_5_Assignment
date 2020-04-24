@@ -52,8 +52,8 @@
     \BDU active, +- 2g FSR
 */
 #define LIS3DH_CTRL_REG4 0x23
-#define LIS3DH_CTRL_REG4_BDU_ACTIVE 0x80
-#define LIS3DH_CTRL_REG4_FSR 0x00 
+#define LIS3DH_CTRL_REG4_BDU_FSR_SET 0x80
+
 /**
 *   \brief Address of the ADC output LSB register
 */
@@ -246,7 +246,7 @@ int main(void)
     }
     
     
-    ctrl_reg4 = LIS3DH_CTRL_REG4_BDU_ACTIVE; // must be changed to the appropriate value
+    ctrl_reg4 = LIS3DH_CTRL_REG4_BDU_FSR_SET; // must be changed to the appropriate value
     
     error = I2C_Peripheral_WriteRegister(LIS3DH_DEVICE_ADDRESS,
                                          LIS3DH_CTRL_REG4,
