@@ -55,14 +55,22 @@
 #define LIS3DH_CTRL_REG4_BDU_FSR_SET 0x80
 
 /**
-*   \brief Address of the ADC output LSB register
+*   \brief Address of the ADC output LSB and MSB registers
 */
-#define LIS3DH_OUT_ADC_3L 0x0C
+#define LIS3DH_OUT_ADC_3L 0x0C /*LSB ADC*/
+#define LIS3DH_OUT_ADC_3H 0x0D /*MSB ADC*/
 
 /**
-*   \brief Address of the ADC output MSB register
+*   \brief Address of the X, Y, Z output LSB and MSB registers
 */
-#define LIS3DH_OUT_ADC_3H 0x0D
+#define OUT_X_L 0x28    /*LSB X*/
+#define OUT_X_H 0x29    /*MSB X*/
+
+#define OUT_Y_L 0x2A    /*LSB Y*/
+#define OUT_Y_H 0x2B    /*MSB Y*/
+
+#define OUT_Z_L 0x2C    /*LSB Z*/
+#define OUT_Z_H 0x2D    /*MSB Z*/
 
 int main(void)
 {
