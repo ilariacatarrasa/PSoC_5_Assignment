@@ -5,7 +5,7 @@
 * to understand the I2C protocol and communicate with a
 * a I2C Slave device (LIS3DH Accelerometer).
 *
-* \author Gabriele Belotti
+* \author Ilaria Catarrasa
 * \date , 2020
 */
 
@@ -41,36 +41,32 @@
 #define LIS3DH_NORMAL_MODE_CTRL_REG1 0x57
 
 /**
-*   \brief  Address of the Temperature Sensor Configuration register
-*/
-#define LIS3DH_TEMP_CFG_REG 0x1F
-
-#define LIS3DH_TEMP_CFG_REG_ACTIVE 0xC0
-
-/**
 *   \brief Address of the Control register 4
-    \BDU active, +- 2g FSR
+    \+- 2g FSR
 */
 #define LIS3DH_CTRL_REG4 0x23
-#define LIS3DH_CTRL_REG4_BDU_FSR_SET 0x80
-
-/**
-*   \brief Address of the ADC output LSB and MSB registers
-*/
-#define LIS3DH_OUT_ADC_3L 0x0C /*LSB ADC*/
-#define LIS3DH_OUT_ADC_3H 0x0D /*MSB ADC*/
+#define LIS3DH_CTRL_REG4_FSR_SET 0x00
 
 /**
 *   \brief Address of the X, Y, Z output LSB and MSB registers
 */
-#define OUT_X_L 0x28    /*LSB X*/
-#define OUT_X_H 0x29    /*MSB X*/
+#define LIS3DH_OUT_X_L 0x28    /*LSB X*/
+#define LIS3DH_OUT_X_H 0x29    /*MSB X*/
 
-#define OUT_Y_L 0x2A    /*LSB Y*/
-#define OUT_Y_H 0x2B    /*MSB Y*/
+#define LIS3DH_OUT_Y_L 0x2A    /*LSB Y*/
+#define LIS3DH_OUT_Y_H 0x2B    /*MSB Y*/
 
-#define OUT_Z_L 0x2C    /*LSB Z*/
-#define OUT_Z_H 0x2D    /*MSB Z*/
+#define LIS3DH_OUT_Z_L 0x2C    /*LSB Z*/
+#define LIS3DH_OUT_Z_H 0x2D    /*MSB Z*/
+
+/**
+*   \brief Address of the interrupt at 100 Hz
+*   \Enabling with the same address for ODR LIS3DH_NORMAL_MODE_CTRL_REG1 0x57
+*/ 
+#define LIS3DH_INT1_DURATION 0x33
+
+/*Define Buffer Size*/
+#define TRANSMIT_BUFFER_SIZE 8
 
 int main(void)
 {
@@ -116,7 +112,9 @@ int main(void)
         UART_Debug_PutString("Error occurred during I2C comm\r\n");   
     }
     
+    /******************************************/
     /*      I2C Reading Status Register       */
+    /******************************************/
     
     uint8_t status_register; 
     error = I2C_Peripheral_ReadRegister(LIS3DH_DEVICE_ADDRESS,
@@ -149,6 +147,24 @@ int main(void)
     else
     {
         UART_Debug_PutString("Error occurred during I2C comm to read control register 1\r\n");   
+    }
+    
+    /******************************************/
+    /*        Read LIS3DH_INT1_DURATION Register         */
+    /******************************************/
+    uint8_t interrupt; 
+    error = I2C_Peripheral_ReadRegister(LIS3DH_DEVICE_ADDRESS,
+                                        LIS3DH_INT1_DURATION,
+                                        &interrupt);
+    
+    if (error == NO_ERROR)
+    {
+        sprintf(message, "INT1_DURATION REGISTER : 0x%02X\r\n", interrupt);
+        UART_Debug_PutString(message); 
+    }
+    else
+    {
+        UART_Debug_PutString("Error occurred during I2C comm to read INT1_DURATION register \r\n");   
     }
     
     /******************************************/
@@ -195,47 +211,31 @@ int main(void)
         UART_Debug_PutString("Error occurred during I2C comm to read control register 1\r\n");   
     }
     
+    /******************************************/
+     /* Enabling Interrupt based on the duration of ODR chosen. */
      /******************************************/
-     /* I2C Reading Temperature sensor CFG reg */
-     /******************************************/
-
-    uint8_t tmp_cfg_reg;
-
-    error = I2C_Peripheral_ReadRegister(LIS3DH_DEVICE_ADDRESS,
-                                        LIS3DH_TEMP_CFG_REG,
-                                        &tmp_cfg_reg);
-    
-    if (error == NO_ERROR)
+    uint8_t interrupt_enable;
+       
+    //Enabling interrupt
+    if (interrupt_enable != LIS3DH_NORMAL_MODE_CTRL_REG1)
     {
-        sprintf(message, "TEMPERATURE CONFIG REGISTER: 0x%02X\r\n", tmp_cfg_reg);
-        UART_Debug_PutString(message); 
+        interrupt_enable = LIS3DH_NORMAL_MODE_CTRL_REG1;
+    
+        error = I2C_Peripheral_WriteRegister(LIS3DH_DEVICE_ADDRESS,
+                                             LIS3DH_INT1_DURATION,
+                                             interrupt_enable);
+    
+        if (error == NO_ERROR)
+        {
+            sprintf(message, "INT1_DURATION successfully written as: 0x%02X\r\n", interrupt_enable);
+            UART_Debug_PutString(message); 
+        }
+        else
+        {
+            UART_Debug_PutString("Error occurred while enabling the INT1_DURATION \r\n");   
+        }
     }
-    else
-    {
-        UART_Debug_PutString("Error occurred during I2C comm to read temperature config register\r\n");   
-    }
     
-    
-    tmp_cfg_reg = LIS3DH_TEMP_CFG_REG_ACTIVE; // must be changed to the appropriate value
-    
-    error = I2C_Peripheral_WriteRegister(LIS3DH_DEVICE_ADDRESS,
-                                         LIS3DH_TEMP_CFG_REG,
-                                         tmp_cfg_reg);
-    
-    error = I2C_Peripheral_ReadRegister(LIS3DH_DEVICE_ADDRESS,
-                                        LIS3DH_TEMP_CFG_REG,
-                                        &tmp_cfg_reg);
-    
-    
-    if (error == NO_ERROR)
-    {
-        sprintf(message, "TEMPERATURE CONFIG REGISTER after being updated: 0x%02X\r\n", tmp_cfg_reg);
-        UART_Debug_PutString(message); 
-    }
-    else
-    {
-        UART_Debug_PutString("Error occurred during I2C comm to read temperature config register\r\n");   
-    }
     
     uint8_t ctrl_reg4;
 
@@ -250,11 +250,13 @@ int main(void)
     }
     else
     {
-        UART_Debug_PutString("Error occurred during I2C comm to read control register4\r\n");   
+        UART_Debug_PutString("Error occurred during I2C comm to read control register 4\r\n");   
     }
     
     
-    ctrl_reg4 = LIS3DH_CTRL_REG4_BDU_FSR_SET; // must be changed to the appropriate value
+    
+    /*Update control register 4*/
+    ctrl_reg4 = LIS3DH_CTRL_REG4_FSR_SET; // must be changed to the appropriate value
     
     error = I2C_Peripheral_WriteRegister(LIS3DH_DEVICE_ADDRESS,
                                          LIS3DH_CTRL_REG4,
@@ -275,30 +277,43 @@ int main(void)
         UART_Debug_PutString("Error occurred during I2C comm to read control register4\r\n");   
     }
     
-    int16_t OutTemp;
+    int16_t Out;
     uint8_t header = 0xA0;
     uint8_t footer = 0xC0;
-    uint8_t OutArray[4]; 
-    uint8_t TemperatureData[2];
-    
+    uint8_t OutArray[TRANSMIT_BUFFER_SIZE]; 
+    uint8_t xyz_positioning[TRANSMIT_BUFFER_SIZE-2]; /*legth wuthout header and footer*/
+         
     OutArray[0] = header;
-    OutArray[3] = footer;
+    OutArray[TRANSMIT_BUFFER_SIZE-1] = footer;
+    
+    int i = 0;
+    char s[]={'x','y','z'};
     
     for(;;)
     {
         CyDelay(100);
+        //SendDataUART(DEVICE_ADDRESS, REGISTER, ITERATIONS, ARRAY);
         error = I2C_Peripheral_ReadRegisterMulti(LIS3DH_DEVICE_ADDRESS,
-                                            LIS3DH_OUT_ADC_3L,
-                                            2,
-                                            &TemperatureData[0]);
+                                            LIS3DH_OUT_X_L,
+                                            TRANSMIT_BUFFER_SIZE-2,
+                                            &xyz_positioning[0]);
                 
         if(error == NO_ERROR)
         {
-            OutTemp = (int16)((TemperatureData[0] | (TemperatureData[1]<<8)))>>6;
-            OutArray[1] = (uint8_t)(OutTemp & 0xFF);
-            OutArray[2] = (uint8_t)(OutTemp >> 8);
-            UART_Debug_PutArray(OutArray, 4);
-        }
+            for (i = 0; i<TRANSMIT_BUFFER_SIZE-2; i+=2)
+            {
+                Out = (int16)((xyz_positioning[i] | (xyz_positioning[i+1]<<8)))>>6;
+                Out *= 4*0.0098;/*conversion into m/s2*/
+                OutArray[i+1] = (uint8_t)(Out & 0xFF);
+                OutArray[i+2] = (uint8_t)(Out >> 8);  
+                //sprintf(message, "acceleration %d\r\n", Out);           
+                //UART_Debug_PutString(message);
+            }                
+                
+               UART_Debug_PutArray(OutArray, TRANSMIT_BUFFER_SIZE);   
+            
+        }    
+        
     }
 }
 
