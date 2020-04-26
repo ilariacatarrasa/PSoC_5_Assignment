@@ -42,10 +42,10 @@
 
 /**
 *   \brief Address of the Control register 4
-    \+- 2g FSR
+    \+- 4g FSR
 */
 #define LIS3DH_CTRL_REG4 0x23
-#define LIS3DH_CTRL_REG4_FSR_SET 0x00
+#define LIS3DH_CTRL_REG4_FSR_SET 0x10
 
 /**
 *   \brief Address of the X, Y, Z output LSB and MSB registers
@@ -260,7 +260,7 @@ int main(void)
                  for (i = 0; i<TRANSMIT_BUFFER_SIZE-2; i+=2)
                 {
                     Out = (int16)((xyz_positioning[i] | (xyz_positioning[i+1]<<8)))>>6;
-                    Out *= 4*0.0098;/*conversion into m/s2*/
+                    Out *= 8;/*conversion into mg*/
                     OutArray[i+1] = (uint8_t)(Out & 0xFF);
                     OutArray[i+2] = (uint8_t)(Out >> 8);  
                     //sprintf(message, "acceleration %d\r\n", Out);           
