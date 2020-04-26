@@ -42,10 +42,10 @@
 
 /**
 *   \brief Address of the Control register 4
-    \+- 2g FSR
+    \+- 4g FSR
 */
 #define LIS3DH_CTRL_REG4 0x23
-#define LIS3DH_CTRL_REG4_FSR_SET 0x00
+#define LIS3DH_CTRL_REG4_FSR_SET 0x10
 
 /**
 *   \brief Address of the X, Y, Z output LSB and MSB registers
