@@ -59,12 +59,6 @@
 #define LIS3DH_OUT_Z_L 0x2C    /*LSB Z*/
 #define LIS3DH_OUT_Z_H 0x2D    /*MSB Z*/
 
-/**
-*   \brief Address of the interrupt at 100 Hz
-*   \Enabling with the same address for ODR LIS3DH_NORMAL_MODE_CTRL_REG1 0x57
-*/ 
-#define LIS3DH_INT1_DURATION 0x33
-
 /*Define Buffer Size*/
 #define TRANSMIT_BUFFER_SIZE 8
 
@@ -150,24 +144,6 @@ int main(void)
     }
     
     /******************************************/
-    /*        Read LIS3DH_INT1_DURATION Register         */
-    /******************************************/
-    uint8_t interrupt; 
-    error = I2C_Peripheral_ReadRegister(LIS3DH_DEVICE_ADDRESS,
-                                        LIS3DH_INT1_DURATION,
-                                        &interrupt);
-    
-    if (error == NO_ERROR)
-    {
-        sprintf(message, "INT1_DURATION REGISTER : 0x%02X\r\n", interrupt);
-        UART_Debug_PutString(message); 
-    }
-    else
-    {
-        UART_Debug_PutString("Error occurred during I2C comm to read INT1_DURATION register \r\n");   
-    }
-    
-    /******************************************/
     /*            I2C Writing                 */
     /******************************************/
     
@@ -213,30 +189,8 @@ int main(void)
     
     /******************************************/
      /* Enabling Interrupt based on the duration of ODR chosen. */
-     /******************************************/
-    uint8_t interrupt_enable;
-       
-    //Enabling interrupt
-    if (interrupt_enable != LIS3DH_NORMAL_MODE_CTRL_REG1)
-    {
-        interrupt_enable = LIS3DH_NORMAL_MODE_CTRL_REG1;
-    
-        error = I2C_Peripheral_WriteRegister(LIS3DH_DEVICE_ADDRESS,
-                                             LIS3DH_INT1_DURATION,
-                                             interrupt_enable);
-    
-        if (error == NO_ERROR)
-        {
-            sprintf(message, "INT1_DURATION successfully written as: 0x%02X\r\n", interrupt_enable);
-            UART_Debug_PutString(message); 
-        }
-        else
-        {
-            UART_Debug_PutString("Error occurred while enabling the INT1_DURATION \r\n");   
-        }
-    }
-    
-    
+     /******************************************/             
+        
     uint8_t ctrl_reg4;
 
     error = I2C_Peripheral_ReadRegister(LIS3DH_DEVICE_ADDRESS,
@@ -282,35 +236,40 @@ int main(void)
     uint8_t footer = 0xC0;
     uint8_t OutArray[TRANSMIT_BUFFER_SIZE]; 
     uint8_t xyz_positioning[TRANSMIT_BUFFER_SIZE-2]; /*legth wuthout header and footer*/
-         
+    
+    
     OutArray[0] = header;
     OutArray[TRANSMIT_BUFFER_SIZE-1] = footer;
     
     int i = 0;
-    char s[]={'x','y','z'};
-    
+        
     for(;;)
     {
-        CyDelay(100);
+       // CyDelay(10);
         //SendDataUART(DEVICE_ADDRESS, REGISTER, ITERATIONS, ARRAY);
         error = I2C_Peripheral_ReadRegisterMulti(LIS3DH_DEVICE_ADDRESS,
                                             LIS3DH_OUT_X_L,
                                             TRANSMIT_BUFFER_SIZE-2,
                                             &xyz_positioning[0]);
+        
                 
         if(error == NO_ERROR)
-        {
-            for (i = 0; i<TRANSMIT_BUFFER_SIZE-2; i+=2)
+        {   
+            if(status_register&0x88)
             {
-                Out = (int16)((xyz_positioning[i] | (xyz_positioning[i+1]<<8)))>>6;
-                Out *= 4*0.0098;/*conversion into m/s2*/
-                OutArray[i+1] = (uint8_t)(Out & 0xFF);
-                OutArray[i+2] = (uint8_t)(Out >> 8);  
-                //sprintf(message, "acceleration %d\r\n", Out);           
-                //UART_Debug_PutString(message);
-            }                
-                
-               UART_Debug_PutArray(OutArray, TRANSMIT_BUFFER_SIZE);   
+                 for (i = 0; i<TRANSMIT_BUFFER_SIZE-2; i+=2)
+                {
+                    Out = (int16)((xyz_positioning[i] | (xyz_positioning[i+1]<<8)))>>6;
+                    Out *= 4*0.0098;/*conversion into m/s2*/
+                    OutArray[i+1] = (uint8_t)(Out & 0xFF);
+                    OutArray[i+2] = (uint8_t)(Out >> 8);  
+                    //sprintf(message, "acceleration %d\r\n", Out);           
+                    //UART_Debug_PutString(message);
+                }                
+                    
+                   UART_Debug_PutArray(OutArray, TRANSMIT_BUFFER_SIZE);  
+            }
+            
             
         }    
         

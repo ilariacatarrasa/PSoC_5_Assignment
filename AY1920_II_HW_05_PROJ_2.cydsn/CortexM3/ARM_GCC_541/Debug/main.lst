@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\cc4BRkOJ.s 			page 1
+ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\ccUqSPP7.s 			page 1
 
 
    1              		.syntax unified
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\cc4BRkOJ.s 			page 1
   25:main.c        **** #define LIS3DH_WHO_AM_I_REG_ADDR 0x0F
   26:main.c        **** 
   27:main.c        **** /**
-ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\cc4BRkOJ.s 			page 2
+ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\ccUqSPP7.s 			page 2
 
 
   28:main.c        **** *   \brief Address of the Status register
@@ -95,2802 +95,2396 @@ ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\cc4BRkOJ.s 			page 1
   59:main.c        **** #define LIS3DH_OUT_Z_L 0x2C    /*LSB Z*/
   60:main.c        **** #define LIS3DH_OUT_Z_H 0x2D    /*MSB Z*/
   61:main.c        **** 
-  62:main.c        **** /**
-  63:main.c        **** *   \brief Address of the interrupt at 100 Hz
-  64:main.c        **** *   \Enabling with the same address for ODR LIS3DH_NORMAL_MODE_CTRL_REG1 0x57
-  65:main.c        **** */ 
-  66:main.c        **** #define LIS3DH_INT1_DURATION 0x33
-  67:main.c        **** 
-  68:main.c        **** /*Define Buffer Size*/
-  69:main.c        **** #define TRANSMIT_BUFFER_SIZE 8
-  70:main.c        **** 
-  71:main.c        **** int main(void)
-  72:main.c        **** {
-  31              		.loc 1 72 0
+  62:main.c        **** /*Define Buffer Size*/
+  63:main.c        **** #define TRANSMIT_BUFFER_SIZE 8
+  64:main.c        **** 
+  65:main.c        **** int main(void)
+  66:main.c        **** {
+  31              		.loc 1 66 0
   32              		.cfi_startproc
-  33              		@ args = 0, pretend = 0, frame = 80
+  33              		@ args = 0, pretend = 0, frame = 72
   34              		@ frame_needed = 0, uses_anonymous_args = 0
   35 0000 30B5     		push	{r4, r5, lr}
   36              		.cfi_def_cfa_offset 12
   37              		.cfi_offset 4, -12
   38              		.cfi_offset 5, -8
   39              		.cfi_offset 14, -4
-  40 0002 95B0     		sub	sp, sp, #84
-  41              		.cfi_def_cfa_offset 96
-  73:main.c        ****     CyGlobalIntEnable; /* Enable global interrupts. */
-ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\cc4BRkOJ.s 			page 3
-
-
-  42              		.loc 1 73 0
+  40 0002 93B0     		sub	sp, sp, #76
+  41              		.cfi_def_cfa_offset 88
+  67:main.c        ****     CyGlobalIntEnable; /* Enable global interrupts. */
+  42              		.loc 1 67 0
   43              		.syntax unified
-  44              	@ 73 "main.c" 1
+  44              	@ 67 "main.c" 1
   45 0004 62B6     		CPSIE   i
   46              	@ 0 "" 2
-  74:main.c        **** 
-  75:main.c        ****     /* Place your initialization/startup code here (e.g. MyInst_Start()) */
-  76:main.c        ****     I2C_Peripheral_Start();
-  47              		.loc 1 76 0
+  68:main.c        **** 
+ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\ccUqSPP7.s 			page 3
+
+
+  69:main.c        ****     /* Place your initialization/startup code here (e.g. MyInst_Start()) */
+  70:main.c        ****     I2C_Peripheral_Start();
+  47              		.loc 1 70 0
   48              		.thumb
   49              		.syntax unified
   50 0006 FFF7FEFF 		bl	I2C_Peripheral_Start
   51              	.LVL0:
-  77:main.c        ****     UART_Debug_Start();
-  52              		.loc 1 77 0
+  71:main.c        ****     UART_Debug_Start();
+  52              		.loc 1 71 0
   53 000a FFF7FEFF 		bl	UART_Debug_Start
   54              	.LVL1:
-  78:main.c        ****     
-  79:main.c        ****     CyDelay(5); //"The boot procedure is complete about 5 milliseconds after device power-up."
-  55              		.loc 1 79 0
+  72:main.c        ****     
+  73:main.c        ****     CyDelay(5); //"The boot procedure is complete about 5 milliseconds after device power-up."
+  55              		.loc 1 73 0
   56 000e 0520     		movs	r0, #5
   57 0010 FFF7FEFF 		bl	CyDelay
   58              	.LVL2:
   59              	.LBB2:
-  80:main.c        ****     
-  81:main.c        ****     // String to print out messages on the UART
-  82:main.c        ****     char message[50];
-  83:main.c        **** 
-  84:main.c        ****     // Check which devices are present on the I2C bus
-  85:main.c        ****     for (int i = 0 ; i < 128; i++)
-  60              		.loc 1 85 0
+  74:main.c        ****     
+  75:main.c        ****     // String to print out messages on the UART
+  76:main.c        ****     char message[50];
+  77:main.c        **** 
+  78:main.c        ****     // Check which devices are present on the I2C bus
+  79:main.c        ****     for (int i = 0 ; i < 128; i++)
+  60              		.loc 1 79 0
   61 0014 0024     		movs	r4, #0
   62 0016 0CE0     		b	.L2
   63              	.LVL3:
   64              	.L4:
-  86:main.c        ****     {
-  87:main.c        ****         if (I2C_Peripheral_IsDeviceConnected(i))
-  65              		.loc 1 87 0
+  80:main.c        ****     {
+  81:main.c        ****         if (I2C_Peripheral_IsDeviceConnected(i))
+  65              		.loc 1 81 0
   66 0018 E0B2     		uxtb	r0, r4
   67 001a FFF7FEFF 		bl	I2C_Peripheral_IsDeviceConnected
   68              	.LVL4:
   69 001e 38B1     		cbz	r0, .L3
-  88:main.c        ****         {
-  89:main.c        ****             // print out the address is hex format
-  90:main.c        ****             sprintf(message, "Device 0x%02X is connected\r\n", i);
-  70              		.loc 1 90 0
+  82:main.c        ****         {
+  83:main.c        ****             // print out the address is hex format
+  84:main.c        ****             sprintf(message, "Device 0x%02X is connected\r\n", i);
+  70              		.loc 1 84 0
   71 0020 2246     		mov	r2, r4
-  72 0022 8549     		ldr	r1, .L30+8
-  73 0024 07A8     		add	r0, sp, #28
+  72 0022 7349     		ldr	r1, .L25+8
+  73 0024 05A8     		add	r0, sp, #20
   74 0026 FFF7FEFF 		bl	sprintf
   75              	.LVL5:
-  91:main.c        ****             UART_Debug_PutString(message); 
-  76              		.loc 1 91 0
-  77 002a 07A8     		add	r0, sp, #28
+  85:main.c        ****             UART_Debug_PutString(message); 
+  76              		.loc 1 85 0
+  77 002a 05A8     		add	r0, sp, #20
   78 002c FFF7FEFF 		bl	UART_Debug_PutString
   79              	.LVL6:
   80              	.L3:
-ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\cc4BRkOJ.s 			page 4
-
-
-  85:main.c        ****     {
-  81              		.loc 1 85 0 discriminator 2
+  79:main.c        ****     {
+  81              		.loc 1 79 0 discriminator 2
   82 0030 0134     		adds	r4, r4, #1
   83              	.LVL7:
   84              	.L2:
-  85:main.c        ****     {
-  85              		.loc 1 85 0 is_stmt 0 discriminator 1
+  79:main.c        ****     {
+ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\ccUqSPP7.s 			page 4
+
+
+  85              		.loc 1 79 0 is_stmt 0 discriminator 1
   86 0032 7F2C     		cmp	r4, #127
   87 0034 F0DD     		ble	.L4
   88              	.LBE2:
-  92:main.c        ****         }
-  93:main.c        ****         
-  94:main.c        ****     }
-  95:main.c        ****     
-  96:main.c        ****     /******************************************/
-  97:main.c        ****     /*            I2C Reading                 */
-  98:main.c        ****     /******************************************/
-  99:main.c        ****     
- 100:main.c        ****     /* Read WHO AM I REGISTER register */
- 101:main.c        ****     uint8_t who_am_i_reg;
- 102:main.c        ****     ErrorCode error = I2C_Peripheral_ReadRegister(LIS3DH_DEVICE_ADDRESS,
-  89              		.loc 1 102 0 is_stmt 1
-  90 0036 0DF11B02 		add	r2, sp, #27
+  86:main.c        ****         }
+  87:main.c        ****         
+  88:main.c        ****     }
+  89:main.c        ****     
+  90:main.c        ****     /******************************************/
+  91:main.c        ****     /*            I2C Reading                 */
+  92:main.c        ****     /******************************************/
+  93:main.c        ****     
+  94:main.c        ****     /* Read WHO AM I REGISTER register */
+  95:main.c        ****     uint8_t who_am_i_reg;
+  96:main.c        ****     ErrorCode error = I2C_Peripheral_ReadRegister(LIS3DH_DEVICE_ADDRESS,
+  89              		.loc 1 96 0 is_stmt 1
+  90 0036 0DF11302 		add	r2, sp, #19
   91 003a 0F21     		movs	r1, #15
   92 003c 1820     		movs	r0, #24
   93 003e FFF7FEFF 		bl	I2C_Peripheral_ReadRegister
   94              	.LVL8:
- 103:main.c        ****                                                   LIS3DH_WHO_AM_I_REG_ADDR, 
- 104:main.c        ****                                                   &who_am_i_reg);
- 105:main.c        ****     if (error == NO_ERROR)
-  95              		.loc 1 105 0
+  97:main.c        ****                                                   LIS3DH_WHO_AM_I_REG_ADDR, 
+  98:main.c        ****                                                   &who_am_i_reg);
+  99:main.c        ****     if (error == NO_ERROR)
+  95              		.loc 1 99 0
   96 0042 48B9     		cbnz	r0, .L5
- 106:main.c        ****     {
- 107:main.c        ****         sprintf(message, "WHO AM I REG: 0x%02X [Expected: 0x33]\r\n", who_am_i_reg);
-  97              		.loc 1 107 0
-  98 0044 9DF81B20 		ldrb	r2, [sp, #27]	@ zero_extendqisi2
-  99 0048 7C49     		ldr	r1, .L30+12
- 100 004a 07A8     		add	r0, sp, #28
+ 100:main.c        ****     {
+ 101:main.c        ****         sprintf(message, "WHO AM I REG: 0x%02X [Expected: 0x33]\r\n", who_am_i_reg);
+  97              		.loc 1 101 0
+  98 0044 9DF81320 		ldrb	r2, [sp, #19]	@ zero_extendqisi2
+  99 0048 6A49     		ldr	r1, .L25+12
+ 100 004a 05A8     		add	r0, sp, #20
  101              	.LVL9:
  102 004c FFF7FEFF 		bl	sprintf
  103              	.LVL10:
- 108:main.c        ****         UART_Debug_PutString(message); 
- 104              		.loc 1 108 0
- 105 0050 07A8     		add	r0, sp, #28
+ 102:main.c        ****         UART_Debug_PutString(message); 
+ 104              		.loc 1 102 0
+ 105 0050 05A8     		add	r0, sp, #20
  106 0052 FFF7FEFF 		bl	UART_Debug_PutString
  107              	.LVL11:
  108 0056 02E0     		b	.L6
  109              	.LVL12:
  110              	.L5:
- 109:main.c        ****     }
- 110:main.c        ****     else
- 111:main.c        ****     {
- 112:main.c        ****         UART_Debug_PutString("Error occurred during I2C comm\r\n");   
- 111              		.loc 1 112 0
- 112 0058 7948     		ldr	r0, .L30+16
+ 103:main.c        ****     }
+ 104:main.c        ****     else
+ 105:main.c        ****     {
+ 106:main.c        ****         UART_Debug_PutString("Error occurred during I2C comm\r\n");   
+ 111              		.loc 1 106 0
+ 112 0058 6748     		ldr	r0, .L25+16
  113              	.LVL13:
  114 005a FFF7FEFF 		bl	UART_Debug_PutString
-ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\cc4BRkOJ.s 			page 5
-
-
  115              	.LVL14:
  116              	.L6:
- 113:main.c        ****     }
- 114:main.c        ****     
- 115:main.c        ****     /******************************************/
- 116:main.c        ****     /*      I2C Reading Status Register       */
- 117:main.c        ****     /******************************************/
- 118:main.c        ****     
- 119:main.c        ****     uint8_t status_register; 
- 120:main.c        ****     error = I2C_Peripheral_ReadRegister(LIS3DH_DEVICE_ADDRESS,
- 117              		.loc 1 120 0
- 118 005e 0DF11A02 		add	r2, sp, #26
+ 107:main.c        ****     }
+ 108:main.c        ****     
+ 109:main.c        ****     /******************************************/
+ 110:main.c        ****     /*      I2C Reading Status Register       */
+ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\ccUqSPP7.s 			page 5
+
+
+ 111:main.c        ****     /******************************************/
+ 112:main.c        ****     
+ 113:main.c        ****     uint8_t status_register; 
+ 114:main.c        ****     error = I2C_Peripheral_ReadRegister(LIS3DH_DEVICE_ADDRESS,
+ 117              		.loc 1 114 0
+ 118 005e 0DF11202 		add	r2, sp, #18
  119 0062 2721     		movs	r1, #39
  120 0064 1820     		movs	r0, #24
  121 0066 FFF7FEFF 		bl	I2C_Peripheral_ReadRegister
  122              	.LVL15:
- 121:main.c        ****                                         LIS3DH_STATUS_REG,
- 122:main.c        ****                                         &status_register);
- 123:main.c        ****     
- 124:main.c        ****     if (error == NO_ERROR)
- 123              		.loc 1 124 0
+ 115:main.c        ****                                         LIS3DH_STATUS_REG,
+ 116:main.c        ****                                         &status_register);
+ 117:main.c        ****     
+ 118:main.c        ****     if (error == NO_ERROR)
+ 123              		.loc 1 118 0
  124 006a 48B9     		cbnz	r0, .L7
- 125:main.c        ****     {
- 126:main.c        ****         sprintf(message, "STATUS REGISTER: 0x%02X\r\n", status_register);
- 125              		.loc 1 126 0
- 126 006c 9DF81A20 		ldrb	r2, [sp, #26]	@ zero_extendqisi2
- 127 0070 7449     		ldr	r1, .L30+20
- 128 0072 07A8     		add	r0, sp, #28
+ 119:main.c        ****     {
+ 120:main.c        ****         sprintf(message, "STATUS REGISTER: 0x%02X\r\n", status_register);
+ 125              		.loc 1 120 0
+ 126 006c 9DF81220 		ldrb	r2, [sp, #18]	@ zero_extendqisi2
+ 127 0070 6249     		ldr	r1, .L25+20
+ 128 0072 05A8     		add	r0, sp, #20
  129              	.LVL16:
  130 0074 FFF7FEFF 		bl	sprintf
  131              	.LVL17:
- 127:main.c        ****         UART_Debug_PutString(message); 
- 132              		.loc 1 127 0
- 133 0078 07A8     		add	r0, sp, #28
+ 121:main.c        ****         UART_Debug_PutString(message); 
+ 132              		.loc 1 121 0
+ 133 0078 05A8     		add	r0, sp, #20
  134 007a FFF7FEFF 		bl	UART_Debug_PutString
  135              	.LVL18:
  136 007e 02E0     		b	.L8
  137              	.LVL19:
  138              	.L7:
- 128:main.c        ****     }
- 129:main.c        ****     else
- 130:main.c        ****     {
- 131:main.c        ****         UART_Debug_PutString("Error occurred during I2C comm to read status register\r\n");   
- 139              		.loc 1 131 0
- 140 0080 7148     		ldr	r0, .L30+24
+ 122:main.c        ****     }
+ 123:main.c        ****     else
+ 124:main.c        ****     {
+ 125:main.c        ****         UART_Debug_PutString("Error occurred during I2C comm to read status register\r\n");   
+ 139              		.loc 1 125 0
+ 140 0080 5F48     		ldr	r0, .L25+24
  141              	.LVL20:
  142 0082 FFF7FEFF 		bl	UART_Debug_PutString
  143              	.LVL21:
  144              	.L8:
- 132:main.c        ****     }
- 133:main.c        ****     
- 134:main.c        ****     /******************************************/
- 135:main.c        ****     /*        Read Control Register 1         */
- 136:main.c        ****     /******************************************/
- 137:main.c        ****     uint8_t ctrl_reg1; 
- 138:main.c        ****     error = I2C_Peripheral_ReadRegister(LIS3DH_DEVICE_ADDRESS,
- 145              		.loc 1 138 0
-ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\cc4BRkOJ.s 			page 6
-
-
- 146 0086 0DF11902 		add	r2, sp, #25
+ 126:main.c        ****     }
+ 127:main.c        ****     
+ 128:main.c        ****     /******************************************/
+ 129:main.c        ****     /*        Read Control Register 1         */
+ 130:main.c        ****     /******************************************/
+ 131:main.c        ****     uint8_t ctrl_reg1; 
+ 132:main.c        ****     error = I2C_Peripheral_ReadRegister(LIS3DH_DEVICE_ADDRESS,
+ 145              		.loc 1 132 0
+ 146 0086 0DF11102 		add	r2, sp, #17
  147 008a 2021     		movs	r1, #32
  148 008c 1820     		movs	r0, #24
  149 008e FFF7FEFF 		bl	I2C_Peripheral_ReadRegister
  150              	.LVL22:
- 139:main.c        ****                                         LIS3DH_CTRL_REG1,
- 140:main.c        ****                                         &ctrl_reg1);
- 141:main.c        ****     
- 142:main.c        ****     if (error == NO_ERROR)
- 151              		.loc 1 142 0
+ 133:main.c        ****                                         LIS3DH_CTRL_REG1,
+ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\ccUqSPP7.s 			page 6
+
+
+ 134:main.c        ****                                         &ctrl_reg1);
+ 135:main.c        ****     
+ 136:main.c        ****     if (error == NO_ERROR)
+ 151              		.loc 1 136 0
  152 0092 48B9     		cbnz	r0, .L9
- 143:main.c        ****     {
- 144:main.c        ****         sprintf(message, "CONTROL REGISTER 1: 0x%02X\r\n", ctrl_reg1);
- 153              		.loc 1 144 0
- 154 0094 9DF81920 		ldrb	r2, [sp, #25]	@ zero_extendqisi2
- 155 0098 6C49     		ldr	r1, .L30+28
- 156 009a 07A8     		add	r0, sp, #28
+ 137:main.c        ****     {
+ 138:main.c        ****         sprintf(message, "CONTROL REGISTER 1: 0x%02X\r\n", ctrl_reg1);
+ 153              		.loc 1 138 0
+ 154 0094 9DF81120 		ldrb	r2, [sp, #17]	@ zero_extendqisi2
+ 155 0098 5A49     		ldr	r1, .L25+28
+ 156 009a 05A8     		add	r0, sp, #20
  157              	.LVL23:
  158 009c FFF7FEFF 		bl	sprintf
  159              	.LVL24:
- 145:main.c        ****         UART_Debug_PutString(message); 
- 160              		.loc 1 145 0
- 161 00a0 07A8     		add	r0, sp, #28
+ 139:main.c        ****         UART_Debug_PutString(message); 
+ 160              		.loc 1 139 0
+ 161 00a0 05A8     		add	r0, sp, #20
  162 00a2 FFF7FEFF 		bl	UART_Debug_PutString
  163              	.LVL25:
  164 00a6 02E0     		b	.L10
  165              	.LVL26:
  166              	.L9:
- 146:main.c        ****     }
- 147:main.c        ****     else
- 148:main.c        ****     {
- 149:main.c        ****         UART_Debug_PutString("Error occurred during I2C comm to read control register 1\r\n");   
- 167              		.loc 1 149 0
- 168 00a8 6948     		ldr	r0, .L30+32
+ 140:main.c        ****     }
+ 141:main.c        ****     else
+ 142:main.c        ****     {
+ 143:main.c        ****         UART_Debug_PutString("Error occurred during I2C comm to read control register 1\r\n");   
+ 167              		.loc 1 143 0
+ 168 00a8 5748     		ldr	r0, .L25+32
  169              	.LVL27:
  170 00aa FFF7FEFF 		bl	UART_Debug_PutString
  171              	.LVL28:
  172              	.L10:
- 150:main.c        ****     }
- 151:main.c        ****     
- 152:main.c        ****     /******************************************/
- 153:main.c        ****     /*        Read LIS3DH_INT1_DURATION Register         */
- 154:main.c        ****     /******************************************/
- 155:main.c        ****     uint8_t interrupt; 
- 156:main.c        ****     error = I2C_Peripheral_ReadRegister(LIS3DH_DEVICE_ADDRESS,
- 173              		.loc 1 156 0
- 174 00ae 06AA     		add	r2, sp, #24
- 175 00b0 3321     		movs	r1, #51
- 176 00b2 1820     		movs	r0, #24
- 177 00b4 FFF7FEFF 		bl	I2C_Peripheral_ReadRegister
- 178              	.LVL29:
- 157:main.c        ****                                         LIS3DH_INT1_DURATION,
- 158:main.c        ****                                         &interrupt);
- 159:main.c        ****     
- 160:main.c        ****     if (error == NO_ERROR)
- 179              		.loc 1 160 0
- 180 00b8 48B9     		cbnz	r0, .L11
-ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\cc4BRkOJ.s 			page 7
+ 144:main.c        ****     }
+ 145:main.c        ****     
+ 146:main.c        ****     /******************************************/
+ 147:main.c        ****     /*            I2C Writing                 */
+ 148:main.c        ****     /******************************************/
+ 149:main.c        ****     
+ 150:main.c        ****         
+ 151:main.c        ****     UART_Debug_PutString("\r\nWriting new values..\r\n");
+ 173              		.loc 1 151 0
+ 174 00ae 5748     		ldr	r0, .L25+36
+ 175 00b0 FFF7FEFF 		bl	UART_Debug_PutString
+ 176              	.LVL29:
+ 152:main.c        ****     
+ 153:main.c        ****     if (ctrl_reg1 != LIS3DH_NORMAL_MODE_CTRL_REG1)
+ 177              		.loc 1 153 0
+ 178 00b4 9DF81130 		ldrb	r3, [sp, #17]	@ zero_extendqisi2
+ 179 00b8 572B     		cmp	r3, #87
+ 180 00ba 14D0     		beq	.L11
+ 154:main.c        ****     {
+ 155:main.c        ****         ctrl_reg1 = LIS3DH_NORMAL_MODE_CTRL_REG1;
+ 181              		.loc 1 155 0
+ 182 00bc 5722     		movs	r2, #87
+ 183 00be 8DF81120 		strb	r2, [sp, #17]
+ 156:main.c        ****     
+ 157:main.c        ****         error = I2C_Peripheral_WriteRegister(LIS3DH_DEVICE_ADDRESS,
+ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\ccUqSPP7.s 			page 7
 
 
- 161:main.c        ****     {
- 162:main.c        ****         sprintf(message, "INT1_DURATION REGISTER : 0x%02X\r\n", interrupt);
- 181              		.loc 1 162 0
- 182 00ba 9DF81820 		ldrb	r2, [sp, #24]	@ zero_extendqisi2
- 183 00be 6549     		ldr	r1, .L30+36
- 184 00c0 07A8     		add	r0, sp, #28
- 185              	.LVL30:
- 186 00c2 FFF7FEFF 		bl	sprintf
- 187              	.LVL31:
- 163:main.c        ****         UART_Debug_PutString(message); 
- 188              		.loc 1 163 0
- 189 00c6 07A8     		add	r0, sp, #28
- 190 00c8 FFF7FEFF 		bl	UART_Debug_PutString
- 191              	.LVL32:
- 192 00cc 02E0     		b	.L12
- 193              	.LVL33:
- 194              	.L11:
- 164:main.c        ****     }
- 165:main.c        ****     else
- 166:main.c        ****     {
- 167:main.c        ****         UART_Debug_PutString("Error occurred during I2C comm to read INT1_DURATION register \r\n");
- 195              		.loc 1 167 0
- 196 00ce 6248     		ldr	r0, .L30+40
- 197              	.LVL34:
- 198 00d0 FFF7FEFF 		bl	UART_Debug_PutString
- 199              	.LVL35:
- 200              	.L12:
- 168:main.c        ****     }
- 169:main.c        ****     
- 170:main.c        ****     /******************************************/
- 171:main.c        ****     /*            I2C Writing                 */
+ 184              		.loc 1 157 0
+ 185 00c2 2021     		movs	r1, #32
+ 186 00c4 1820     		movs	r0, #24
+ 187 00c6 FFF7FEFF 		bl	I2C_Peripheral_WriteRegister
+ 188              	.LVL30:
+ 158:main.c        ****                                              LIS3DH_CTRL_REG1,
+ 159:main.c        ****                                              ctrl_reg1);
+ 160:main.c        ****     
+ 161:main.c        ****         if (error == NO_ERROR)
+ 189              		.loc 1 161 0
+ 190 00ca 48B9     		cbnz	r0, .L12
+ 162:main.c        ****         {
+ 163:main.c        ****             sprintf(message, "CONTROL REGISTER 1 successfully written as: 0x%02X\r\n", ctrl_reg1);
+ 191              		.loc 1 163 0
+ 192 00cc 9DF81120 		ldrb	r2, [sp, #17]	@ zero_extendqisi2
+ 193 00d0 4F49     		ldr	r1, .L25+40
+ 194 00d2 05A8     		add	r0, sp, #20
+ 195              	.LVL31:
+ 196 00d4 FFF7FEFF 		bl	sprintf
+ 197              	.LVL32:
+ 164:main.c        ****             UART_Debug_PutString(message); 
+ 198              		.loc 1 164 0
+ 199 00d8 05A8     		add	r0, sp, #20
+ 200 00da FFF7FEFF 		bl	UART_Debug_PutString
+ 201              	.LVL33:
+ 202 00de 02E0     		b	.L11
+ 203              	.LVL34:
+ 204              	.L12:
+ 165:main.c        ****         }
+ 166:main.c        ****         else
+ 167:main.c        ****         {
+ 168:main.c        ****             UART_Debug_PutString("Error occurred during I2C comm to set control register 1\r\n");  
+ 205              		.loc 1 168 0
+ 206 00e0 4C48     		ldr	r0, .L25+44
+ 207              	.LVL35:
+ 208 00e2 FFF7FEFF 		bl	UART_Debug_PutString
+ 209              	.LVL36:
+ 210              	.L11:
+ 169:main.c        ****         }
+ 170:main.c        ****     }
+ 171:main.c        ****     
  172:main.c        ****     /******************************************/
- 173:main.c        ****     
- 174:main.c        ****         
- 175:main.c        ****     UART_Debug_PutString("\r\nWriting new values..\r\n");
- 201              		.loc 1 175 0
- 202 00d4 6148     		ldr	r0, .L30+44
- 203 00d6 FFF7FEFF 		bl	UART_Debug_PutString
- 204              	.LVL36:
- 176:main.c        ****     
- 177:main.c        ****     if (ctrl_reg1 != LIS3DH_NORMAL_MODE_CTRL_REG1)
- 205              		.loc 1 177 0
- 206 00da 9DF81930 		ldrb	r3, [sp, #25]	@ zero_extendqisi2
- 207 00de 572B     		cmp	r3, #87
- 208 00e0 14D0     		beq	.L13
- 178:main.c        ****     {
- 179:main.c        ****         ctrl_reg1 = LIS3DH_NORMAL_MODE_CTRL_REG1;
- 209              		.loc 1 179 0
- 210 00e2 5722     		movs	r2, #87
- 211 00e4 8DF81920 		strb	r2, [sp, #25]
- 180:main.c        ****     
- 181:main.c        ****         error = I2C_Peripheral_WriteRegister(LIS3DH_DEVICE_ADDRESS,
- 212              		.loc 1 181 0
- 213 00e8 2021     		movs	r1, #32
- 214 00ea 1820     		movs	r0, #24
- 215 00ec FFF7FEFF 		bl	I2C_Peripheral_WriteRegister
+ 173:main.c        ****     /*     Read Control Register 1 again      */
+ 174:main.c        ****     /******************************************/
+ 175:main.c        **** 
+ 176:main.c        ****     error = I2C_Peripheral_ReadRegister(LIS3DH_DEVICE_ADDRESS,
+ 211              		.loc 1 176 0
+ 212 00e6 0DF11102 		add	r2, sp, #17
+ 213 00ea 2021     		movs	r1, #32
+ 214 00ec 1820     		movs	r0, #24
+ 215 00ee FFF7FEFF 		bl	I2C_Peripheral_ReadRegister
  216              	.LVL37:
-ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\cc4BRkOJ.s 			page 8
+ 177:main.c        ****                                         LIS3DH_CTRL_REG1,
+ 178:main.c        ****                                         &ctrl_reg1);
+ 179:main.c        ****     
+ 180:main.c        ****     if (error == NO_ERROR)
+ 217              		.loc 1 180 0
+ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\ccUqSPP7.s 			page 8
 
 
- 182:main.c        ****                                              LIS3DH_CTRL_REG1,
- 183:main.c        ****                                              ctrl_reg1);
- 184:main.c        ****     
- 185:main.c        ****         if (error == NO_ERROR)
- 217              		.loc 1 185 0
- 218 00f0 48B9     		cbnz	r0, .L14
- 186:main.c        ****         {
- 187:main.c        ****             sprintf(message, "CONTROL REGISTER 1 successfully written as: 0x%02X\r\n", ctrl_reg1);
- 219              		.loc 1 187 0
- 220 00f2 9DF81920 		ldrb	r2, [sp, #25]	@ zero_extendqisi2
- 221 00f6 5A49     		ldr	r1, .L30+48
- 222 00f8 07A8     		add	r0, sp, #28
+ 218 00f2 48B9     		cbnz	r0, .L13
+ 181:main.c        ****     {
+ 182:main.c        ****         sprintf(message, "CONTROL REGISTER 1 after overwrite operation: 0x%02X\r\n", ctrl_reg1);
+ 219              		.loc 1 182 0
+ 220 00f4 9DF81120 		ldrb	r2, [sp, #17]	@ zero_extendqisi2
+ 221 00f8 4749     		ldr	r1, .L25+48
+ 222 00fa 05A8     		add	r0, sp, #20
  223              	.LVL38:
- 224 00fa FFF7FEFF 		bl	sprintf
+ 224 00fc FFF7FEFF 		bl	sprintf
  225              	.LVL39:
- 188:main.c        ****             UART_Debug_PutString(message); 
- 226              		.loc 1 188 0
- 227 00fe 07A8     		add	r0, sp, #28
- 228 0100 FFF7FEFF 		bl	UART_Debug_PutString
+ 183:main.c        ****         UART_Debug_PutString(message); 
+ 226              		.loc 1 183 0
+ 227 0100 05A8     		add	r0, sp, #20
+ 228 0102 FFF7FEFF 		bl	UART_Debug_PutString
  229              	.LVL40:
- 230 0104 02E0     		b	.L13
+ 230 0106 02E0     		b	.L14
  231              	.LVL41:
- 232              	.L14:
- 189:main.c        ****         }
- 190:main.c        ****         else
- 191:main.c        ****         {
- 192:main.c        ****             UART_Debug_PutString("Error occurred during I2C comm to set control register 1\r\n");  
- 233              		.loc 1 192 0
- 234 0106 5748     		ldr	r0, .L30+52
+ 232              	.L13:
+ 184:main.c        ****     }
+ 185:main.c        ****     else
+ 186:main.c        ****     {
+ 187:main.c        ****         UART_Debug_PutString("Error occurred during I2C comm to read control register 1\r\n");   
+ 233              		.loc 1 187 0
+ 234 0108 3F48     		ldr	r0, .L25+32
  235              	.LVL42:
- 236 0108 FFF7FEFF 		bl	UART_Debug_PutString
+ 236 010a FFF7FEFF 		bl	UART_Debug_PutString
  237              	.LVL43:
- 238              	.L13:
- 193:main.c        ****         }
- 194:main.c        ****     }
- 195:main.c        ****     
- 196:main.c        ****     /******************************************/
- 197:main.c        ****     /*     Read Control Register 1 again      */
- 198:main.c        ****     /******************************************/
- 199:main.c        **** 
- 200:main.c        ****     error = I2C_Peripheral_ReadRegister(LIS3DH_DEVICE_ADDRESS,
- 239              		.loc 1 200 0
- 240 010c 0DF11902 		add	r2, sp, #25
- 241 0110 2021     		movs	r1, #32
+ 238              	.L14:
+ 188:main.c        ****     }
+ 189:main.c        ****     
+ 190:main.c        ****     /******************************************/
+ 191:main.c        ****      /* Enabling Interrupt based on the duration of ODR chosen. */
+ 192:main.c        ****      /******************************************/             
+ 193:main.c        ****         
+ 194:main.c        ****     uint8_t ctrl_reg4;
+ 195:main.c        **** 
+ 196:main.c        ****     error = I2C_Peripheral_ReadRegister(LIS3DH_DEVICE_ADDRESS,
+ 239              		.loc 1 196 0
+ 240 010e 04AA     		add	r2, sp, #16
+ 241 0110 2321     		movs	r1, #35
  242 0112 1820     		movs	r0, #24
  243 0114 FFF7FEFF 		bl	I2C_Peripheral_ReadRegister
  244              	.LVL44:
- 201:main.c        ****                                         LIS3DH_CTRL_REG1,
- 202:main.c        ****                                         &ctrl_reg1);
- 203:main.c        ****     
- 204:main.c        ****     if (error == NO_ERROR)
- 245              		.loc 1 204 0
+ 197:main.c        ****                                         LIS3DH_CTRL_REG4,
+ 198:main.c        ****                                         &ctrl_reg4);
+ 199:main.c        ****     
+ 200:main.c        ****     if (error == NO_ERROR)
+ 245              		.loc 1 200 0
  246 0118 48B9     		cbnz	r0, .L15
- 205:main.c        ****     {
- 206:main.c        ****         sprintf(message, "CONTROL REGISTER 1 after overwrite operation: 0x%02X\r\n", ctrl_reg1);
- 247              		.loc 1 206 0
- 248 011a 9DF81920 		ldrb	r2, [sp, #25]	@ zero_extendqisi2
-ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\cc4BRkOJ.s 			page 9
-
-
- 249 011e 5249     		ldr	r1, .L30+56
- 250 0120 07A8     		add	r0, sp, #28
+ 201:main.c        ****     {
+ 202:main.c        ****         sprintf(message, "CONTROL REGISTER 4: 0x%02X\r\n", ctrl_reg4);
+ 247              		.loc 1 202 0
+ 248 011a 9DF81020 		ldrb	r2, [sp, #16]	@ zero_extendqisi2
+ 249 011e 3F49     		ldr	r1, .L25+52
+ 250 0120 05A8     		add	r0, sp, #20
  251              	.LVL45:
  252 0122 FFF7FEFF 		bl	sprintf
+ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\ccUqSPP7.s 			page 9
+
+
  253              	.LVL46:
- 207:main.c        ****         UART_Debug_PutString(message); 
- 254              		.loc 1 207 0
- 255 0126 07A8     		add	r0, sp, #28
+ 203:main.c        ****         UART_Debug_PutString(message); 
+ 254              		.loc 1 203 0
+ 255 0126 05A8     		add	r0, sp, #20
  256 0128 FFF7FEFF 		bl	UART_Debug_PutString
  257              	.LVL47:
- 258 012c 02E0     		b	.L28
+ 258 012c 02E0     		b	.L16
  259              	.LVL48:
  260              	.L15:
- 208:main.c        ****     }
- 209:main.c        ****     else
- 210:main.c        ****     {
- 211:main.c        ****         UART_Debug_PutString("Error occurred during I2C comm to read control register 1\r\n");   
- 261              		.loc 1 211 0
- 262 012e 4848     		ldr	r0, .L30+32
+ 204:main.c        ****     }
+ 205:main.c        ****     else
+ 206:main.c        ****     {
+ 207:main.c        ****         UART_Debug_PutString("Error occurred during I2C comm to read control register 4\r\n");   
+ 261              		.loc 1 207 0
+ 262 012e 3C48     		ldr	r0, .L25+56
  263              	.LVL49:
  264 0130 FFF7FEFF 		bl	UART_Debug_PutString
  265              	.LVL50:
- 266              	.L28:
- 212:main.c        ****     }
- 213:main.c        ****     
- 214:main.c        ****     /******************************************/
- 215:main.c        ****      /* Enabling Interrupt based on the duration of ODR chosen. */
- 216:main.c        ****      /******************************************/
- 217:main.c        ****     uint8_t interrupt_enable;
- 218:main.c        ****        
- 219:main.c        ****     //Enabling interrupt
- 220:main.c        ****     if (interrupt_enable != LIS3DH_NORMAL_MODE_CTRL_REG1)
- 221:main.c        ****     {
- 222:main.c        ****         interrupt_enable = LIS3DH_NORMAL_MODE_CTRL_REG1;
+ 266              	.L16:
+ 208:main.c        ****     }
+ 209:main.c        ****     
+ 210:main.c        ****     
+ 211:main.c        ****     
+ 212:main.c        ****     /*Update control register 4*/
+ 213:main.c        ****     ctrl_reg4 = LIS3DH_CTRL_REG4_FSR_SET; // must be changed to the appropriate value
+ 267              		.loc 1 213 0
+ 268 0134 0022     		movs	r2, #0
+ 269 0136 12AC     		add	r4, sp, #72
+ 270              	.LVL51:
+ 271 0138 04F8382D 		strb	r2, [r4, #-56]!
+ 214:main.c        ****     
+ 215:main.c        ****     error = I2C_Peripheral_WriteRegister(LIS3DH_DEVICE_ADDRESS,
+ 272              		.loc 1 215 0
+ 273 013c 2321     		movs	r1, #35
+ 274 013e 1820     		movs	r0, #24
+ 275 0140 FFF7FEFF 		bl	I2C_Peripheral_WriteRegister
+ 276              	.LVL52:
+ 216:main.c        ****                                          LIS3DH_CTRL_REG4,
+ 217:main.c        ****                                          ctrl_reg4);
+ 218:main.c        ****     
+ 219:main.c        ****     error = I2C_Peripheral_ReadRegister(LIS3DH_DEVICE_ADDRESS,
+ 277              		.loc 1 219 0
+ 278 0144 2246     		mov	r2, r4
+ 279 0146 2321     		movs	r1, #35
+ 280 0148 1820     		movs	r0, #24
+ 281 014a FFF7FEFF 		bl	I2C_Peripheral_ReadRegister
+ 282              	.LVL53:
+ 220:main.c        ****                                         LIS3DH_CTRL_REG4,
+ 221:main.c        ****                                         &ctrl_reg4);
+ 222:main.c        ****     
  223:main.c        ****     
- 224:main.c        ****         error = I2C_Peripheral_WriteRegister(LIS3DH_DEVICE_ADDRESS,
- 267              		.loc 1 224 0
- 268 0134 5722     		movs	r2, #87
- 269 0136 3321     		movs	r1, #51
- 270 0138 1820     		movs	r0, #24
- 271 013a FFF7FEFF 		bl	I2C_Peripheral_WriteRegister
- 272              	.LVL51:
- 225:main.c        ****                                              LIS3DH_INT1_DURATION,
- 226:main.c        ****                                              interrupt_enable);
- 227:main.c        ****     
- 228:main.c        ****         if (error == NO_ERROR)
- 273              		.loc 1 228 0
- 274 013e 40B9     		cbnz	r0, .L18
- 229:main.c        ****         {
- 230:main.c        ****             sprintf(message, "INT1_DURATION successfully written as: 0x%02X\r\n", interrupt_enable)
- 275              		.loc 1 230 0
- 276 0140 5722     		movs	r2, #87
- 277 0142 4A49     		ldr	r1, .L30+60
- 278 0144 07A8     		add	r0, sp, #28
- 279              	.LVL52:
- 280 0146 FFF7FEFF 		bl	sprintf
- 281              	.LVL53:
-ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\cc4BRkOJ.s 			page 10
+ 224:main.c        ****     if (error == NO_ERROR)
+ 283              		.loc 1 224 0
+ 284 014e 48B9     		cbnz	r0, .L17
+ 225:main.c        ****     {
+ 226:main.c        ****         sprintf(message, "CONTROL REGISTER 4 after being updated: 0x%02X\r\n", ctrl_reg4);
+ 285              		.loc 1 226 0
+ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\ccUqSPP7.s 			page 10
 
 
- 231:main.c        ****             UART_Debug_PutString(message); 
- 282              		.loc 1 231 0
- 283 014a 07A8     		add	r0, sp, #28
- 284 014c FFF7FEFF 		bl	UART_Debug_PutString
- 285              	.LVL54:
- 286 0150 02E0     		b	.L17
- 287              	.LVL55:
- 288              	.L18:
- 232:main.c        ****         }
- 233:main.c        ****         else
- 234:main.c        ****         {
- 235:main.c        ****             UART_Debug_PutString("Error occurred while enabling the INT1_DURATION \r\n");   
- 289              		.loc 1 235 0
- 290 0152 4748     		ldr	r0, .L30+64
- 291              	.LVL56:
- 292 0154 FFF7FEFF 		bl	UART_Debug_PutString
- 293              	.LVL57:
- 294              	.L17:
- 236:main.c        ****         }
- 237:main.c        ****     }
- 238:main.c        ****     
+ 286 0150 9DF81020 		ldrb	r2, [sp, #16]	@ zero_extendqisi2
+ 287 0154 3349     		ldr	r1, .L25+60
+ 288 0156 05A8     		add	r0, sp, #20
+ 289              	.LVL54:
+ 290 0158 FFF7FEFF 		bl	sprintf
+ 291              	.LVL55:
+ 227:main.c        ****         UART_Debug_PutString(message); 
+ 292              		.loc 1 227 0
+ 293 015c 05A8     		add	r0, sp, #20
+ 294 015e FFF7FEFF 		bl	UART_Debug_PutString
+ 295              	.LVL56:
+ 296 0162 02E0     		b	.L18
+ 297              	.LVL57:
+ 298              	.L17:
+ 228:main.c        ****     }
+ 229:main.c        ****     else
+ 230:main.c        ****     {
+ 231:main.c        ****         UART_Debug_PutString("Error occurred during I2C comm to read control register4\r\n");   
+ 299              		.loc 1 231 0
+ 300 0164 3048     		ldr	r0, .L25+64
+ 301              	.LVL58:
+ 302 0166 FFF7FEFF 		bl	UART_Debug_PutString
+ 303              	.LVL59:
+ 304              	.L18:
+ 232:main.c        ****     }
+ 233:main.c        ****     
+ 234:main.c        ****     int16_t Out;
+ 235:main.c        ****     uint8_t header = 0xA0;
+ 236:main.c        ****     uint8_t footer = 0xC0;
+ 237:main.c        ****     uint8_t OutArray[TRANSMIT_BUFFER_SIZE]; 
+ 238:main.c        ****     uint8_t xyz_positioning[TRANSMIT_BUFFER_SIZE-2]; /*legth wuthout header and footer*/
  239:main.c        ****     
- 240:main.c        ****     uint8_t ctrl_reg4;
- 241:main.c        **** 
- 242:main.c        ****     error = I2C_Peripheral_ReadRegister(LIS3DH_DEVICE_ADDRESS,
- 295              		.loc 1 242 0
- 296 0158 0DF11702 		add	r2, sp, #23
- 297 015c 2321     		movs	r1, #35
- 298 015e 1820     		movs	r0, #24
- 299 0160 FFF7FEFF 		bl	I2C_Peripheral_ReadRegister
- 300              	.LVL58:
- 243:main.c        ****                                         LIS3DH_CTRL_REG4,
- 244:main.c        ****                                         &ctrl_reg4);
- 245:main.c        ****     
- 246:main.c        ****     if (error == NO_ERROR)
- 301              		.loc 1 246 0
- 302 0164 48B9     		cbnz	r0, .L19
+ 240:main.c        ****     
+ 241:main.c        ****     OutArray[0] = header;
+ 305              		.loc 1 241 0
+ 306 016a A023     		movs	r3, #160
+ 307 016c 8DF80830 		strb	r3, [sp, #8]
+ 242:main.c        ****     OutArray[TRANSMIT_BUFFER_SIZE-1] = footer;
+ 308              		.loc 1 242 0
+ 309 0170 C023     		movs	r3, #192
+ 310 0172 8DF80F30 		strb	r3, [sp, #15]
+ 311              	.LVL60:
+ 312              	.L19:
+ 243:main.c        ****     
+ 244:main.c        ****     int i = 0;
+ 245:main.c        ****         
+ 246:main.c        ****     for(;;)
  247:main.c        ****     {
- 248:main.c        ****         sprintf(message, "CONTROL REGISTER 4: 0x%02X\r\n", ctrl_reg4);
- 303              		.loc 1 248 0
- 304 0166 9DF81720 		ldrb	r2, [sp, #23]	@ zero_extendqisi2
- 305 016a 4249     		ldr	r1, .L30+68
- 306 016c 07A8     		add	r0, sp, #28
- 307              	.LVL59:
- 308 016e FFF7FEFF 		bl	sprintf
- 309              	.LVL60:
- 249:main.c        ****         UART_Debug_PutString(message); 
- 310              		.loc 1 249 0
- 311 0172 07A8     		add	r0, sp, #28
- 312 0174 FFF7FEFF 		bl	UART_Debug_PutString
- 313              	.LVL61:
- 314 0178 02E0     		b	.L20
- 315              	.LVL62:
- 316              	.L19:
- 250:main.c        ****     }
- 251:main.c        ****     else
- 252:main.c        ****     {
-ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\cc4BRkOJ.s 			page 11
-
-
- 253:main.c        ****         UART_Debug_PutString("Error occurred during I2C comm to read control register 4\r\n");   
- 317              		.loc 1 253 0
- 318 017a 3F48     		ldr	r0, .L30+72
- 319              	.LVL63:
- 320 017c FFF7FEFF 		bl	UART_Debug_PutString
- 321              	.LVL64:
- 322              	.L20:
- 254:main.c        ****     }
- 255:main.c        ****     
- 256:main.c        ****     
- 257:main.c        ****     
- 258:main.c        ****     /*Update control register 4*/
- 259:main.c        ****     ctrl_reg4 = LIS3DH_CTRL_REG4_FSR_SET; // must be changed to the appropriate value
- 323              		.loc 1 259 0
- 324 0180 0022     		movs	r2, #0
- 325 0182 14AC     		add	r4, sp, #80
- 326              	.LVL65:
- 327 0184 04F8392D 		strb	r2, [r4, #-57]!
- 260:main.c        ****     
- 261:main.c        ****     error = I2C_Peripheral_WriteRegister(LIS3DH_DEVICE_ADDRESS,
- 328              		.loc 1 261 0
- 329 0188 2321     		movs	r1, #35
- 330 018a 1820     		movs	r0, #24
- 331 018c FFF7FEFF 		bl	I2C_Peripheral_WriteRegister
- 332              	.LVL66:
- 262:main.c        ****                                          LIS3DH_CTRL_REG4,
- 263:main.c        ****                                          ctrl_reg4);
- 264:main.c        ****     
- 265:main.c        ****     error = I2C_Peripheral_ReadRegister(LIS3DH_DEVICE_ADDRESS,
- 333              		.loc 1 265 0
- 334 0190 2246     		mov	r2, r4
- 335 0192 2321     		movs	r1, #35
- 336 0194 1820     		movs	r0, #24
- 337 0196 FFF7FEFF 		bl	I2C_Peripheral_ReadRegister
- 338              	.LVL67:
- 266:main.c        ****                                         LIS3DH_CTRL_REG4,
- 267:main.c        ****                                         &ctrl_reg4);
- 268:main.c        ****     
- 269:main.c        ****     
- 270:main.c        ****     if (error == NO_ERROR)
- 339              		.loc 1 270 0
- 340 019a 48B9     		cbnz	r0, .L21
- 271:main.c        ****     {
- 272:main.c        ****         sprintf(message, "CONTROL REGISTER 4 after being updated: 0x%02X\r\n", ctrl_reg4);
- 341              		.loc 1 272 0
- 342 019c 9DF81720 		ldrb	r2, [sp, #23]	@ zero_extendqisi2
- 343 01a0 3649     		ldr	r1, .L30+76
- 344 01a2 07A8     		add	r0, sp, #28
- 345              	.LVL68:
- 346 01a4 FFF7FEFF 		bl	sprintf
- 347              	.LVL69:
- 273:main.c        ****         UART_Debug_PutString(message); 
- 348              		.loc 1 273 0
- 349 01a8 07A8     		add	r0, sp, #28
- 350 01aa FFF7FEFF 		bl	UART_Debug_PutString
- 351              	.LVL70:
- 352 01ae 02E0     		b	.L22
-ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\cc4BRkOJ.s 			page 12
-
-
- 353              	.LVL71:
- 354              	.L21:
- 274:main.c        ****     }
- 275:main.c        ****     else
- 276:main.c        ****     {
- 277:main.c        ****         UART_Debug_PutString("Error occurred during I2C comm to read control register4\r\n");   
- 355              		.loc 1 277 0
- 356 01b0 3348     		ldr	r0, .L30+80
- 357              	.LVL72:
- 358 01b2 FFF7FEFF 		bl	UART_Debug_PutString
- 359              	.LVL73:
- 360              	.L22:
- 278:main.c        ****     }
- 279:main.c        ****     
- 280:main.c        ****     int16_t Out;
- 281:main.c        ****     uint8_t header = 0xA0;
- 282:main.c        ****     uint8_t footer = 0xC0;
- 283:main.c        ****     uint8_t OutArray[TRANSMIT_BUFFER_SIZE]; 
- 284:main.c        ****     uint8_t xyz_positioning[TRANSMIT_BUFFER_SIZE-2]; /*legth wuthout header and footer*/
- 285:main.c        ****          
- 286:main.c        ****     OutArray[0] = header;
- 361              		.loc 1 286 0
- 362 01b6 A023     		movs	r3, #160
- 363 01b8 8DF80C30 		strb	r3, [sp, #12]
- 287:main.c        ****     OutArray[TRANSMIT_BUFFER_SIZE-1] = footer;
- 364              		.loc 1 287 0
- 365 01bc C023     		movs	r3, #192
- 366 01be 8DF81330 		strb	r3, [sp, #19]
- 367              	.LVL74:
- 368              	.L24:
- 288:main.c        ****     
- 289:main.c        ****     int i = 0;
- 290:main.c        ****     char s[]={'x','y','z'};
- 291:main.c        ****     
- 292:main.c        ****     for(;;)
- 293:main.c        ****     {
- 294:main.c        ****         CyDelay(100);
- 369              		.loc 1 294 0
- 370 01c2 6420     		movs	r0, #100
- 371 01c4 FFF7FEFF 		bl	CyDelay
- 372              	.LVL75:
- 295:main.c        ****         //SendDataUART(DEVICE_ADDRESS, REGISTER, ITERATIONS, ARRAY);
- 296:main.c        ****         error = I2C_Peripheral_ReadRegisterMulti(LIS3DH_DEVICE_ADDRESS,
- 373              		.loc 1 296 0
- 374 01c8 01AB     		add	r3, sp, #4
- 375 01ca 0622     		movs	r2, #6
- 376 01cc 2821     		movs	r1, #40
- 377 01ce 1820     		movs	r0, #24
- 378 01d0 FFF7FEFF 		bl	I2C_Peripheral_ReadRegisterMulti
- 379              	.LVL76:
- 297:main.c        ****                                             LIS3DH_OUT_X_L,
- 298:main.c        ****                                             TRANSMIT_BUFFER_SIZE-2,
- 299:main.c        ****                                             &xyz_positioning[0]);
- 300:main.c        ****                 
- 301:main.c        ****         if(error == NO_ERROR)
- 380              		.loc 1 301 0
- 381 01d4 0028     		cmp	r0, #0
-ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\cc4BRkOJ.s 			page 13
-
-
- 382 01d6 F4D1     		bne	.L24
- 383 01d8 20E0     		b	.L27
- 384              	.LVL77:
- 385              	.L25:
- 302:main.c        ****         {
- 303:main.c        ****             for (i = 0; i<TRANSMIT_BUFFER_SIZE-2; i+=2)
- 304:main.c        ****             {
- 305:main.c        ****                 Out = (int16)((xyz_positioning[i] | (xyz_positioning[i+1]<<8)))>>6;
- 386              		.loc 1 305 0 discriminator 3
- 387 01da 14AB     		add	r3, sp, #80
- 388 01dc 2344     		add	r3, r3, r4
- 389 01de 13F84C3C 		ldrb	r3, [r3, #-76]	@ zero_extendqisi2
- 390 01e2 651C     		adds	r5, r4, #1
- 391 01e4 14AA     		add	r2, sp, #80
- 392 01e6 1544     		add	r5, r5, r2
- 393 01e8 15F84C0C 		ldrb	r0, [r5, #-76]	@ zero_extendqisi2
- 394 01ec 43EA0020 		orr	r0, r3, r0, lsl #8
- 395              	.LVL78:
- 306:main.c        ****                 Out *= 4*0.0098;/*conversion into m/s2*/
- 396              		.loc 1 306 0 discriminator 3
- 397 01f0 40F38910 		sbfx	r0, r0, #6, #10
- 398              	.LVL79:
- 399 01f4 FFF7FEFF 		bl	__aeabi_i2d
- 400              	.LVL80:
- 401 01f8 0DA3     		adr	r3, .L30
- 402 01fa D3E90023 		ldrd	r2, [r3]
- 403 01fe FFF7FEFF 		bl	__aeabi_dmul
- 404              	.LVL81:
- 405 0202 FFF7FEFF 		bl	__aeabi_d2iz
- 406              	.LVL82:
- 407 0206 00B2     		sxth	r0, r0
- 408              	.LVL83:
- 307:main.c        ****                 OutArray[i+1] = (uint8_t)(Out & 0xFF);
- 409              		.loc 1 307 0 discriminator 3
- 410 0208 05F8440C 		strb	r0, [r5, #-68]
- 308:main.c        ****                 OutArray[i+2] = (uint8_t)(Out >> 8);  
- 411              		.loc 1 308 0 discriminator 3
- 412 020c 0234     		adds	r4, r4, #2
- 413              	.LVL84:
- 414 020e C0F30720 		ubfx	r0, r0, #8, #8
- 415              	.LVL85:
- 416 0212 14AB     		add	r3, sp, #80
- 417 0214 2344     		add	r3, r3, r4
- 418 0216 03F8440C 		strb	r0, [r3, #-68]
- 419              	.LVL86:
- 420 021a 00E0     		b	.L23
- 421              	.LVL87:
- 422              	.L27:
- 423 021c 0024     		movs	r4, #0
- 424              	.LVL88:
- 425              	.L23:
- 303:main.c        ****             {
- 426              		.loc 1 303 0 discriminator 1
- 427 021e 052C     		cmp	r4, #5
- 428 0220 DBDD     		ble	.L25
- 309:main.c        ****                 //sprintf(message, "acceleration %d\r\n", Out);           
- 310:main.c        ****                 //UART_Debug_PutString(message);
-ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\cc4BRkOJ.s 			page 14
-
-
- 311:main.c        ****             }                
- 312:main.c        ****                 
- 313:main.c        ****                UART_Debug_PutArray(OutArray, TRANSMIT_BUFFER_SIZE);   
- 429              		.loc 1 313 0
- 430 0222 0821     		movs	r1, #8
- 431 0224 03A8     		add	r0, sp, #12
- 432 0226 FFF7FEFF 		bl	UART_Debug_PutArray
- 433              	.LVL89:
- 434 022a CAE7     		b	.L24
- 435              	.L31:
- 436 022c AFF30080 		.align	3
- 437              	.L30:
- 438 0230 6EA301BC 		.word	-1140743314
- 439 0234 0512A43F 		.word	1067717125
- 440 0238 00000000 		.word	.LC1
- 441 023c 20000000 		.word	.LC2
- 442 0240 48000000 		.word	.LC3
- 443 0244 6C000000 		.word	.LC4
- 444 0248 88000000 		.word	.LC5
- 445 024c C4000000 		.word	.LC6
- 446 0250 E4000000 		.word	.LC7
- 447 0254 20010000 		.word	.LC8
- 448 0258 44010000 		.word	.LC9
- 449 025c 88010000 		.word	.LC10
- 450 0260 A4010000 		.word	.LC11
- 451 0264 DC010000 		.word	.LC12
- 452 0268 18020000 		.word	.LC13
- 453 026c 50020000 		.word	.LC14
- 454 0270 80020000 		.word	.LC15
- 455 0274 B4020000 		.word	.LC16
- 456 0278 D4020000 		.word	.LC17
- 457 027c 10030000 		.word	.LC18
- 458 0280 44030000 		.word	.LC19
- 459              		.cfi_endproc
- 460              	.LFE64:
- 461              		.size	main, .-main
- 462              		.section	.rodata.str1.4,"aMS",%progbits,1
- 463              		.align	2
- 464              	.LC1:
- 465 0000 44657669 		.ascii	"Device 0x%02X is connected\015\012\000"
- 465      63652030 
- 465      78253032 
- 465      58206973 
- 465      20636F6E 
- 466 001d 000000   		.space	3
- 467              	.LC2:
- 468 0020 57484F20 		.ascii	"WHO AM I REG: 0x%02X [Expected: 0x33]\015\012\000"
- 468      414D2049 
- 468      20524547 
- 468      3A203078 
- 468      25303258 
- 469              	.LC3:
- 470 0048 4572726F 		.ascii	"Error occurred during I2C comm\015\012\000"
- 470      72206F63 
- 470      63757272 
- 470      65642064 
- 470      7572696E 
-ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\cc4BRkOJ.s 			page 15
-
-
- 471 0069 000000   		.space	3
- 472              	.LC4:
- 473 006c 53544154 		.ascii	"STATUS REGISTER: 0x%02X\015\012\000"
- 473      55532052 
- 473      45474953 
- 473      5445523A 
- 473      20307825 
- 474 0086 0000     		.space	2
- 475              	.LC5:
- 476 0088 4572726F 		.ascii	"Error occurred during I2C comm to read status regis"
- 476      72206F63 
- 476      63757272 
- 476      65642064 
- 476      7572696E 
- 477 00bb 7465720D 		.ascii	"ter\015\012\000"
- 477      0A00
- 478 00c1 000000   		.space	3
- 479              	.LC6:
- 480 00c4 434F4E54 		.ascii	"CONTROL REGISTER 1: 0x%02X\015\012\000"
- 480      524F4C20 
- 480      52454749 
- 480      53544552 
- 480      20313A20 
- 481 00e1 000000   		.space	3
- 482              	.LC7:
- 483 00e4 4572726F 		.ascii	"Error occurred during I2C comm to read control regi"
- 483      72206F63 
- 483      63757272 
- 483      65642064 
- 483      7572696E 
- 484 0117 73746572 		.ascii	"ster 1\015\012\000"
- 484      20310D0A 
- 484      00
- 485              	.LC8:
- 486 0120 494E5431 		.ascii	"INT1_DURATION REGISTER : 0x%02X\015\012\000"
- 486      5F445552 
- 486      4154494F 
- 486      4E205245 
- 486      47495354 
- 487 0142 0000     		.space	2
- 488              	.LC9:
- 489 0144 4572726F 		.ascii	"Error occurred during I2C comm to read INT1_DURATIO"
- 489      72206F63 
- 489      63757272 
- 489      65642064 
- 489      7572696E 
- 490 0177 4E207265 		.ascii	"N register \015\012\000"
- 490      67697374 
- 490      6572200D 
- 490      0A00
- 491 0185 000000   		.space	3
- 492              	.LC10:
- 493 0188 0D0A5772 		.ascii	"\015\012Writing new values..\015\012\000"
- 493      6974696E 
- 493      67206E65 
- 493      77207661 
- 493      6C756573 
-ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\cc4BRkOJ.s 			page 16
-
-
- 494 01a1 000000   		.space	3
- 495              	.LC11:
- 496 01a4 434F4E54 		.ascii	"CONTROL REGISTER 1 successfully written as: 0x%02X\015"
- 496      524F4C20 
- 496      52454749 
- 496      53544552 
- 496      20312073 
- 497 01d7 0A00     		.ascii	"\012\000"
- 498 01d9 000000   		.space	3
- 499              	.LC12:
- 500 01dc 4572726F 		.ascii	"Error occurred during I2C comm to set control regis"
- 500      72206F63 
- 500      63757272 
- 500      65642064 
- 500      7572696E 
- 501 020f 74657220 		.ascii	"ter 1\015\012\000"
- 501      310D0A00 
- 502 0217 00       		.space	1
- 503              	.LC13:
- 504 0218 434F4E54 		.ascii	"CONTROL REGISTER 1 after overwrite operation: 0x%02"
- 504      524F4C20 
- 504      52454749 
- 504      53544552 
- 504      20312061 
- 505 024b 580D0A00 		.ascii	"X\015\012\000"
- 506 024f 00       		.space	1
- 507              	.LC14:
- 508 0250 494E5431 		.ascii	"INT1_DURATION successfully written as: 0x%02X\015\012"
- 508      5F445552 
- 508      4154494F 
- 508      4E207375 
- 508      63636573 
- 509 027f 00       		.ascii	"\000"
- 510              	.LC15:
- 511 0280 4572726F 		.ascii	"Error occurred while enabling the INT1_DURATION \015"
- 511      72206F63 
- 511      63757272 
- 511      65642077 
- 511      68696C65 
- 512 02b1 0A00     		.ascii	"\012\000"
- 513 02b3 00       		.space	1
- 514              	.LC16:
- 515 02b4 434F4E54 		.ascii	"CONTROL REGISTER 4: 0x%02X\015\012\000"
- 515      524F4C20 
- 515      52454749 
- 515      53544552 
- 515      20343A20 
- 516 02d1 000000   		.space	3
- 517              	.LC17:
- 518 02d4 4572726F 		.ascii	"Error occurred during I2C comm to read control regi"
- 518      72206F63 
- 518      63757272 
- 518      65642064 
- 518      7572696E 
- 519 0307 73746572 		.ascii	"ster 4\015\012\000"
- 519      20340D0A 
- 519      00
-ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\cc4BRkOJ.s 			page 17
-
-
- 520              	.LC18:
- 521 0310 434F4E54 		.ascii	"CONTROL REGISTER 4 after being updated: 0x%02X\015\012"
- 521      524F4C20 
- 521      52454749 
- 521      53544552 
- 521      20342061 
- 522 0340 00       		.ascii	"\000"
- 523 0341 000000   		.space	3
- 524              	.LC19:
- 525 0344 4572726F 		.ascii	"Error occurred during I2C comm to read control regi"
- 525      72206F63 
- 525      63757272 
- 525      65642064 
- 525      7572696E 
- 526 0377 73746572 		.ascii	"ster4\015\012\000"
- 526      340D0A00 
- 527              		.text
- 528              	.Letext0:
- 529              		.file 2 "c:\\program files (x86)\\cypress\\psoc creator\\4.3\\psoc creator\\import\\gnu\\arm\\5.4.
- 530              		.file 3 "c:\\program files (x86)\\cypress\\psoc creator\\4.3\\psoc creator\\import\\gnu\\arm\\5.4.
- 531              		.file 4 "Generated_Source\\PSoC5/cytypes.h"
- 532              		.file 5 "ErrorCodes.h"
- 533              		.file 6 "I2C_Interface.h"
- 534              		.file 7 "c:\\program files (x86)\\cypress\\psoc creator\\4.3\\psoc creator\\import\\gnu\\arm\\5.4.
- 535              		.file 8 "Generated_Source\\PSoC5/UART_Debug.h"
- 536              		.file 9 "Generated_Source\\PSoC5/CyLib.h"
- 537              		.file 10 "Generated_Source\\PSoC5/core_cm3.h"
- 538              		.section	.debug_info,"",%progbits
- 539              	.Ldebug_info0:
- 540 0000 77070000 		.4byte	0x777
- 541 0004 0400     		.2byte	0x4
- 542 0006 00000000 		.4byte	.Ldebug_abbrev0
- 543 000a 04       		.byte	0x4
- 544 000b 01       		.uleb128 0x1
- 545 000c 99000000 		.4byte	.LASF46
- 546 0010 0C       		.byte	0xc
- 547 0011 67020000 		.4byte	.LASF47
- 548 0015 D0020000 		.4byte	.LASF48
- 549 0019 00000000 		.4byte	.Ldebug_ranges0+0
- 550 001d 00000000 		.4byte	0
- 551 0021 00000000 		.4byte	.Ldebug_line0
- 552 0025 02       		.uleb128 0x2
- 553 0026 01       		.byte	0x1
- 554 0027 06       		.byte	0x6
- 555 0028 C4020000 		.4byte	.LASF0
- 556 002c 03       		.uleb128 0x3
- 557 002d 0F000000 		.4byte	.LASF2
- 558 0031 02       		.byte	0x2
- 559 0032 1D       		.byte	0x1d
- 560 0033 37000000 		.4byte	0x37
- 561 0037 02       		.uleb128 0x2
- 562 0038 01       		.byte	0x1
- 563 0039 08       		.byte	0x8
- 564 003a 76010000 		.4byte	.LASF1
- 565 003e 03       		.uleb128 0x3
- 566 003f C2010000 		.4byte	.LASF3
- 567 0043 02       		.byte	0x2
-ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\cc4BRkOJ.s 			page 18
-
-
- 568 0044 29       		.byte	0x29
- 569 0045 49000000 		.4byte	0x49
- 570 0049 02       		.uleb128 0x2
- 571 004a 02       		.byte	0x2
- 572 004b 05       		.byte	0x5
- 573 004c 8F020000 		.4byte	.LASF4
- 574 0050 02       		.uleb128 0x2
- 575 0051 02       		.byte	0x2
- 576 0052 07       		.byte	0x7
- 577 0053 3F010000 		.4byte	.LASF5
- 578 0057 03       		.uleb128 0x3
- 579 0058 4F000000 		.4byte	.LASF6
- 580 005c 02       		.byte	0x2
- 581 005d 3F       		.byte	0x3f
- 582 005e 62000000 		.4byte	0x62
- 583 0062 02       		.uleb128 0x2
- 584 0063 04       		.byte	0x4
- 585 0064 05       		.byte	0x5
- 586 0065 59000000 		.4byte	.LASF7
- 587 0069 02       		.uleb128 0x2
- 588 006a 04       		.byte	0x4
- 589 006b 07       		.byte	0x7
- 590 006c 2D010000 		.4byte	.LASF8
- 591 0070 02       		.uleb128 0x2
- 592 0071 08       		.byte	0x8
- 593 0072 05       		.byte	0x5
- 594 0073 48020000 		.4byte	.LASF9
- 595 0077 02       		.uleb128 0x2
- 596 0078 08       		.byte	0x8
- 597 0079 07       		.byte	0x7
- 598 007a ED010000 		.4byte	.LASF10
- 599 007e 04       		.uleb128 0x4
- 600 007f 04       		.byte	0x4
- 601 0080 05       		.byte	0x5
- 602 0081 696E7400 		.ascii	"int\000"
- 603 0085 02       		.uleb128 0x2
- 604 0086 04       		.byte	0x4
- 605 0087 07       		.byte	0x7
- 606 0088 E0010000 		.4byte	.LASF11
- 607 008c 03       		.uleb128 0x3
- 608 008d 04020000 		.4byte	.LASF12
- 609 0091 03       		.byte	0x3
- 610 0092 18       		.byte	0x18
- 611 0093 2C000000 		.4byte	0x2c
- 612 0097 03       		.uleb128 0x3
- 613 0098 0C020000 		.4byte	.LASF13
- 614 009c 03       		.byte	0x3
- 615 009d 20       		.byte	0x20
- 616 009e 3E000000 		.4byte	0x3e
- 617 00a2 03       		.uleb128 0x3
- 618 00a3 31020000 		.4byte	.LASF14
- 619 00a7 03       		.byte	0x3
- 620 00a8 2C       		.byte	0x2c
- 621 00a9 57000000 		.4byte	0x57
- 622 00ad 05       		.uleb128 0x5
- 623 00ae 27010000 		.4byte	.LASF15
- 624 00b2 04       		.byte	0x4
-ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\cc4BRkOJ.s 			page 19
-
-
- 625 00b3 E801     		.2byte	0x1e8
- 626 00b5 49000000 		.4byte	0x49
- 627 00b9 02       		.uleb128 0x2
- 628 00ba 04       		.byte	0x4
- 629 00bb 04       		.byte	0x4
- 630 00bc 80000000 		.4byte	.LASF16
- 631 00c0 02       		.uleb128 0x2
- 632 00c1 08       		.byte	0x8
- 633 00c2 04       		.byte	0x4
- 634 00c3 95010000 		.4byte	.LASF17
- 635 00c7 02       		.uleb128 0x2
- 636 00c8 01       		.byte	0x1
- 637 00c9 08       		.byte	0x8
- 638 00ca 6E020000 		.4byte	.LASF18
- 639 00ce 06       		.uleb128 0x6
- 640 00cf 01       		.byte	0x1
- 641 00d0 37000000 		.4byte	0x37
- 642 00d4 05       		.byte	0x5
- 643 00d5 15       		.byte	0x15
- 644 00d6 E7000000 		.4byte	0xe7
- 645 00da 07       		.uleb128 0x7
- 646 00db 99020000 		.4byte	.LASF19
- 647 00df 00       		.byte	0
- 648 00e0 07       		.uleb128 0x7
- 649 00e1 B2020000 		.4byte	.LASF20
- 650 00e5 01       		.byte	0x1
- 651 00e6 00       		.byte	0
- 652 00e7 03       		.uleb128 0x3
- 653 00e8 76000000 		.4byte	.LASF21
- 654 00ec 05       		.byte	0x5
- 655 00ed 18       		.byte	0x18
- 656 00ee CE000000 		.4byte	0xce
- 657 00f2 02       		.uleb128 0x2
- 658 00f3 08       		.byte	0x8
- 659 00f4 04       		.byte	0x4
- 660 00f5 B8020000 		.4byte	.LASF22
- 661 00f9 02       		.uleb128 0x2
- 662 00fa 04       		.byte	0x4
- 663 00fb 07       		.byte	0x7
- 664 00fc 39020000 		.4byte	.LASF23
- 665 0100 08       		.uleb128 0x8
- 666 0101 BD010000 		.4byte	.LASF49
- 667 0105 01       		.byte	0x1
- 668 0106 47       		.byte	0x47
- 669 0107 7E000000 		.4byte	0x7e
- 670 010b 00000000 		.4byte	.LFB64
- 671 010f 84020000 		.4byte	.LFE64-.LFB64
- 672 0113 01       		.uleb128 0x1
- 673 0114 9C       		.byte	0x9c
- 674 0115 BB060000 		.4byte	0x6bb
- 675 0119 09       		.uleb128 0x9
- 676 011a 00000000 		.4byte	.LASF24
- 677 011e 01       		.byte	0x1
- 678 011f 52       		.byte	0x52
- 679 0120 BB060000 		.4byte	0x6bb
- 680 0124 03       		.uleb128 0x3
- 681 0125 91       		.byte	0x91
-ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\cc4BRkOJ.s 			page 20
-
-
- 682 0126 BC7F     		.sleb128 -68
- 683 0128 09       		.uleb128 0x9
- 684 0129 0D030000 		.4byte	.LASF25
- 685 012d 01       		.byte	0x1
- 686 012e 65       		.byte	0x65
- 687 012f 8C000000 		.4byte	0x8c
- 688 0133 03       		.uleb128 0x3
- 689 0134 91       		.byte	0x91
- 690 0135 BB7F     		.sleb128 -69
- 691 0137 0A       		.uleb128 0xa
- 692 0138 42020000 		.4byte	.LASF26
- 693 013c 01       		.byte	0x1
- 694 013d 66       		.byte	0x66
- 695 013e E7000000 		.4byte	0xe7
- 696 0142 00000000 		.4byte	.LLST0
- 697 0146 09       		.uleb128 0x9
- 698 0147 21020000 		.4byte	.LASF27
- 699 014b 01       		.byte	0x1
- 700 014c 77       		.byte	0x77
- 701 014d 8C000000 		.4byte	0x8c
- 702 0151 03       		.uleb128 0x3
- 703 0152 91       		.byte	0x91
- 704 0153 BA7F     		.sleb128 -70
- 705 0155 09       		.uleb128 0x9
- 706 0156 CC010000 		.4byte	.LASF28
- 707 015a 01       		.byte	0x1
- 708 015b 89       		.byte	0x89
- 709 015c 8C000000 		.4byte	0x8c
- 710 0160 03       		.uleb128 0x3
- 711 0161 91       		.byte	0x91
- 712 0162 B97F     		.sleb128 -71
- 713 0164 09       		.uleb128 0x9
- 714 0165 8F000000 		.4byte	.LASF29
- 715 0169 01       		.byte	0x1
- 716 016a 9B       		.byte	0x9b
- 717 016b 8C000000 		.4byte	0x8c
- 718 016f 03       		.uleb128 0x3
- 719 0170 91       		.byte	0x91
- 720 0171 B87F     		.sleb128 -72
- 721 0173 0B       		.uleb128 0xb
- 722 0174 84010000 		.4byte	.LASF30
- 723 0178 01       		.byte	0x1
- 724 0179 D9       		.byte	0xd9
- 725 017a 8C000000 		.4byte	0x8c
- 726 017e 57       		.byte	0x57
- 727 017f 09       		.uleb128 0x9
- 728 0180 D6010000 		.4byte	.LASF31
- 729 0184 01       		.byte	0x1
- 730 0185 F0       		.byte	0xf0
- 731 0186 8C000000 		.4byte	0x8c
- 732 018a 03       		.uleb128 0x3
- 733 018b 91       		.byte	0x91
- 734 018c B77F     		.sleb128 -73
- 735 018e 0C       		.uleb128 0xc
- 736 018f 4F757400 		.ascii	"Out\000"
- 737 0193 01       		.byte	0x1
- 738 0194 1801     		.2byte	0x118
-ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\cc4BRkOJ.s 			page 21
-
-
- 739 0196 97000000 		.4byte	0x97
- 740 019a E4000000 		.4byte	.LLST1
- 741 019e 0D       		.uleb128 0xd
- 742 019f 08000000 		.4byte	.LASF32
- 743 01a3 01       		.byte	0x1
- 744 01a4 1901     		.2byte	0x119
- 745 01a6 8C000000 		.4byte	0x8c
- 746 01aa A07F     		.sleb128 -96
- 747 01ac 0D       		.uleb128 0xd
- 748 01ad 6F010000 		.4byte	.LASF33
- 749 01b1 01       		.byte	0x1
- 750 01b2 1A01     		.2byte	0x11a
- 751 01b4 8C000000 		.4byte	0x8c
- 752 01b8 40       		.sleb128 -64
- 753 01b9 0E       		.uleb128 0xe
- 754 01ba 86000000 		.4byte	.LASF34
- 755 01be 01       		.byte	0x1
- 756 01bf 1B01     		.2byte	0x11b
- 757 01c1 CB060000 		.4byte	0x6cb
- 758 01c5 03       		.uleb128 0x3
- 759 01c6 91       		.byte	0x91
- 760 01c7 AC7F     		.sleb128 -84
- 761 01c9 0E       		.uleb128 0xe
- 762 01ca A2020000 		.4byte	.LASF35
- 763 01ce 01       		.byte	0x1
- 764 01cf 1C01     		.2byte	0x11c
- 765 01d1 DB060000 		.4byte	0x6db
- 766 01d5 03       		.uleb128 0x3
- 767 01d6 91       		.byte	0x91
- 768 01d7 A47F     		.sleb128 -92
- 769 01d9 0C       		.uleb128 0xc
- 770 01da 6900     		.ascii	"i\000"
- 771 01dc 01       		.byte	0x1
- 772 01dd 2101     		.2byte	0x121
- 773 01df 7E000000 		.4byte	0x7e
- 774 01e3 28010000 		.4byte	.LLST2
- 775 01e7 0F       		.uleb128 0xf
- 776 01e8 7300     		.ascii	"s\000"
- 777 01ea 01       		.byte	0x1
- 778 01eb 2201     		.2byte	0x122
- 779 01ed EB060000 		.4byte	0x6eb
- 780 01f1 10       		.uleb128 0x10
- 781 01f2 14000000 		.4byte	.LBB2
- 782 01f6 22000000 		.4byte	.LBE2-.LBB2
- 783 01fa 55020000 		.4byte	0x255
- 784 01fe 11       		.uleb128 0x11
- 785 01ff 6900     		.ascii	"i\000"
- 786 0201 01       		.byte	0x1
- 787 0202 55       		.byte	0x55
- 788 0203 7E000000 		.4byte	0x7e
- 789 0207 5E010000 		.4byte	.LLST3
- 790 020b 12       		.uleb128 0x12
- 791 020c 1E000000 		.4byte	.LVL4
- 792 0210 0C070000 		.4byte	0x70c
- 793 0214 1F020000 		.4byte	0x21f
- 794 0218 13       		.uleb128 0x13
- 795 0219 01       		.uleb128 0x1
-ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\cc4BRkOJ.s 			page 22
-
-
- 796 021a 50       		.byte	0x50
- 797 021b 02       		.uleb128 0x2
- 798 021c 74       		.byte	0x74
- 799 021d 00       		.sleb128 0
- 800 021e 00       		.byte	0
- 801 021f 12       		.uleb128 0x12
- 802 0220 2A000000 		.4byte	.LVL5
- 803 0224 17070000 		.4byte	0x717
- 804 0228 43020000 		.4byte	0x243
- 805 022c 13       		.uleb128 0x13
- 806 022d 01       		.uleb128 0x1
- 807 022e 50       		.byte	0x50
- 808 022f 03       		.uleb128 0x3
- 809 0230 91       		.byte	0x91
- 810 0231 BC7F     		.sleb128 -68
- 811 0233 13       		.uleb128 0x13
- 812 0234 01       		.uleb128 0x1
- 813 0235 51       		.byte	0x51
- 814 0236 05       		.uleb128 0x5
- 815 0237 03       		.byte	0x3
- 816 0238 00000000 		.4byte	.LC1
- 817 023c 13       		.uleb128 0x13
- 818 023d 01       		.uleb128 0x1
- 819 023e 52       		.byte	0x52
- 820 023f 02       		.uleb128 0x2
- 821 0240 74       		.byte	0x74
- 822 0241 00       		.sleb128 0
- 823 0242 00       		.byte	0
- 824 0243 14       		.uleb128 0x14
- 825 0244 30000000 		.4byte	.LVL6
- 826 0248 22070000 		.4byte	0x722
- 827 024c 13       		.uleb128 0x13
- 828 024d 01       		.uleb128 0x1
- 829 024e 50       		.byte	0x50
- 830 024f 03       		.uleb128 0x3
- 831 0250 91       		.byte	0x91
- 832 0251 BC7F     		.sleb128 -68
- 833 0253 00       		.byte	0
- 834 0254 00       		.byte	0
- 835 0255 15       		.uleb128 0x15
- 836 0256 0A000000 		.4byte	.LVL0
- 837 025a 2D070000 		.4byte	0x72d
- 838 025e 15       		.uleb128 0x15
- 839 025f 0E000000 		.4byte	.LVL1
- 840 0263 38070000 		.4byte	0x738
- 841 0267 12       		.uleb128 0x12
- 842 0268 14000000 		.4byte	.LVL2
- 843 026c 43070000 		.4byte	0x743
- 844 0270 7A020000 		.4byte	0x27a
- 845 0274 13       		.uleb128 0x13
- 846 0275 01       		.uleb128 0x1
- 847 0276 50       		.byte	0x50
- 848 0277 01       		.uleb128 0x1
- 849 0278 35       		.byte	0x35
- 850 0279 00       		.byte	0
- 851 027a 12       		.uleb128 0x12
- 852 027b 42000000 		.4byte	.LVL8
-ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\cc4BRkOJ.s 			page 23
-
-
- 853 027f 4E070000 		.4byte	0x74e
- 854 0283 99020000 		.4byte	0x299
- 855 0287 13       		.uleb128 0x13
- 856 0288 01       		.uleb128 0x1
- 857 0289 50       		.byte	0x50
- 858 028a 01       		.uleb128 0x1
- 859 028b 48       		.byte	0x48
- 860 028c 13       		.uleb128 0x13
- 861 028d 01       		.uleb128 0x1
- 862 028e 51       		.byte	0x51
- 863 028f 01       		.uleb128 0x1
- 864 0290 3F       		.byte	0x3f
- 865 0291 13       		.uleb128 0x13
- 866 0292 01       		.uleb128 0x1
- 867 0293 52       		.byte	0x52
- 868 0294 03       		.uleb128 0x3
- 869 0295 91       		.byte	0x91
- 870 0296 BB7F     		.sleb128 -69
- 871 0298 00       		.byte	0
- 872 0299 12       		.uleb128 0x12
- 873 029a 50000000 		.4byte	.LVL10
- 874 029e 17070000 		.4byte	0x717
- 875 02a2 B7020000 		.4byte	0x2b7
- 876 02a6 13       		.uleb128 0x13
- 877 02a7 01       		.uleb128 0x1
- 878 02a8 50       		.byte	0x50
- 879 02a9 03       		.uleb128 0x3
- 880 02aa 91       		.byte	0x91
- 881 02ab BC7F     		.sleb128 -68
- 882 02ad 13       		.uleb128 0x13
- 883 02ae 01       		.uleb128 0x1
- 884 02af 51       		.byte	0x51
- 885 02b0 05       		.uleb128 0x5
- 886 02b1 03       		.byte	0x3
- 887 02b2 20000000 		.4byte	.LC2
- 888 02b6 00       		.byte	0
- 889 02b7 12       		.uleb128 0x12
- 890 02b8 56000000 		.4byte	.LVL11
- 891 02bc 22070000 		.4byte	0x722
- 892 02c0 CC020000 		.4byte	0x2cc
- 893 02c4 13       		.uleb128 0x13
- 894 02c5 01       		.uleb128 0x1
- 895 02c6 50       		.byte	0x50
- 896 02c7 03       		.uleb128 0x3
- 897 02c8 91       		.byte	0x91
- 898 02c9 BC7F     		.sleb128 -68
- 899 02cb 00       		.byte	0
- 900 02cc 12       		.uleb128 0x12
- 901 02cd 5E000000 		.4byte	.LVL14
- 902 02d1 22070000 		.4byte	0x722
- 903 02d5 E3020000 		.4byte	0x2e3
- 904 02d9 13       		.uleb128 0x13
- 905 02da 01       		.uleb128 0x1
- 906 02db 50       		.byte	0x50
- 907 02dc 05       		.uleb128 0x5
- 908 02dd 03       		.byte	0x3
- 909 02de 48000000 		.4byte	.LC3
-ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\cc4BRkOJ.s 			page 24
-
-
- 910 02e2 00       		.byte	0
- 911 02e3 12       		.uleb128 0x12
- 912 02e4 6A000000 		.4byte	.LVL15
- 913 02e8 4E070000 		.4byte	0x74e
- 914 02ec 03030000 		.4byte	0x303
- 915 02f0 13       		.uleb128 0x13
- 916 02f1 01       		.uleb128 0x1
- 917 02f2 50       		.byte	0x50
- 918 02f3 01       		.uleb128 0x1
- 919 02f4 48       		.byte	0x48
- 920 02f5 13       		.uleb128 0x13
- 921 02f6 01       		.uleb128 0x1
- 922 02f7 51       		.byte	0x51
- 923 02f8 02       		.uleb128 0x2
- 924 02f9 08       		.byte	0x8
- 925 02fa 27       		.byte	0x27
- 926 02fb 13       		.uleb128 0x13
- 927 02fc 01       		.uleb128 0x1
- 928 02fd 52       		.byte	0x52
- 929 02fe 03       		.uleb128 0x3
- 930 02ff 91       		.byte	0x91
- 931 0300 BA7F     		.sleb128 -70
- 932 0302 00       		.byte	0
- 933 0303 12       		.uleb128 0x12
- 934 0304 78000000 		.4byte	.LVL17
- 935 0308 17070000 		.4byte	0x717
- 936 030c 21030000 		.4byte	0x321
- 937 0310 13       		.uleb128 0x13
- 938 0311 01       		.uleb128 0x1
- 939 0312 50       		.byte	0x50
- 940 0313 03       		.uleb128 0x3
- 941 0314 91       		.byte	0x91
- 942 0315 BC7F     		.sleb128 -68
- 943 0317 13       		.uleb128 0x13
- 944 0318 01       		.uleb128 0x1
- 945 0319 51       		.byte	0x51
- 946 031a 05       		.uleb128 0x5
- 947 031b 03       		.byte	0x3
- 948 031c 6C000000 		.4byte	.LC4
- 949 0320 00       		.byte	0
- 950 0321 12       		.uleb128 0x12
- 951 0322 7E000000 		.4byte	.LVL18
- 952 0326 22070000 		.4byte	0x722
- 953 032a 36030000 		.4byte	0x336
- 954 032e 13       		.uleb128 0x13
- 955 032f 01       		.uleb128 0x1
- 956 0330 50       		.byte	0x50
- 957 0331 03       		.uleb128 0x3
- 958 0332 91       		.byte	0x91
- 959 0333 BC7F     		.sleb128 -68
- 960 0335 00       		.byte	0
- 961 0336 12       		.uleb128 0x12
- 962 0337 86000000 		.4byte	.LVL21
- 963 033b 22070000 		.4byte	0x722
- 964 033f 4D030000 		.4byte	0x34d
- 965 0343 13       		.uleb128 0x13
- 966 0344 01       		.uleb128 0x1
-ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\cc4BRkOJ.s 			page 25
-
-
- 967 0345 50       		.byte	0x50
- 968 0346 05       		.uleb128 0x5
- 969 0347 03       		.byte	0x3
- 970 0348 88000000 		.4byte	.LC5
- 971 034c 00       		.byte	0
- 972 034d 12       		.uleb128 0x12
- 973 034e 92000000 		.4byte	.LVL22
- 974 0352 4E070000 		.4byte	0x74e
- 975 0356 6D030000 		.4byte	0x36d
- 976 035a 13       		.uleb128 0x13
- 977 035b 01       		.uleb128 0x1
- 978 035c 50       		.byte	0x50
- 979 035d 01       		.uleb128 0x1
- 980 035e 48       		.byte	0x48
- 981 035f 13       		.uleb128 0x13
- 982 0360 01       		.uleb128 0x1
- 983 0361 51       		.byte	0x51
- 984 0362 02       		.uleb128 0x2
- 985 0363 08       		.byte	0x8
- 986 0364 20       		.byte	0x20
- 987 0365 13       		.uleb128 0x13
- 988 0366 01       		.uleb128 0x1
- 989 0367 52       		.byte	0x52
- 990 0368 03       		.uleb128 0x3
- 991 0369 91       		.byte	0x91
- 992 036a B97F     		.sleb128 -71
- 993 036c 00       		.byte	0
- 994 036d 12       		.uleb128 0x12
- 995 036e A0000000 		.4byte	.LVL24
- 996 0372 17070000 		.4byte	0x717
- 997 0376 8B030000 		.4byte	0x38b
- 998 037a 13       		.uleb128 0x13
- 999 037b 01       		.uleb128 0x1
- 1000 037c 50       		.byte	0x50
- 1001 037d 03       		.uleb128 0x3
- 1002 037e 91       		.byte	0x91
- 1003 037f BC7F     		.sleb128 -68
- 1004 0381 13       		.uleb128 0x13
- 1005 0382 01       		.uleb128 0x1
- 1006 0383 51       		.byte	0x51
- 1007 0384 05       		.uleb128 0x5
- 1008 0385 03       		.byte	0x3
- 1009 0386 C4000000 		.4byte	.LC6
- 1010 038a 00       		.byte	0
- 1011 038b 12       		.uleb128 0x12
- 1012 038c A6000000 		.4byte	.LVL25
- 1013 0390 22070000 		.4byte	0x722
- 1014 0394 A0030000 		.4byte	0x3a0
- 1015 0398 13       		.uleb128 0x13
- 1016 0399 01       		.uleb128 0x1
- 1017 039a 50       		.byte	0x50
- 1018 039b 03       		.uleb128 0x3
- 1019 039c 91       		.byte	0x91
- 1020 039d BC7F     		.sleb128 -68
- 1021 039f 00       		.byte	0
- 1022 03a0 12       		.uleb128 0x12
- 1023 03a1 AE000000 		.4byte	.LVL28
-ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\cc4BRkOJ.s 			page 26
-
-
- 1024 03a5 22070000 		.4byte	0x722
- 1025 03a9 B7030000 		.4byte	0x3b7
- 1026 03ad 13       		.uleb128 0x13
- 1027 03ae 01       		.uleb128 0x1
- 1028 03af 50       		.byte	0x50
- 1029 03b0 05       		.uleb128 0x5
- 1030 03b1 03       		.byte	0x3
- 1031 03b2 E4000000 		.4byte	.LC7
- 1032 03b6 00       		.byte	0
- 1033 03b7 12       		.uleb128 0x12
- 1034 03b8 B8000000 		.4byte	.LVL29
- 1035 03bc 4E070000 		.4byte	0x74e
- 1036 03c0 D7030000 		.4byte	0x3d7
- 1037 03c4 13       		.uleb128 0x13
- 1038 03c5 01       		.uleb128 0x1
- 1039 03c6 50       		.byte	0x50
- 1040 03c7 01       		.uleb128 0x1
- 1041 03c8 48       		.byte	0x48
- 1042 03c9 13       		.uleb128 0x13
- 1043 03ca 01       		.uleb128 0x1
- 1044 03cb 51       		.byte	0x51
- 1045 03cc 02       		.uleb128 0x2
- 1046 03cd 08       		.byte	0x8
- 1047 03ce 33       		.byte	0x33
- 1048 03cf 13       		.uleb128 0x13
- 1049 03d0 01       		.uleb128 0x1
- 1050 03d1 52       		.byte	0x52
- 1051 03d2 03       		.uleb128 0x3
- 1052 03d3 91       		.byte	0x91
- 1053 03d4 B87F     		.sleb128 -72
- 1054 03d6 00       		.byte	0
- 1055 03d7 12       		.uleb128 0x12
- 1056 03d8 C6000000 		.4byte	.LVL31
- 1057 03dc 17070000 		.4byte	0x717
- 1058 03e0 F5030000 		.4byte	0x3f5
- 1059 03e4 13       		.uleb128 0x13
- 1060 03e5 01       		.uleb128 0x1
- 1061 03e6 50       		.byte	0x50
- 1062 03e7 03       		.uleb128 0x3
- 1063 03e8 91       		.byte	0x91
- 1064 03e9 BC7F     		.sleb128 -68
- 1065 03eb 13       		.uleb128 0x13
- 1066 03ec 01       		.uleb128 0x1
- 1067 03ed 51       		.byte	0x51
- 1068 03ee 05       		.uleb128 0x5
- 1069 03ef 03       		.byte	0x3
- 1070 03f0 20010000 		.4byte	.LC8
- 1071 03f4 00       		.byte	0
- 1072 03f5 12       		.uleb128 0x12
- 1073 03f6 CC000000 		.4byte	.LVL32
- 1074 03fa 22070000 		.4byte	0x722
- 1075 03fe 0A040000 		.4byte	0x40a
- 1076 0402 13       		.uleb128 0x13
- 1077 0403 01       		.uleb128 0x1
- 1078 0404 50       		.byte	0x50
- 1079 0405 03       		.uleb128 0x3
- 1080 0406 91       		.byte	0x91
-ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\cc4BRkOJ.s 			page 27
-
-
- 1081 0407 BC7F     		.sleb128 -68
- 1082 0409 00       		.byte	0
- 1083 040a 12       		.uleb128 0x12
- 1084 040b D4000000 		.4byte	.LVL35
- 1085 040f 22070000 		.4byte	0x722
- 1086 0413 21040000 		.4byte	0x421
- 1087 0417 13       		.uleb128 0x13
- 1088 0418 01       		.uleb128 0x1
- 1089 0419 50       		.byte	0x50
- 1090 041a 05       		.uleb128 0x5
- 1091 041b 03       		.byte	0x3
- 1092 041c 44010000 		.4byte	.LC9
- 1093 0420 00       		.byte	0
- 1094 0421 12       		.uleb128 0x12
- 1095 0422 DA000000 		.4byte	.LVL36
- 1096 0426 22070000 		.4byte	0x722
- 1097 042a 38040000 		.4byte	0x438
- 1098 042e 13       		.uleb128 0x13
- 1099 042f 01       		.uleb128 0x1
- 1100 0430 50       		.byte	0x50
- 1101 0431 05       		.uleb128 0x5
- 1102 0432 03       		.byte	0x3
- 1103 0433 88010000 		.4byte	.LC10
- 1104 0437 00       		.byte	0
- 1105 0438 12       		.uleb128 0x12
- 1106 0439 F0000000 		.4byte	.LVL37
- 1107 043d 59070000 		.4byte	0x759
- 1108 0441 57040000 		.4byte	0x457
- 1109 0445 13       		.uleb128 0x13
- 1110 0446 01       		.uleb128 0x1
- 1111 0447 50       		.byte	0x50
- 1112 0448 01       		.uleb128 0x1
- 1113 0449 48       		.byte	0x48
- 1114 044a 13       		.uleb128 0x13
- 1115 044b 01       		.uleb128 0x1
- 1116 044c 51       		.byte	0x51
- 1117 044d 02       		.uleb128 0x2
- 1118 044e 08       		.byte	0x8
- 1119 044f 20       		.byte	0x20
- 1120 0450 13       		.uleb128 0x13
- 1121 0451 01       		.uleb128 0x1
- 1122 0452 52       		.byte	0x52
- 1123 0453 02       		.uleb128 0x2
- 1124 0454 08       		.byte	0x8
- 1125 0455 57       		.byte	0x57
- 1126 0456 00       		.byte	0
- 1127 0457 12       		.uleb128 0x12
- 1128 0458 FE000000 		.4byte	.LVL39
- 1129 045c 17070000 		.4byte	0x717
- 1130 0460 75040000 		.4byte	0x475
- 1131 0464 13       		.uleb128 0x13
- 1132 0465 01       		.uleb128 0x1
- 1133 0466 50       		.byte	0x50
- 1134 0467 03       		.uleb128 0x3
- 1135 0468 91       		.byte	0x91
- 1136 0469 BC7F     		.sleb128 -68
- 1137 046b 13       		.uleb128 0x13
-ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\cc4BRkOJ.s 			page 28
-
-
- 1138 046c 01       		.uleb128 0x1
- 1139 046d 51       		.byte	0x51
- 1140 046e 05       		.uleb128 0x5
- 1141 046f 03       		.byte	0x3
- 1142 0470 A4010000 		.4byte	.LC11
- 1143 0474 00       		.byte	0
- 1144 0475 12       		.uleb128 0x12
- 1145 0476 04010000 		.4byte	.LVL40
- 1146 047a 22070000 		.4byte	0x722
- 1147 047e 8A040000 		.4byte	0x48a
- 1148 0482 13       		.uleb128 0x13
- 1149 0483 01       		.uleb128 0x1
- 1150 0484 50       		.byte	0x50
- 1151 0485 03       		.uleb128 0x3
- 1152 0486 91       		.byte	0x91
- 1153 0487 BC7F     		.sleb128 -68
- 1154 0489 00       		.byte	0
- 1155 048a 12       		.uleb128 0x12
- 1156 048b 0C010000 		.4byte	.LVL43
- 1157 048f 22070000 		.4byte	0x722
- 1158 0493 A1040000 		.4byte	0x4a1
- 1159 0497 13       		.uleb128 0x13
- 1160 0498 01       		.uleb128 0x1
- 1161 0499 50       		.byte	0x50
- 1162 049a 05       		.uleb128 0x5
- 1163 049b 03       		.byte	0x3
- 1164 049c DC010000 		.4byte	.LC12
- 1165 04a0 00       		.byte	0
- 1166 04a1 12       		.uleb128 0x12
- 1167 04a2 18010000 		.4byte	.LVL44
- 1168 04a6 4E070000 		.4byte	0x74e
- 1169 04aa C1040000 		.4byte	0x4c1
- 1170 04ae 13       		.uleb128 0x13
- 1171 04af 01       		.uleb128 0x1
- 1172 04b0 50       		.byte	0x50
- 1173 04b1 01       		.uleb128 0x1
- 1174 04b2 48       		.byte	0x48
- 1175 04b3 13       		.uleb128 0x13
- 1176 04b4 01       		.uleb128 0x1
- 1177 04b5 51       		.byte	0x51
- 1178 04b6 02       		.uleb128 0x2
- 1179 04b7 08       		.byte	0x8
- 1180 04b8 20       		.byte	0x20
- 1181 04b9 13       		.uleb128 0x13
- 1182 04ba 01       		.uleb128 0x1
- 1183 04bb 52       		.byte	0x52
- 1184 04bc 03       		.uleb128 0x3
- 1185 04bd 91       		.byte	0x91
- 1186 04be B97F     		.sleb128 -71
- 1187 04c0 00       		.byte	0
- 1188 04c1 12       		.uleb128 0x12
- 1189 04c2 26010000 		.4byte	.LVL46
- 1190 04c6 17070000 		.4byte	0x717
- 1191 04ca DF040000 		.4byte	0x4df
- 1192 04ce 13       		.uleb128 0x13
- 1193 04cf 01       		.uleb128 0x1
- 1194 04d0 50       		.byte	0x50
-ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\cc4BRkOJ.s 			page 29
-
-
- 1195 04d1 03       		.uleb128 0x3
- 1196 04d2 91       		.byte	0x91
- 1197 04d3 BC7F     		.sleb128 -68
- 1198 04d5 13       		.uleb128 0x13
- 1199 04d6 01       		.uleb128 0x1
- 1200 04d7 51       		.byte	0x51
- 1201 04d8 05       		.uleb128 0x5
- 1202 04d9 03       		.byte	0x3
- 1203 04da 18020000 		.4byte	.LC13
- 1204 04de 00       		.byte	0
- 1205 04df 12       		.uleb128 0x12
- 1206 04e0 2C010000 		.4byte	.LVL47
- 1207 04e4 22070000 		.4byte	0x722
- 1208 04e8 F4040000 		.4byte	0x4f4
- 1209 04ec 13       		.uleb128 0x13
- 1210 04ed 01       		.uleb128 0x1
- 1211 04ee 50       		.byte	0x50
- 1212 04ef 03       		.uleb128 0x3
- 1213 04f0 91       		.byte	0x91
- 1214 04f1 BC7F     		.sleb128 -68
- 1215 04f3 00       		.byte	0
- 1216 04f4 12       		.uleb128 0x12
- 1217 04f5 34010000 		.4byte	.LVL50
- 1218 04f9 22070000 		.4byte	0x722
- 1219 04fd 0B050000 		.4byte	0x50b
- 1220 0501 13       		.uleb128 0x13
- 1221 0502 01       		.uleb128 0x1
- 1222 0503 50       		.byte	0x50
- 1223 0504 05       		.uleb128 0x5
- 1224 0505 03       		.byte	0x3
- 1225 0506 E4000000 		.4byte	.LC7
- 1226 050a 00       		.byte	0
- 1227 050b 12       		.uleb128 0x12
- 1228 050c 3E010000 		.4byte	.LVL51
- 1229 0510 59070000 		.4byte	0x759
- 1230 0514 2A050000 		.4byte	0x52a
- 1231 0518 13       		.uleb128 0x13
- 1232 0519 01       		.uleb128 0x1
- 1233 051a 50       		.byte	0x50
- 1234 051b 01       		.uleb128 0x1
- 1235 051c 48       		.byte	0x48
- 1236 051d 13       		.uleb128 0x13
- 1237 051e 01       		.uleb128 0x1
- 1238 051f 51       		.byte	0x51
- 1239 0520 02       		.uleb128 0x2
- 1240 0521 08       		.byte	0x8
- 1241 0522 33       		.byte	0x33
- 1242 0523 13       		.uleb128 0x13
- 1243 0524 01       		.uleb128 0x1
- 1244 0525 52       		.byte	0x52
- 1245 0526 02       		.uleb128 0x2
- 1246 0527 08       		.byte	0x8
- 1247 0528 57       		.byte	0x57
- 1248 0529 00       		.byte	0
- 1249 052a 12       		.uleb128 0x12
- 1250 052b 4A010000 		.4byte	.LVL53
- 1251 052f 17070000 		.4byte	0x717
-ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\cc4BRkOJ.s 			page 30
-
-
- 1252 0533 4E050000 		.4byte	0x54e
- 1253 0537 13       		.uleb128 0x13
- 1254 0538 01       		.uleb128 0x1
- 1255 0539 50       		.byte	0x50
- 1256 053a 03       		.uleb128 0x3
- 1257 053b 91       		.byte	0x91
- 1258 053c BC7F     		.sleb128 -68
- 1259 053e 13       		.uleb128 0x13
- 1260 053f 01       		.uleb128 0x1
- 1261 0540 51       		.byte	0x51
- 1262 0541 05       		.uleb128 0x5
- 1263 0542 03       		.byte	0x3
- 1264 0543 50020000 		.4byte	.LC14
- 1265 0547 13       		.uleb128 0x13
- 1266 0548 01       		.uleb128 0x1
- 1267 0549 52       		.byte	0x52
- 1268 054a 02       		.uleb128 0x2
- 1269 054b 08       		.byte	0x8
- 1270 054c 57       		.byte	0x57
- 1271 054d 00       		.byte	0
- 1272 054e 12       		.uleb128 0x12
- 1273 054f 50010000 		.4byte	.LVL54
- 1274 0553 22070000 		.4byte	0x722
- 1275 0557 63050000 		.4byte	0x563
- 1276 055b 13       		.uleb128 0x13
- 1277 055c 01       		.uleb128 0x1
- 1278 055d 50       		.byte	0x50
- 1279 055e 03       		.uleb128 0x3
- 1280 055f 91       		.byte	0x91
- 1281 0560 BC7F     		.sleb128 -68
- 1282 0562 00       		.byte	0
- 1283 0563 12       		.uleb128 0x12
- 1284 0564 58010000 		.4byte	.LVL57
- 1285 0568 22070000 		.4byte	0x722
- 1286 056c 7A050000 		.4byte	0x57a
- 1287 0570 13       		.uleb128 0x13
- 1288 0571 01       		.uleb128 0x1
- 1289 0572 50       		.byte	0x50
- 1290 0573 05       		.uleb128 0x5
- 1291 0574 03       		.byte	0x3
- 1292 0575 80020000 		.4byte	.LC15
- 1293 0579 00       		.byte	0
- 1294 057a 12       		.uleb128 0x12
- 1295 057b 64010000 		.4byte	.LVL58
- 1296 057f 4E070000 		.4byte	0x74e
- 1297 0583 9A050000 		.4byte	0x59a
- 1298 0587 13       		.uleb128 0x13
- 1299 0588 01       		.uleb128 0x1
- 1300 0589 50       		.byte	0x50
- 1301 058a 01       		.uleb128 0x1
- 1302 058b 48       		.byte	0x48
- 1303 058c 13       		.uleb128 0x13
- 1304 058d 01       		.uleb128 0x1
- 1305 058e 51       		.byte	0x51
- 1306 058f 02       		.uleb128 0x2
- 1307 0590 08       		.byte	0x8
- 1308 0591 23       		.byte	0x23
-ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\cc4BRkOJ.s 			page 31
-
-
- 1309 0592 13       		.uleb128 0x13
- 1310 0593 01       		.uleb128 0x1
- 1311 0594 52       		.byte	0x52
- 1312 0595 03       		.uleb128 0x3
- 1313 0596 91       		.byte	0x91
- 1314 0597 B77F     		.sleb128 -73
- 1315 0599 00       		.byte	0
- 1316 059a 12       		.uleb128 0x12
- 1317 059b 72010000 		.4byte	.LVL60
- 1318 059f 17070000 		.4byte	0x717
- 1319 05a3 B8050000 		.4byte	0x5b8
- 1320 05a7 13       		.uleb128 0x13
- 1321 05a8 01       		.uleb128 0x1
- 1322 05a9 50       		.byte	0x50
- 1323 05aa 03       		.uleb128 0x3
- 1324 05ab 91       		.byte	0x91
- 1325 05ac BC7F     		.sleb128 -68
- 1326 05ae 13       		.uleb128 0x13
- 1327 05af 01       		.uleb128 0x1
- 1328 05b0 51       		.byte	0x51
- 1329 05b1 05       		.uleb128 0x5
- 1330 05b2 03       		.byte	0x3
- 1331 05b3 B4020000 		.4byte	.LC16
- 1332 05b7 00       		.byte	0
- 1333 05b8 12       		.uleb128 0x12
- 1334 05b9 78010000 		.4byte	.LVL61
- 1335 05bd 22070000 		.4byte	0x722
- 1336 05c1 CD050000 		.4byte	0x5cd
- 1337 05c5 13       		.uleb128 0x13
- 1338 05c6 01       		.uleb128 0x1
- 1339 05c7 50       		.byte	0x50
- 1340 05c8 03       		.uleb128 0x3
- 1341 05c9 91       		.byte	0x91
- 1342 05ca BC7F     		.sleb128 -68
- 1343 05cc 00       		.byte	0
- 1344 05cd 12       		.uleb128 0x12
- 1345 05ce 80010000 		.4byte	.LVL64
- 1346 05d2 22070000 		.4byte	0x722
- 1347 05d6 E4050000 		.4byte	0x5e4
- 1348 05da 13       		.uleb128 0x13
- 1349 05db 01       		.uleb128 0x1
- 1350 05dc 50       		.byte	0x50
- 1351 05dd 05       		.uleb128 0x5
- 1352 05de 03       		.byte	0x3
- 1353 05df D4020000 		.4byte	.LC17
- 1354 05e3 00       		.byte	0
- 1355 05e4 12       		.uleb128 0x12
- 1356 05e5 90010000 		.4byte	.LVL66
- 1357 05e9 59070000 		.4byte	0x759
- 1358 05ed 02060000 		.4byte	0x602
- 1359 05f1 13       		.uleb128 0x13
- 1360 05f2 01       		.uleb128 0x1
- 1361 05f3 50       		.byte	0x50
- 1362 05f4 01       		.uleb128 0x1
- 1363 05f5 48       		.byte	0x48
- 1364 05f6 13       		.uleb128 0x13
- 1365 05f7 01       		.uleb128 0x1
-ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\cc4BRkOJ.s 			page 32
-
-
- 1366 05f8 51       		.byte	0x51
- 1367 05f9 02       		.uleb128 0x2
- 1368 05fa 08       		.byte	0x8
- 1369 05fb 23       		.byte	0x23
- 1370 05fc 13       		.uleb128 0x13
- 1371 05fd 01       		.uleb128 0x1
- 1372 05fe 52       		.byte	0x52
- 1373 05ff 01       		.uleb128 0x1
- 1374 0600 30       		.byte	0x30
- 1375 0601 00       		.byte	0
- 1376 0602 12       		.uleb128 0x12
- 1377 0603 9A010000 		.4byte	.LVL67
- 1378 0607 4E070000 		.4byte	0x74e
- 1379 060b 21060000 		.4byte	0x621
- 1380 060f 13       		.uleb128 0x13
- 1381 0610 01       		.uleb128 0x1
- 1382 0611 50       		.byte	0x50
- 1383 0612 01       		.uleb128 0x1
- 1384 0613 48       		.byte	0x48
- 1385 0614 13       		.uleb128 0x13
- 1386 0615 01       		.uleb128 0x1
- 1387 0616 51       		.byte	0x51
- 1388 0617 02       		.uleb128 0x2
- 1389 0618 08       		.byte	0x8
- 1390 0619 23       		.byte	0x23
- 1391 061a 13       		.uleb128 0x13
- 1392 061b 01       		.uleb128 0x1
- 1393 061c 52       		.byte	0x52
- 1394 061d 02       		.uleb128 0x2
- 1395 061e 74       		.byte	0x74
- 1396 061f 00       		.sleb128 0
- 1397 0620 00       		.byte	0
- 1398 0621 12       		.uleb128 0x12
- 1399 0622 A8010000 		.4byte	.LVL69
- 1400 0626 17070000 		.4byte	0x717
- 1401 062a 3F060000 		.4byte	0x63f
- 1402 062e 13       		.uleb128 0x13
- 1403 062f 01       		.uleb128 0x1
- 1404 0630 50       		.byte	0x50
- 1405 0631 03       		.uleb128 0x3
- 1406 0632 91       		.byte	0x91
- 1407 0633 BC7F     		.sleb128 -68
- 1408 0635 13       		.uleb128 0x13
- 1409 0636 01       		.uleb128 0x1
- 1410 0637 51       		.byte	0x51
- 1411 0638 05       		.uleb128 0x5
- 1412 0639 03       		.byte	0x3
- 1413 063a 10030000 		.4byte	.LC18
- 1414 063e 00       		.byte	0
- 1415 063f 12       		.uleb128 0x12
- 1416 0640 AE010000 		.4byte	.LVL70
- 1417 0644 22070000 		.4byte	0x722
- 1418 0648 54060000 		.4byte	0x654
- 1419 064c 13       		.uleb128 0x13
- 1420 064d 01       		.uleb128 0x1
- 1421 064e 50       		.byte	0x50
- 1422 064f 03       		.uleb128 0x3
-ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\cc4BRkOJ.s 			page 33
-
-
- 1423 0650 91       		.byte	0x91
- 1424 0651 BC7F     		.sleb128 -68
- 1425 0653 00       		.byte	0
- 1426 0654 12       		.uleb128 0x12
- 1427 0655 B6010000 		.4byte	.LVL73
- 1428 0659 22070000 		.4byte	0x722
- 1429 065d 6B060000 		.4byte	0x66b
- 1430 0661 13       		.uleb128 0x13
- 1431 0662 01       		.uleb128 0x1
- 1432 0663 50       		.byte	0x50
- 1433 0664 05       		.uleb128 0x5
- 1434 0665 03       		.byte	0x3
- 1435 0666 44030000 		.4byte	.LC19
- 1436 066a 00       		.byte	0
- 1437 066b 12       		.uleb128 0x12
- 1438 066c C8010000 		.4byte	.LVL75
- 1439 0670 43070000 		.4byte	0x743
- 1440 0674 7F060000 		.4byte	0x67f
- 1441 0678 13       		.uleb128 0x13
- 1442 0679 01       		.uleb128 0x1
- 1443 067a 50       		.byte	0x50
- 1444 067b 02       		.uleb128 0x2
- 1445 067c 08       		.byte	0x8
- 1446 067d 64       		.byte	0x64
- 1447 067e 00       		.byte	0
- 1448 067f 12       		.uleb128 0x12
- 1449 0680 D4010000 		.4byte	.LVL76
- 1450 0684 64070000 		.4byte	0x764
- 1451 0688 A4060000 		.4byte	0x6a4
- 1452 068c 13       		.uleb128 0x13
- 1453 068d 01       		.uleb128 0x1
- 1454 068e 50       		.byte	0x50
- 1455 068f 01       		.uleb128 0x1
- 1456 0690 48       		.byte	0x48
- 1457 0691 13       		.uleb128 0x13
- 1458 0692 01       		.uleb128 0x1
- 1459 0693 51       		.byte	0x51
- 1460 0694 02       		.uleb128 0x2
- 1461 0695 08       		.byte	0x8
- 1462 0696 28       		.byte	0x28
- 1463 0697 13       		.uleb128 0x13
- 1464 0698 01       		.uleb128 0x1
- 1465 0699 52       		.byte	0x52
- 1466 069a 01       		.uleb128 0x1
- 1467 069b 36       		.byte	0x36
- 1468 069c 13       		.uleb128 0x13
- 1469 069d 01       		.uleb128 0x1
- 1470 069e 53       		.byte	0x53
- 1471 069f 03       		.uleb128 0x3
- 1472 06a0 91       		.byte	0x91
- 1473 06a1 A47F     		.sleb128 -92
- 1474 06a3 00       		.byte	0
- 1475 06a4 14       		.uleb128 0x14
- 1476 06a5 2A020000 		.4byte	.LVL89
- 1477 06a9 6F070000 		.4byte	0x76f
- 1478 06ad 13       		.uleb128 0x13
- 1479 06ae 01       		.uleb128 0x1
-ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\cc4BRkOJ.s 			page 34
-
-
- 1480 06af 50       		.byte	0x50
- 1481 06b0 03       		.uleb128 0x3
- 1482 06b1 91       		.byte	0x91
- 1483 06b2 AC7F     		.sleb128 -84
- 1484 06b4 13       		.uleb128 0x13
- 1485 06b5 01       		.uleb128 0x1
- 1486 06b6 51       		.byte	0x51
- 1487 06b7 01       		.uleb128 0x1
- 1488 06b8 38       		.byte	0x38
- 1489 06b9 00       		.byte	0
- 1490 06ba 00       		.byte	0
- 1491 06bb 16       		.uleb128 0x16
- 1492 06bc C7000000 		.4byte	0xc7
- 1493 06c0 CB060000 		.4byte	0x6cb
- 1494 06c4 17       		.uleb128 0x17
- 1495 06c5 F9000000 		.4byte	0xf9
- 1496 06c9 31       		.byte	0x31
- 1497 06ca 00       		.byte	0
- 1498 06cb 16       		.uleb128 0x16
- 1499 06cc 8C000000 		.4byte	0x8c
- 1500 06d0 DB060000 		.4byte	0x6db
- 1501 06d4 17       		.uleb128 0x17
- 1502 06d5 F9000000 		.4byte	0xf9
- 1503 06d9 07       		.byte	0x7
- 1504 06da 00       		.byte	0
- 1505 06db 16       		.uleb128 0x16
- 1506 06dc 8C000000 		.4byte	0x8c
- 1507 06e0 EB060000 		.4byte	0x6eb
- 1508 06e4 17       		.uleb128 0x17
- 1509 06e5 F9000000 		.4byte	0xf9
- 1510 06e9 05       		.byte	0x5
- 1511 06ea 00       		.byte	0
- 1512 06eb 16       		.uleb128 0x16
- 1513 06ec C7000000 		.4byte	0xc7
- 1514 06f0 FB060000 		.4byte	0x6fb
- 1515 06f4 17       		.uleb128 0x17
- 1516 06f5 F9000000 		.4byte	0xf9
- 1517 06f9 02       		.byte	0x2
- 1518 06fa 00       		.byte	0
- 1519 06fb 18       		.uleb128 0x18
- 1520 06fc 14020000 		.4byte	.LASF50
- 1521 0700 0A       		.byte	0xa
- 1522 0701 1207     		.2byte	0x712
- 1523 0703 07070000 		.4byte	0x707
- 1524 0707 19       		.uleb128 0x19
- 1525 0708 A2000000 		.4byte	0xa2
- 1526 070c 1A       		.uleb128 0x1a
- 1527 070d 2E000000 		.4byte	.LASF36
- 1528 0711 2E000000 		.4byte	.LASF36
- 1529 0715 06       		.byte	0x6
- 1530 0716 5D       		.byte	0x5d
- 1531 0717 1A       		.uleb128 0x1a
- 1532 0718 1A030000 		.4byte	.LASF37
- 1533 071c 1A030000 		.4byte	.LASF37
- 1534 0720 07       		.byte	0x7
- 1535 0721 E7       		.byte	0xe7
- 1536 0722 1A       		.uleb128 0x1a
-ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\cc4BRkOJ.s 			page 35
-
-
- 1537 0723 19000000 		.4byte	.LASF38
- 1538 0727 19000000 		.4byte	.LASF38
- 1539 072b 08       		.byte	0x8
- 1540 072c 8B       		.byte	0x8b
- 1541 072d 1A       		.uleb128 0x1a
- 1542 072e 2A030000 		.4byte	.LASF39
- 1543 0732 2A030000 		.4byte	.LASF39
- 1544 0736 06       		.byte	0x6
- 1545 0737 17       		.byte	0x17
- 1546 0738 1A       		.uleb128 0x1a
- 1547 0739 56020000 		.4byte	.LASF40
- 1548 073d 56020000 		.4byte	.LASF40
- 1549 0741 08       		.byte	0x8
- 1550 0742 54       		.byte	0x54
- 1551 0743 1A       		.uleb128 0x1a
- 1552 0744 22030000 		.4byte	.LASF41
- 1553 0748 22030000 		.4byte	.LASF41
- 1554 074c 09       		.byte	0x9
- 1555 074d 76       		.byte	0x76
- 1556 074e 1A       		.uleb128 0x1a
- 1557 074f 73020000 		.4byte	.LASF42
- 1558 0753 73020000 		.4byte	.LASF42
- 1559 0757 06       		.byte	0x6
- 1560 0758 28       		.byte	0x28
- 1561 0759 1A       		.uleb128 0x1a
- 1562 075a 52010000 		.4byte	.LASF43
- 1563 075e 52010000 		.4byte	.LASF43
- 1564 0762 06       		.byte	0x6
- 1565 0763 43       		.byte	0x43
- 1566 0764 1A       		.uleb128 0x1a
- 1567 0765 9C010000 		.4byte	.LASF44
- 1568 0769 9C010000 		.4byte	.LASF44
- 1569 076d 06       		.byte	0x6
- 1570 076e 36       		.byte	0x36
- 1571 076f 1A       		.uleb128 0x1a
- 1572 0770 62000000 		.4byte	.LASF45
- 1573 0774 62000000 		.4byte	.LASF45
- 1574 0778 08       		.byte	0x8
- 1575 0779 8C       		.byte	0x8c
- 1576 077a 00       		.byte	0
- 1577              		.section	.debug_abbrev,"",%progbits
- 1578              	.Ldebug_abbrev0:
- 1579 0000 01       		.uleb128 0x1
- 1580 0001 11       		.uleb128 0x11
- 1581 0002 01       		.byte	0x1
- 1582 0003 25       		.uleb128 0x25
- 1583 0004 0E       		.uleb128 0xe
- 1584 0005 13       		.uleb128 0x13
- 1585 0006 0B       		.uleb128 0xb
- 1586 0007 03       		.uleb128 0x3
- 1587 0008 0E       		.uleb128 0xe
- 1588 0009 1B       		.uleb128 0x1b
- 1589 000a 0E       		.uleb128 0xe
- 1590 000b 55       		.uleb128 0x55
- 1591 000c 17       		.uleb128 0x17
- 1592 000d 11       		.uleb128 0x11
- 1593 000e 01       		.uleb128 0x1
-ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\cc4BRkOJ.s 			page 36
-
-
- 1594 000f 10       		.uleb128 0x10
- 1595 0010 17       		.uleb128 0x17
- 1596 0011 00       		.byte	0
- 1597 0012 00       		.byte	0
- 1598 0013 02       		.uleb128 0x2
- 1599 0014 24       		.uleb128 0x24
- 1600 0015 00       		.byte	0
- 1601 0016 0B       		.uleb128 0xb
- 1602 0017 0B       		.uleb128 0xb
- 1603 0018 3E       		.uleb128 0x3e
- 1604 0019 0B       		.uleb128 0xb
- 1605 001a 03       		.uleb128 0x3
- 1606 001b 0E       		.uleb128 0xe
- 1607 001c 00       		.byte	0
- 1608 001d 00       		.byte	0
- 1609 001e 03       		.uleb128 0x3
- 1610 001f 16       		.uleb128 0x16
- 1611 0020 00       		.byte	0
- 1612 0021 03       		.uleb128 0x3
- 1613 0022 0E       		.uleb128 0xe
- 1614 0023 3A       		.uleb128 0x3a
- 1615 0024 0B       		.uleb128 0xb
- 1616 0025 3B       		.uleb128 0x3b
- 1617 0026 0B       		.uleb128 0xb
- 1618 0027 49       		.uleb128 0x49
- 1619 0028 13       		.uleb128 0x13
- 1620 0029 00       		.byte	0
- 1621 002a 00       		.byte	0
- 1622 002b 04       		.uleb128 0x4
- 1623 002c 24       		.uleb128 0x24
- 1624 002d 00       		.byte	0
- 1625 002e 0B       		.uleb128 0xb
- 1626 002f 0B       		.uleb128 0xb
- 1627 0030 3E       		.uleb128 0x3e
- 1628 0031 0B       		.uleb128 0xb
- 1629 0032 03       		.uleb128 0x3
- 1630 0033 08       		.uleb128 0x8
- 1631 0034 00       		.byte	0
- 1632 0035 00       		.byte	0
- 1633 0036 05       		.uleb128 0x5
- 1634 0037 16       		.uleb128 0x16
- 1635 0038 00       		.byte	0
- 1636 0039 03       		.uleb128 0x3
- 1637 003a 0E       		.uleb128 0xe
- 1638 003b 3A       		.uleb128 0x3a
- 1639 003c 0B       		.uleb128 0xb
- 1640 003d 3B       		.uleb128 0x3b
- 1641 003e 05       		.uleb128 0x5
- 1642 003f 49       		.uleb128 0x49
- 1643 0040 13       		.uleb128 0x13
- 1644 0041 00       		.byte	0
- 1645 0042 00       		.byte	0
- 1646 0043 06       		.uleb128 0x6
- 1647 0044 04       		.uleb128 0x4
- 1648 0045 01       		.byte	0x1
- 1649 0046 0B       		.uleb128 0xb
- 1650 0047 0B       		.uleb128 0xb
-ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\cc4BRkOJ.s 			page 37
-
-
- 1651 0048 49       		.uleb128 0x49
- 1652 0049 13       		.uleb128 0x13
- 1653 004a 3A       		.uleb128 0x3a
- 1654 004b 0B       		.uleb128 0xb
- 1655 004c 3B       		.uleb128 0x3b
- 1656 004d 0B       		.uleb128 0xb
- 1657 004e 01       		.uleb128 0x1
- 1658 004f 13       		.uleb128 0x13
- 1659 0050 00       		.byte	0
- 1660 0051 00       		.byte	0
- 1661 0052 07       		.uleb128 0x7
- 1662 0053 28       		.uleb128 0x28
- 1663 0054 00       		.byte	0
- 1664 0055 03       		.uleb128 0x3
- 1665 0056 0E       		.uleb128 0xe
- 1666 0057 1C       		.uleb128 0x1c
- 1667 0058 0B       		.uleb128 0xb
- 1668 0059 00       		.byte	0
- 1669 005a 00       		.byte	0
- 1670 005b 08       		.uleb128 0x8
- 1671 005c 2E       		.uleb128 0x2e
- 1672 005d 01       		.byte	0x1
- 1673 005e 3F       		.uleb128 0x3f
- 1674 005f 19       		.uleb128 0x19
- 1675 0060 03       		.uleb128 0x3
- 1676 0061 0E       		.uleb128 0xe
- 1677 0062 3A       		.uleb128 0x3a
- 1678 0063 0B       		.uleb128 0xb
- 1679 0064 3B       		.uleb128 0x3b
- 1680 0065 0B       		.uleb128 0xb
- 1681 0066 27       		.uleb128 0x27
- 1682 0067 19       		.uleb128 0x19
- 1683 0068 49       		.uleb128 0x49
- 1684 0069 13       		.uleb128 0x13
- 1685 006a 8701     		.uleb128 0x87
- 1686 006c 19       		.uleb128 0x19
- 1687 006d 11       		.uleb128 0x11
- 1688 006e 01       		.uleb128 0x1
- 1689 006f 12       		.uleb128 0x12
- 1690 0070 06       		.uleb128 0x6
- 1691 0071 40       		.uleb128 0x40
- 1692 0072 18       		.uleb128 0x18
- 1693 0073 9642     		.uleb128 0x2116
- 1694 0075 19       		.uleb128 0x19
- 1695 0076 01       		.uleb128 0x1
- 1696 0077 13       		.uleb128 0x13
- 1697 0078 00       		.byte	0
- 1698 0079 00       		.byte	0
- 1699 007a 09       		.uleb128 0x9
- 1700 007b 34       		.uleb128 0x34
- 1701 007c 00       		.byte	0
- 1702 007d 03       		.uleb128 0x3
- 1703 007e 0E       		.uleb128 0xe
- 1704 007f 3A       		.uleb128 0x3a
- 1705 0080 0B       		.uleb128 0xb
- 1706 0081 3B       		.uleb128 0x3b
- 1707 0082 0B       		.uleb128 0xb
-ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\cc4BRkOJ.s 			page 38
-
-
- 1708 0083 49       		.uleb128 0x49
- 1709 0084 13       		.uleb128 0x13
- 1710 0085 02       		.uleb128 0x2
- 1711 0086 18       		.uleb128 0x18
- 1712 0087 00       		.byte	0
- 1713 0088 00       		.byte	0
- 1714 0089 0A       		.uleb128 0xa
- 1715 008a 34       		.uleb128 0x34
- 1716 008b 00       		.byte	0
- 1717 008c 03       		.uleb128 0x3
- 1718 008d 0E       		.uleb128 0xe
- 1719 008e 3A       		.uleb128 0x3a
- 1720 008f 0B       		.uleb128 0xb
- 1721 0090 3B       		.uleb128 0x3b
- 1722 0091 0B       		.uleb128 0xb
- 1723 0092 49       		.uleb128 0x49
- 1724 0093 13       		.uleb128 0x13
- 1725 0094 02       		.uleb128 0x2
- 1726 0095 17       		.uleb128 0x17
- 1727 0096 00       		.byte	0
- 1728 0097 00       		.byte	0
- 1729 0098 0B       		.uleb128 0xb
- 1730 0099 34       		.uleb128 0x34
- 1731 009a 00       		.byte	0
- 1732 009b 03       		.uleb128 0x3
- 1733 009c 0E       		.uleb128 0xe
- 1734 009d 3A       		.uleb128 0x3a
- 1735 009e 0B       		.uleb128 0xb
- 1736 009f 3B       		.uleb128 0x3b
- 1737 00a0 0B       		.uleb128 0xb
- 1738 00a1 49       		.uleb128 0x49
- 1739 00a2 13       		.uleb128 0x13
- 1740 00a3 1C       		.uleb128 0x1c
- 1741 00a4 0B       		.uleb128 0xb
- 1742 00a5 00       		.byte	0
- 1743 00a6 00       		.byte	0
- 1744 00a7 0C       		.uleb128 0xc
- 1745 00a8 34       		.uleb128 0x34
- 1746 00a9 00       		.byte	0
- 1747 00aa 03       		.uleb128 0x3
- 1748 00ab 08       		.uleb128 0x8
- 1749 00ac 3A       		.uleb128 0x3a
- 1750 00ad 0B       		.uleb128 0xb
- 1751 00ae 3B       		.uleb128 0x3b
- 1752 00af 05       		.uleb128 0x5
- 1753 00b0 49       		.uleb128 0x49
- 1754 00b1 13       		.uleb128 0x13
- 1755 00b2 02       		.uleb128 0x2
- 1756 00b3 17       		.uleb128 0x17
- 1757 00b4 00       		.byte	0
- 1758 00b5 00       		.byte	0
- 1759 00b6 0D       		.uleb128 0xd
- 1760 00b7 34       		.uleb128 0x34
- 1761 00b8 00       		.byte	0
- 1762 00b9 03       		.uleb128 0x3
- 1763 00ba 0E       		.uleb128 0xe
- 1764 00bb 3A       		.uleb128 0x3a
-ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\cc4BRkOJ.s 			page 39
-
-
- 1765 00bc 0B       		.uleb128 0xb
- 1766 00bd 3B       		.uleb128 0x3b
- 1767 00be 05       		.uleb128 0x5
- 1768 00bf 49       		.uleb128 0x49
- 1769 00c0 13       		.uleb128 0x13
- 1770 00c1 1C       		.uleb128 0x1c
- 1771 00c2 0D       		.uleb128 0xd
- 1772 00c3 00       		.byte	0
- 1773 00c4 00       		.byte	0
- 1774 00c5 0E       		.uleb128 0xe
- 1775 00c6 34       		.uleb128 0x34
- 1776 00c7 00       		.byte	0
- 1777 00c8 03       		.uleb128 0x3
- 1778 00c9 0E       		.uleb128 0xe
- 1779 00ca 3A       		.uleb128 0x3a
- 1780 00cb 0B       		.uleb128 0xb
- 1781 00cc 3B       		.uleb128 0x3b
- 1782 00cd 05       		.uleb128 0x5
- 1783 00ce 49       		.uleb128 0x49
- 1784 00cf 13       		.uleb128 0x13
- 1785 00d0 02       		.uleb128 0x2
- 1786 00d1 18       		.uleb128 0x18
- 1787 00d2 00       		.byte	0
- 1788 00d3 00       		.byte	0
- 1789 00d4 0F       		.uleb128 0xf
- 1790 00d5 34       		.uleb128 0x34
- 1791 00d6 00       		.byte	0
- 1792 00d7 03       		.uleb128 0x3
- 1793 00d8 08       		.uleb128 0x8
- 1794 00d9 3A       		.uleb128 0x3a
- 1795 00da 0B       		.uleb128 0xb
- 1796 00db 3B       		.uleb128 0x3b
- 1797 00dc 05       		.uleb128 0x5
- 1798 00dd 49       		.uleb128 0x49
- 1799 00de 13       		.uleb128 0x13
- 1800 00df 00       		.byte	0
- 1801 00e0 00       		.byte	0
- 1802 00e1 10       		.uleb128 0x10
- 1803 00e2 0B       		.uleb128 0xb
- 1804 00e3 01       		.byte	0x1
- 1805 00e4 11       		.uleb128 0x11
- 1806 00e5 01       		.uleb128 0x1
- 1807 00e6 12       		.uleb128 0x12
- 1808 00e7 06       		.uleb128 0x6
- 1809 00e8 01       		.uleb128 0x1
- 1810 00e9 13       		.uleb128 0x13
- 1811 00ea 00       		.byte	0
- 1812 00eb 00       		.byte	0
- 1813 00ec 11       		.uleb128 0x11
- 1814 00ed 34       		.uleb128 0x34
- 1815 00ee 00       		.byte	0
- 1816 00ef 03       		.uleb128 0x3
- 1817 00f0 08       		.uleb128 0x8
- 1818 00f1 3A       		.uleb128 0x3a
- 1819 00f2 0B       		.uleb128 0xb
- 1820 00f3 3B       		.uleb128 0x3b
- 1821 00f4 0B       		.uleb128 0xb
-ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\cc4BRkOJ.s 			page 40
-
-
- 1822 00f5 49       		.uleb128 0x49
- 1823 00f6 13       		.uleb128 0x13
- 1824 00f7 02       		.uleb128 0x2
- 1825 00f8 17       		.uleb128 0x17
- 1826 00f9 00       		.byte	0
- 1827 00fa 00       		.byte	0
- 1828 00fb 12       		.uleb128 0x12
- 1829 00fc 898201   		.uleb128 0x4109
- 1830 00ff 01       		.byte	0x1
- 1831 0100 11       		.uleb128 0x11
- 1832 0101 01       		.uleb128 0x1
- 1833 0102 31       		.uleb128 0x31
- 1834 0103 13       		.uleb128 0x13
- 1835 0104 01       		.uleb128 0x1
- 1836 0105 13       		.uleb128 0x13
- 1837 0106 00       		.byte	0
- 1838 0107 00       		.byte	0
- 1839 0108 13       		.uleb128 0x13
- 1840 0109 8A8201   		.uleb128 0x410a
- 1841 010c 00       		.byte	0
- 1842 010d 02       		.uleb128 0x2
- 1843 010e 18       		.uleb128 0x18
- 1844 010f 9142     		.uleb128 0x2111
- 1845 0111 18       		.uleb128 0x18
- 1846 0112 00       		.byte	0
- 1847 0113 00       		.byte	0
- 1848 0114 14       		.uleb128 0x14
- 1849 0115 898201   		.uleb128 0x4109
- 1850 0118 01       		.byte	0x1
- 1851 0119 11       		.uleb128 0x11
- 1852 011a 01       		.uleb128 0x1
- 1853 011b 31       		.uleb128 0x31
- 1854 011c 13       		.uleb128 0x13
- 1855 011d 00       		.byte	0
- 1856 011e 00       		.byte	0
- 1857 011f 15       		.uleb128 0x15
- 1858 0120 898201   		.uleb128 0x4109
- 1859 0123 00       		.byte	0
- 1860 0124 11       		.uleb128 0x11
- 1861 0125 01       		.uleb128 0x1
- 1862 0126 31       		.uleb128 0x31
- 1863 0127 13       		.uleb128 0x13
- 1864 0128 00       		.byte	0
- 1865 0129 00       		.byte	0
- 1866 012a 16       		.uleb128 0x16
- 1867 012b 01       		.uleb128 0x1
- 1868 012c 01       		.byte	0x1
- 1869 012d 49       		.uleb128 0x49
- 1870 012e 13       		.uleb128 0x13
- 1871 012f 01       		.uleb128 0x1
- 1872 0130 13       		.uleb128 0x13
- 1873 0131 00       		.byte	0
- 1874 0132 00       		.byte	0
- 1875 0133 17       		.uleb128 0x17
- 1876 0134 21       		.uleb128 0x21
- 1877 0135 00       		.byte	0
- 1878 0136 49       		.uleb128 0x49
-ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\cc4BRkOJ.s 			page 41
-
-
- 1879 0137 13       		.uleb128 0x13
- 1880 0138 2F       		.uleb128 0x2f
- 1881 0139 0B       		.uleb128 0xb
- 1882 013a 00       		.byte	0
- 1883 013b 00       		.byte	0
- 1884 013c 18       		.uleb128 0x18
- 1885 013d 34       		.uleb128 0x34
- 1886 013e 00       		.byte	0
- 1887 013f 03       		.uleb128 0x3
- 1888 0140 0E       		.uleb128 0xe
- 1889 0141 3A       		.uleb128 0x3a
- 1890 0142 0B       		.uleb128 0xb
- 1891 0143 3B       		.uleb128 0x3b
- 1892 0144 05       		.uleb128 0x5
- 1893 0145 49       		.uleb128 0x49
- 1894 0146 13       		.uleb128 0x13
- 1895 0147 3F       		.uleb128 0x3f
- 1896 0148 19       		.uleb128 0x19
- 1897 0149 3C       		.uleb128 0x3c
- 1898 014a 19       		.uleb128 0x19
- 1899 014b 00       		.byte	0
- 1900 014c 00       		.byte	0
- 1901 014d 19       		.uleb128 0x19
- 1902 014e 35       		.uleb128 0x35
- 1903 014f 00       		.byte	0
- 1904 0150 49       		.uleb128 0x49
- 1905 0151 13       		.uleb128 0x13
- 1906 0152 00       		.byte	0
- 1907 0153 00       		.byte	0
- 1908 0154 1A       		.uleb128 0x1a
- 1909 0155 2E       		.uleb128 0x2e
- 1910 0156 00       		.byte	0
- 1911 0157 3F       		.uleb128 0x3f
- 1912 0158 19       		.uleb128 0x19
- 1913 0159 3C       		.uleb128 0x3c
- 1914 015a 19       		.uleb128 0x19
- 1915 015b 6E       		.uleb128 0x6e
- 1916 015c 0E       		.uleb128 0xe
- 1917 015d 03       		.uleb128 0x3
- 1918 015e 0E       		.uleb128 0xe
- 1919 015f 3A       		.uleb128 0x3a
- 1920 0160 0B       		.uleb128 0xb
- 1921 0161 3B       		.uleb128 0x3b
- 1922 0162 0B       		.uleb128 0xb
- 1923 0163 00       		.byte	0
- 1924 0164 00       		.byte	0
- 1925 0165 00       		.byte	0
- 1926              		.section	.debug_loc,"",%progbits
- 1927              	.Ldebug_loc0:
- 1928              	.LLST0:
- 1929 0000 42000000 		.4byte	.LVL8
- 1930 0004 4C000000 		.4byte	.LVL9
- 1931 0008 0100     		.2byte	0x1
- 1932 000a 50       		.byte	0x50
- 1933 000b 58000000 		.4byte	.LVL12
- 1934 000f 5A000000 		.4byte	.LVL13
- 1935 0013 0100     		.2byte	0x1
-ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\cc4BRkOJ.s 			page 42
-
-
- 1936 0015 50       		.byte	0x50
- 1937 0016 6A000000 		.4byte	.LVL15
- 1938 001a 74000000 		.4byte	.LVL16
- 1939 001e 0100     		.2byte	0x1
- 1940 0020 50       		.byte	0x50
- 1941 0021 80000000 		.4byte	.LVL19
- 1942 0025 82000000 		.4byte	.LVL20
- 1943 0029 0100     		.2byte	0x1
- 1944 002b 50       		.byte	0x50
- 1945 002c 92000000 		.4byte	.LVL22
- 1946 0030 9C000000 		.4byte	.LVL23
- 1947 0034 0100     		.2byte	0x1
- 1948 0036 50       		.byte	0x50
- 1949 0037 A8000000 		.4byte	.LVL26
- 1950 003b AA000000 		.4byte	.LVL27
- 1951 003f 0100     		.2byte	0x1
- 1952 0041 50       		.byte	0x50
- 1953 0042 B8000000 		.4byte	.LVL29
- 1954 0046 C2000000 		.4byte	.LVL30
- 1955 004a 0100     		.2byte	0x1
- 1956 004c 50       		.byte	0x50
- 1957 004d CE000000 		.4byte	.LVL33
- 1958 0051 D0000000 		.4byte	.LVL34
- 1959 0055 0100     		.2byte	0x1
- 1960 0057 50       		.byte	0x50
- 1961 0058 F0000000 		.4byte	.LVL37
- 1962 005c FA000000 		.4byte	.LVL38
- 1963 0060 0100     		.2byte	0x1
- 1964 0062 50       		.byte	0x50
- 1965 0063 06010000 		.4byte	.LVL41
- 1966 0067 08010000 		.4byte	.LVL42
- 1967 006b 0100     		.2byte	0x1
- 1968 006d 50       		.byte	0x50
- 1969 006e 18010000 		.4byte	.LVL44
- 1970 0072 22010000 		.4byte	.LVL45
- 1971 0076 0100     		.2byte	0x1
- 1972 0078 50       		.byte	0x50
- 1973 0079 2E010000 		.4byte	.LVL48
- 1974 007d 30010000 		.4byte	.LVL49
- 1975 0081 0100     		.2byte	0x1
- 1976 0083 50       		.byte	0x50
- 1977 0084 3E010000 		.4byte	.LVL51
- 1978 0088 46010000 		.4byte	.LVL52
- 1979 008c 0100     		.2byte	0x1
- 1980 008e 50       		.byte	0x50
- 1981 008f 52010000 		.4byte	.LVL55
- 1982 0093 54010000 		.4byte	.LVL56
- 1983 0097 0100     		.2byte	0x1
- 1984 0099 50       		.byte	0x50
- 1985 009a 64010000 		.4byte	.LVL58
- 1986 009e 6E010000 		.4byte	.LVL59
- 1987 00a2 0100     		.2byte	0x1
- 1988 00a4 50       		.byte	0x50
- 1989 00a5 7A010000 		.4byte	.LVL62
- 1990 00a9 7C010000 		.4byte	.LVL63
- 1991 00ad 0100     		.2byte	0x1
- 1992 00af 50       		.byte	0x50
-ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\cc4BRkOJ.s 			page 43
-
-
- 1993 00b0 9A010000 		.4byte	.LVL67
- 1994 00b4 A4010000 		.4byte	.LVL68
- 1995 00b8 0100     		.2byte	0x1
- 1996 00ba 50       		.byte	0x50
- 1997 00bb B0010000 		.4byte	.LVL71
- 1998 00bf B2010000 		.4byte	.LVL72
- 1999 00c3 0100     		.2byte	0x1
- 2000 00c5 50       		.byte	0x50
- 2001 00c6 D4010000 		.4byte	.LVL76
- 2002 00ca DA010000 		.4byte	.LVL77
- 2003 00ce 0100     		.2byte	0x1
- 2004 00d0 50       		.byte	0x50
- 2005 00d1 1C020000 		.4byte	.LVL87
- 2006 00d5 1E020000 		.4byte	.LVL88
- 2007 00d9 0100     		.2byte	0x1
- 2008 00db 50       		.byte	0x50
- 2009 00dc 00000000 		.4byte	0
- 2010 00e0 00000000 		.4byte	0
- 2011              	.LLST1:
- 2012 00e4 F0010000 		.4byte	.LVL78
- 2013 00e8 F4010000 		.4byte	.LVL79
- 2014 00ec 0900     		.2byte	0x9
- 2015 00ee 70       		.byte	0x70
- 2016 00ef 00       		.sleb128 0
- 2017 00f0 09       		.byte	0x9
- 2018 00f1 F4       		.byte	0xf4
- 2019 00f2 24       		.byte	0x24
- 2020 00f3 09       		.byte	0x9
- 2021 00f4 FA       		.byte	0xfa
- 2022 00f5 26       		.byte	0x26
- 2023 00f6 9F       		.byte	0x9f
- 2024 00f7 F4010000 		.4byte	.LVL79
- 2025 00fb F7010000 		.4byte	.LVL80-1
- 2026 00ff 1400     		.2byte	0x14
- 2027 0101 75       		.byte	0x75
- 2028 0102 B47F     		.sleb128 -76
- 2029 0104 94       		.byte	0x94
- 2030 0105 01       		.byte	0x1
- 2031 0106 08       		.byte	0x8
- 2032 0107 FF       		.byte	0xff
- 2033 0108 1A       		.byte	0x1a
- 2034 0109 38       		.byte	0x38
- 2035 010a 24       		.byte	0x24
- 2036 010b 73       		.byte	0x73
- 2037 010c 00       		.sleb128 0
- 2038 010d 21       		.byte	0x21
- 2039 010e 09       		.byte	0x9
- 2040 010f F4       		.byte	0xf4
- 2041 0110 24       		.byte	0x24
- 2042 0111 09       		.byte	0x9
- 2043 0112 FA       		.byte	0xfa
- 2044 0113 26       		.byte	0x26
- 2045 0114 9F       		.byte	0x9f
- 2046 0115 08020000 		.4byte	.LVL83
- 2047 0119 12020000 		.4byte	.LVL85
- 2048 011d 0100     		.2byte	0x1
- 2049 011f 50       		.byte	0x50
-ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\cc4BRkOJ.s 			page 44
-
-
- 2050 0120 00000000 		.4byte	0
- 2051 0124 00000000 		.4byte	0
- 2052              	.LLST2:
- 2053 0128 DA010000 		.4byte	.LVL77
- 2054 012c 0E020000 		.4byte	.LVL84
- 2055 0130 0100     		.2byte	0x1
- 2056 0132 54       		.byte	0x54
- 2057 0133 0E020000 		.4byte	.LVL84
- 2058 0137 1A020000 		.4byte	.LVL86
- 2059 013b 0300     		.2byte	0x3
- 2060 013d 74       		.byte	0x74
- 2061 013e 7E       		.sleb128 -2
- 2062 013f 9F       		.byte	0x9f
- 2063 0140 1A020000 		.4byte	.LVL86
- 2064 0144 1C020000 		.4byte	.LVL87
- 2065 0148 0100     		.2byte	0x1
- 2066 014a 54       		.byte	0x54
- 2067 014b 1E020000 		.4byte	.LVL88
- 2068 014f 84020000 		.4byte	.LFE64
- 2069 0153 0100     		.2byte	0x1
- 2070 0155 54       		.byte	0x54
- 2071 0156 00000000 		.4byte	0
- 2072 015a 00000000 		.4byte	0
- 2073              	.LLST3:
- 2074 015e 14000000 		.4byte	.LVL2
- 2075 0162 18000000 		.4byte	.LVL3
- 2076 0166 0200     		.2byte	0x2
- 2077 0168 30       		.byte	0x30
- 2078 0169 9F       		.byte	0x9f
- 2079 016a 18000000 		.4byte	.LVL3
- 2080 016e 84010000 		.4byte	.LVL65
- 2081 0172 0100     		.2byte	0x1
- 2082 0174 54       		.byte	0x54
- 2083 0175 00000000 		.4byte	0
- 2084 0179 00000000 		.4byte	0
- 2085              		.section	.debug_aranges,"",%progbits
- 2086 0000 1C000000 		.4byte	0x1c
- 2087 0004 0200     		.2byte	0x2
- 2088 0006 00000000 		.4byte	.Ldebug_info0
- 2089 000a 04       		.byte	0x4
- 2090 000b 00       		.byte	0
- 2091 000c 0000     		.2byte	0
- 2092 000e 0000     		.2byte	0
- 2093 0010 00000000 		.4byte	.LFB64
- 2094 0014 84020000 		.4byte	.LFE64-.LFB64
- 2095 0018 00000000 		.4byte	0
- 2096 001c 00000000 		.4byte	0
- 2097              		.section	.debug_ranges,"",%progbits
- 2098              	.Ldebug_ranges0:
- 2099 0000 00000000 		.4byte	.LFB64
- 2100 0004 84020000 		.4byte	.LFE64
- 2101 0008 00000000 		.4byte	0
- 2102 000c 00000000 		.4byte	0
- 2103              		.section	.debug_line,"",%progbits
- 2104              	.Ldebug_line0:
- 2105 0000 82020000 		.section	.debug_str,"MS",%progbits,1
- 2105      0200FD01 
-ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\cc4BRkOJ.s 			page 45
-
-
- 2105      00000201 
- 2105      FB0E0D00 
- 2105      01010101 
- 2106              	.LASF24:
- 2107 0000 6D657373 		.ascii	"message\000"
- 2107      61676500 
- 2108              	.LASF32:
- 2109 0008 68656164 		.ascii	"header\000"
- 2109      657200
- 2110              	.LASF2:
- 2111 000f 5F5F7569 		.ascii	"__uint8_t\000"
- 2111      6E74385F 
- 2111      7400
- 2112              	.LASF38:
- 2113 0019 55415254 		.ascii	"UART_Debug_PutString\000"
- 2113      5F446562 
- 2113      75675F50 
- 2113      75745374 
- 2113      72696E67 
- 2114              	.LASF36:
- 2115 002e 4932435F 		.ascii	"I2C_Peripheral_IsDeviceConnected\000"
- 2115      50657269 
- 2115      70686572 
- 2115      616C5F49 
- 2115      73446576 
- 2116              	.LASF6:
- 2117 004f 5F5F696E 		.ascii	"__int32_t\000"
- 2117      7433325F 
- 2117      7400
- 2118              	.LASF7:
- 2119 0059 6C6F6E67 		.ascii	"long int\000"
- 2119      20696E74 
- 2119      00
- 2120              	.LASF45:
- 2121 0062 55415254 		.ascii	"UART_Debug_PutArray\000"
- 2121      5F446562 
- 2121      75675F50 
- 2121      75744172 
- 2121      72617900 
- 2122              	.LASF21:
- 2123 0076 4572726F 		.ascii	"ErrorCode\000"
- 2123      72436F64 
- 2123      6500
- 2124              	.LASF16:
- 2125 0080 666C6F61 		.ascii	"float\000"
- 2125      7400
- 2126              	.LASF34:
- 2127 0086 4F757441 		.ascii	"OutArray\000"
- 2127      72726179 
- 2127      00
- 2128              	.LASF29:
- 2129 008f 696E7465 		.ascii	"interrupt\000"
- 2129      72727570 
- 2129      7400
- 2130              	.LASF46:
- 2131 0099 474E5520 		.ascii	"GNU C11 5.4.1 20160609 (release) [ARM/embedded-5-br"
- 2131      43313120 
-ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\cc4BRkOJ.s 			page 46
-
-
- 2131      352E342E 
- 2131      31203230 
- 2131      31363036 
- 2132 00cc 616E6368 		.ascii	"anch revision 237715] -mcpu=cortex-m3 -mthumb -g -O"
- 2132      20726576 
- 2132      6973696F 
- 2132      6E203233 
- 2132      37373135 
- 2133 00ff 67202D66 		.ascii	"g -ffunction-sections -ffat-lto-objects\000"
- 2133      66756E63 
- 2133      74696F6E 
- 2133      2D736563 
- 2133      74696F6E 
- 2134              	.LASF15:
- 2135 0127 696E7431 		.ascii	"int16\000"
- 2135      3600
- 2136              	.LASF8:
- 2137 012d 6C6F6E67 		.ascii	"long unsigned int\000"
- 2137      20756E73 
- 2137      69676E65 
- 2137      6420696E 
- 2137      7400
- 2138              	.LASF5:
- 2139 013f 73686F72 		.ascii	"short unsigned int\000"
- 2139      7420756E 
- 2139      7369676E 
- 2139      65642069 
- 2139      6E7400
- 2140              	.LASF43:
- 2141 0152 4932435F 		.ascii	"I2C_Peripheral_WriteRegister\000"
- 2141      50657269 
- 2141      70686572 
- 2141      616C5F57 
- 2141      72697465 
- 2142              	.LASF33:
- 2143 016f 666F6F74 		.ascii	"footer\000"
- 2143      657200
- 2144              	.LASF1:
- 2145 0176 756E7369 		.ascii	"unsigned char\000"
- 2145      676E6564 
- 2145      20636861 
- 2145      7200
- 2146              	.LASF30:
- 2147 0184 696E7465 		.ascii	"interrupt_enable\000"
- 2147      72727570 
- 2147      745F656E 
- 2147      61626C65 
- 2147      00
- 2148              	.LASF17:
- 2149 0195 646F7562 		.ascii	"double\000"
- 2149      6C6500
- 2150              	.LASF44:
- 2151 019c 4932435F 		.ascii	"I2C_Peripheral_ReadRegisterMulti\000"
- 2151      50657269 
- 2151      70686572 
- 2151      616C5F52 
- 2151      65616452 
-ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\cc4BRkOJ.s 			page 47
-
-
- 2152              	.LASF49:
- 2153 01bd 6D61696E 		.ascii	"main\000"
- 2153      00
- 2154              	.LASF3:
- 2155 01c2 5F5F696E 		.ascii	"__int16_t\000"
- 2155      7431365F 
- 2155      7400
- 2156              	.LASF28:
- 2157 01cc 6374726C 		.ascii	"ctrl_reg1\000"
- 2157      5F726567 
- 2157      3100
- 2158              	.LASF31:
- 2159 01d6 6374726C 		.ascii	"ctrl_reg4\000"
- 2159      5F726567 
- 2159      3400
- 2160              	.LASF11:
- 2161 01e0 756E7369 		.ascii	"unsigned int\000"
- 2161      676E6564 
- 2161      20696E74 
- 2161      00
- 2162              	.LASF10:
- 2163 01ed 6C6F6E67 		.ascii	"long long unsigned int\000"
- 2163      206C6F6E 
- 2163      6720756E 
- 2163      7369676E 
- 2163      65642069 
- 2164              	.LASF12:
- 2165 0204 75696E74 		.ascii	"uint8_t\000"
- 2165      385F7400 
- 2166              	.LASF13:
- 2167 020c 696E7431 		.ascii	"int16_t\000"
- 2167      365F7400 
- 2168              	.LASF50:
- 2169 0214 49544D5F 		.ascii	"ITM_RxBuffer\000"
- 2169      52784275 
- 2169      66666572 
- 2169      00
- 2170              	.LASF27:
- 2171 0221 73746174 		.ascii	"status_register\000"
- 2171      75735F72 
- 2171      65676973 
- 2171      74657200 
- 2172              	.LASF14:
- 2173 0231 696E7433 		.ascii	"int32_t\000"
- 2173      325F7400 
- 2174              	.LASF23:
- 2175 0239 73697A65 		.ascii	"sizetype\000"
- 2175      74797065 
- 2175      00
- 2176              	.LASF26:
- 2177 0242 6572726F 		.ascii	"error\000"
- 2177      7200
- 2178              	.LASF9:
- 2179 0248 6C6F6E67 		.ascii	"long long int\000"
- 2179      206C6F6E 
- 2179      6720696E 
- 2179      7400
-ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\cc4BRkOJ.s 			page 48
-
-
- 2180              	.LASF40:
- 2181 0256 55415254 		.ascii	"UART_Debug_Start\000"
- 2181      5F446562 
- 2181      75675F53 
- 2181      74617274 
- 2181      00
- 2182              	.LASF47:
- 2183 0267 6D61696E 		.ascii	"main.c\000"
- 2183      2E6300
- 2184              	.LASF18:
- 2185 026e 63686172 		.ascii	"char\000"
- 2185      00
- 2186              	.LASF42:
- 2187 0273 4932435F 		.ascii	"I2C_Peripheral_ReadRegister\000"
- 2187      50657269 
- 2187      70686572 
- 2187      616C5F52 
- 2187      65616452 
- 2188              	.LASF4:
- 2189 028f 73686F72 		.ascii	"short int\000"
- 2189      7420696E 
- 2189      7400
- 2190              	.LASF19:
- 2191 0299 4E4F5F45 		.ascii	"NO_ERROR\000"
- 2191      52524F52 
- 2191      00
- 2192              	.LASF35:
- 2193 02a2 78797A5F 		.ascii	"xyz_positioning\000"
- 2193      706F7369 
- 2193      74696F6E 
- 2193      696E6700 
- 2194              	.LASF20:
- 2195 02b2 4552524F 		.ascii	"ERROR\000"
- 2195      5200
- 2196              	.LASF22:
- 2197 02b8 6C6F6E67 		.ascii	"long double\000"
- 2197      20646F75 
- 2197      626C6500 
- 2198              	.LASF0:
- 2199 02c4 7369676E 		.ascii	"signed char\000"
- 2199      65642063 
- 2199      68617200 
- 2200              	.LASF48:
- 2201 02d0 433A5C55 		.ascii	"C:\\Users\\Ilaria\\Desktop\\PSoC_03\\AY1920_II_HW_0"
- 2201      73657273 
- 2201      5C496C61 
- 2201      7269615C 
- 2201      4465736B 
- 2202 02fe 355F5052 		.ascii	"5_PROJ_2.cydsn\000"
- 2202      4F4A5F32 
- 2202      2E637964 
- 2202      736E00
- 2203              	.LASF25:
- 2204 030d 77686F5F 		.ascii	"who_am_i_reg\000"
- 2204      616D5F69 
- 2204      5F726567 
- 2204      00
-ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\cc4BRkOJ.s 			page 49
-
-
- 2205              	.LASF37:
- 2206 031a 73707269 		.ascii	"sprintf\000"
- 2206      6E746600 
- 2207              	.LASF41:
- 2208 0322 43794465 		.ascii	"CyDelay\000"
- 2208      6C617900 
- 2209              	.LASF39:
- 2210 032a 4932435F 		.ascii	"I2C_Peripheral_Start\000"
- 2210      50657269 
- 2210      70686572 
- 2210      616C5F53 
- 2210      74617274 
- 2211              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 5.4.1 20160609 (release) [ARM/embedded-5-bran
+ 248:main.c        ****        // CyDelay(10);
+ 249:main.c        ****         //SendDataUART(DEVICE_ADDRESS, REGISTER, ITERATIONS, ARRAY);
+ 250:main.c        ****         error = I2C_Peripheral_ReadRegisterMulti(LIS3DH_DEVICE_ADDRESS,
+ 313              		.loc 1 250 0
+ 314 0176 6B46     		mov	r3, sp
+ 315 0178 0622     		movs	r2, #6
+ 316 017a 2821     		movs	r1, #40
+ 317 017c 1820     		movs	r0, #24
+ 318 017e FFF7FEFF 		bl	I2C_Peripheral_ReadRegisterMulti
+ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\ccUqSPP7.s 			page 11
+
+
+ 319              	.LVL61:
+ 251:main.c        ****                                             LIS3DH_OUT_X_L,
+ 252:main.c        ****                                             TRANSMIT_BUFFER_SIZE-2,
+ 253:main.c        ****                                             &xyz_positioning[0]);
+ 254:main.c        ****         
+ 255:main.c        ****                 
+ 256:main.c        ****         if(error == NO_ERROR)
+ 320              		.loc 1 256 0
+ 321 0182 0028     		cmp	r0, #0
+ 322 0184 F7D1     		bne	.L19
+ 257:main.c        ****         {   
+ 258:main.c        ****             if(status_register&0x88)
+ 323              		.loc 1 258 0
+ 324 0186 9DF81230 		ldrb	r3, [sp, #18]	@ zero_extendqisi2
+ 325 018a 13F0880F 		tst	r3, #136
+ 326 018e 21D1     		bne	.L23
+ 327 0190 F1E7     		b	.L19
+ 328              	.LVL62:
+ 329              	.L22:
+ 259:main.c        ****             {
+ 260:main.c        ****                  for (i = 0; i<TRANSMIT_BUFFER_SIZE-2; i+=2)
+ 261:main.c        ****                 {
+ 262:main.c        ****                     Out = (int16)((xyz_positioning[i] | (xyz_positioning[i+1]<<8)))>>6;
+ 330              		.loc 1 262 0 discriminator 3
+ 331 0192 12AB     		add	r3, sp, #72
+ 332 0194 2344     		add	r3, r3, r4
+ 333 0196 13F8483C 		ldrb	r3, [r3, #-72]	@ zero_extendqisi2
+ 334 019a 651C     		adds	r5, r4, #1
+ 335 019c 12AA     		add	r2, sp, #72
+ 336 019e 1544     		add	r5, r5, r2
+ 337 01a0 15F8480C 		ldrb	r0, [r5, #-72]	@ zero_extendqisi2
+ 338 01a4 43EA0020 		orr	r0, r3, r0, lsl #8
+ 339              	.LVL63:
+ 263:main.c        ****                     Out *= 4*0.0098;/*conversion into m/s2*/
+ 340              		.loc 1 263 0 discriminator 3
+ 341 01a8 40F38910 		sbfx	r0, r0, #6, #10
+ 342              	.LVL64:
+ 343 01ac FFF7FEFF 		bl	__aeabi_i2d
+ 344              	.LVL65:
+ 345 01b0 0DA3     		adr	r3, .L25
+ 346 01b2 D3E90023 		ldrd	r2, [r3]
+ 347 01b6 FFF7FEFF 		bl	__aeabi_dmul
+ 348              	.LVL66:
+ 349 01ba FFF7FEFF 		bl	__aeabi_d2iz
+ 350              	.LVL67:
+ 351 01be 00B2     		sxth	r0, r0
+ 352              	.LVL68:
+ 264:main.c        ****                     OutArray[i+1] = (uint8_t)(Out & 0xFF);
+ 353              		.loc 1 264 0 discriminator 3
+ 354 01c0 05F8400C 		strb	r0, [r5, #-64]
+ 265:main.c        ****                     OutArray[i+2] = (uint8_t)(Out >> 8);  
+ 355              		.loc 1 265 0 discriminator 3
+ 356 01c4 0234     		adds	r4, r4, #2
+ 357              	.LVL69:
+ 358 01c6 C0F30720 		ubfx	r0, r0, #8, #8
+ 359              	.LVL70:
+ 360 01ca 12AB     		add	r3, sp, #72
+ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\ccUqSPP7.s 			page 12
+
+
+ 361 01cc 2344     		add	r3, r3, r4
+ 362 01ce 03F8400C 		strb	r0, [r3, #-64]
+ 363              	.LVL71:
+ 364 01d2 00E0     		b	.L21
+ 365              	.LVL72:
+ 366              	.L23:
+ 367 01d4 0024     		movs	r4, #0
+ 368              	.LVL73:
+ 369              	.L21:
+ 260:main.c        ****                 {
+ 370              		.loc 1 260 0 discriminator 1
+ 371 01d6 052C     		cmp	r4, #5
+ 372 01d8 DBDD     		ble	.L22
+ 266:main.c        ****                     //sprintf(message, "acceleration %d\r\n", Out);           
+ 267:main.c        ****                     //UART_Debug_PutString(message);
+ 268:main.c        ****                 }                
+ 269:main.c        ****                     
+ 270:main.c        ****                    UART_Debug_PutArray(OutArray, TRANSMIT_BUFFER_SIZE);  
+ 373              		.loc 1 270 0
+ 374 01da 0821     		movs	r1, #8
+ 375 01dc 0DEB0100 		add	r0, sp, r1
+ 376 01e0 FFF7FEFF 		bl	UART_Debug_PutArray
+ 377              	.LVL74:
+ 378 01e4 C7E7     		b	.L19
+ 379              	.L26:
+ 380 01e6 00BF     		.align	3
+ 381              	.L25:
+ 382 01e8 6EA301BC 		.word	-1140743314
+ 383 01ec 0512A43F 		.word	1067717125
+ 384 01f0 00000000 		.word	.LC0
+ 385 01f4 20000000 		.word	.LC1
+ 386 01f8 48000000 		.word	.LC2
+ 387 01fc 6C000000 		.word	.LC3
+ 388 0200 88000000 		.word	.LC4
+ 389 0204 C4000000 		.word	.LC5
+ 390 0208 E4000000 		.word	.LC6
+ 391 020c 20010000 		.word	.LC7
+ 392 0210 3C010000 		.word	.LC8
+ 393 0214 74010000 		.word	.LC9
+ 394 0218 B0010000 		.word	.LC10
+ 395 021c E8010000 		.word	.LC11
+ 396 0220 08020000 		.word	.LC12
+ 397 0224 44020000 		.word	.LC13
+ 398 0228 78020000 		.word	.LC14
+ 399              		.cfi_endproc
+ 400              	.LFE64:
+ 401              		.size	main, .-main
+ 402              		.section	.rodata.str1.4,"aMS",%progbits,1
+ 403              		.align	2
+ 404              	.LC0:
+ 405 0000 44657669 		.ascii	"Device 0x%02X is connected\015\012\000"
+ 405      63652030 
+ 405      78253032 
+ 405      58206973 
+ 405      20636F6E 
+ 406 001d 000000   		.space	3
+ 407              	.LC1:
+ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\ccUqSPP7.s 			page 13
+
+
+ 408 0020 57484F20 		.ascii	"WHO AM I REG: 0x%02X [Expected: 0x33]\015\012\000"
+ 408      414D2049 
+ 408      20524547 
+ 408      3A203078 
+ 408      25303258 
+ 409              	.LC2:
+ 410 0048 4572726F 		.ascii	"Error occurred during I2C comm\015\012\000"
+ 410      72206F63 
+ 410      63757272 
+ 410      65642064 
+ 410      7572696E 
+ 411 0069 000000   		.space	3
+ 412              	.LC3:
+ 413 006c 53544154 		.ascii	"STATUS REGISTER: 0x%02X\015\012\000"
+ 413      55532052 
+ 413      45474953 
+ 413      5445523A 
+ 413      20307825 
+ 414 0086 0000     		.space	2
+ 415              	.LC4:
+ 416 0088 4572726F 		.ascii	"Error occurred during I2C comm to read status regis"
+ 416      72206F63 
+ 416      63757272 
+ 416      65642064 
+ 416      7572696E 
+ 417 00bb 7465720D 		.ascii	"ter\015\012\000"
+ 417      0A00
+ 418 00c1 000000   		.space	3
+ 419              	.LC5:
+ 420 00c4 434F4E54 		.ascii	"CONTROL REGISTER 1: 0x%02X\015\012\000"
+ 420      524F4C20 
+ 420      52454749 
+ 420      53544552 
+ 420      20313A20 
+ 421 00e1 000000   		.space	3
+ 422              	.LC6:
+ 423 00e4 4572726F 		.ascii	"Error occurred during I2C comm to read control regi"
+ 423      72206F63 
+ 423      63757272 
+ 423      65642064 
+ 423      7572696E 
+ 424 0117 73746572 		.ascii	"ster 1\015\012\000"
+ 424      20310D0A 
+ 424      00
+ 425              	.LC7:
+ 426 0120 0D0A5772 		.ascii	"\015\012Writing new values..\015\012\000"
+ 426      6974696E 
+ 426      67206E65 
+ 426      77207661 
+ 426      6C756573 
+ 427 0139 000000   		.space	3
+ 428              	.LC8:
+ 429 013c 434F4E54 		.ascii	"CONTROL REGISTER 1 successfully written as: 0x%02X\015"
+ 429      524F4C20 
+ 429      52454749 
+ 429      53544552 
+ 429      20312073 
+ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\ccUqSPP7.s 			page 14
+
+
+ 430 016f 0A00     		.ascii	"\012\000"
+ 431 0171 000000   		.space	3
+ 432              	.LC9:
+ 433 0174 4572726F 		.ascii	"Error occurred during I2C comm to set control regis"
+ 433      72206F63 
+ 433      63757272 
+ 433      65642064 
+ 433      7572696E 
+ 434 01a7 74657220 		.ascii	"ter 1\015\012\000"
+ 434      310D0A00 
+ 435 01af 00       		.space	1
+ 436              	.LC10:
+ 437 01b0 434F4E54 		.ascii	"CONTROL REGISTER 1 after overwrite operation: 0x%02"
+ 437      524F4C20 
+ 437      52454749 
+ 437      53544552 
+ 437      20312061 
+ 438 01e3 580D0A00 		.ascii	"X\015\012\000"
+ 439 01e7 00       		.space	1
+ 440              	.LC11:
+ 441 01e8 434F4E54 		.ascii	"CONTROL REGISTER 4: 0x%02X\015\012\000"
+ 441      524F4C20 
+ 441      52454749 
+ 441      53544552 
+ 441      20343A20 
+ 442 0205 000000   		.space	3
+ 443              	.LC12:
+ 444 0208 4572726F 		.ascii	"Error occurred during I2C comm to read control regi"
+ 444      72206F63 
+ 444      63757272 
+ 444      65642064 
+ 444      7572696E 
+ 445 023b 73746572 		.ascii	"ster 4\015\012\000"
+ 445      20340D0A 
+ 445      00
+ 446              	.LC13:
+ 447 0244 434F4E54 		.ascii	"CONTROL REGISTER 4 after being updated: 0x%02X\015\012"
+ 447      524F4C20 
+ 447      52454749 
+ 447      53544552 
+ 447      20342061 
+ 448 0274 00       		.ascii	"\000"
+ 449 0275 000000   		.space	3
+ 450              	.LC14:
+ 451 0278 4572726F 		.ascii	"Error occurred during I2C comm to read control regi"
+ 451      72206F63 
+ 451      63757272 
+ 451      65642064 
+ 451      7572696E 
+ 452 02ab 73746572 		.ascii	"ster4\015\012\000"
+ 452      340D0A00 
+ 453              		.text
+ 454              	.Letext0:
+ 455              		.file 2 "c:\\program files (x86)\\cypress\\psoc creator\\4.3\\psoc creator\\import\\gnu\\arm\\5.4.
+ 456              		.file 3 "c:\\program files (x86)\\cypress\\psoc creator\\4.3\\psoc creator\\import\\gnu\\arm\\5.4.
+ 457              		.file 4 "Generated_Source\\PSoC5/cytypes.h"
+ 458              		.file 5 "ErrorCodes.h"
+ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\ccUqSPP7.s 			page 15
+
+
+ 459              		.file 6 "I2C_Interface.h"
+ 460              		.file 7 "c:\\program files (x86)\\cypress\\psoc creator\\4.3\\psoc creator\\import\\gnu\\arm\\5.4.
+ 461              		.file 8 "Generated_Source\\PSoC5/UART_Debug.h"
+ 462              		.file 9 "Generated_Source\\PSoC5/CyLib.h"
+ 463              		.file 10 "Generated_Source\\PSoC5/core_cm3.h"
+ 464              		.section	.debug_info,"",%progbits
+ 465              	.Ldebug_info0:
+ 466 0000 4E060000 		.4byte	0x64e
+ 467 0004 0400     		.2byte	0x4
+ 468 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 469 000a 04       		.byte	0x4
+ 470 000b 01       		.uleb128 0x1
+ 471 000c 9D000000 		.4byte	.LASF44
+ 472 0010 0C       		.byte	0xc
+ 473 0011 4C020000 		.4byte	.LASF45
+ 474 0015 B5020000 		.4byte	.LASF46
+ 475 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 476 001d 00000000 		.4byte	0
+ 477 0021 00000000 		.4byte	.Ldebug_line0
+ 478 0025 02       		.uleb128 0x2
+ 479 0026 01       		.byte	0x1
+ 480 0027 06       		.byte	0x6
+ 481 0028 A9020000 		.4byte	.LASF0
+ 482 002c 03       		.uleb128 0x3
+ 483 002d 0F000000 		.4byte	.LASF2
+ 484 0031 02       		.byte	0x2
+ 485 0032 1D       		.byte	0x1d
+ 486 0033 37000000 		.4byte	0x37
+ 487 0037 02       		.uleb128 0x2
+ 488 0038 01       		.byte	0x1
+ 489 0039 08       		.byte	0x8
+ 490 003a 8F000000 		.4byte	.LASF1
+ 491 003e 03       		.uleb128 0x3
+ 492 003f A7010000 		.4byte	.LASF3
+ 493 0043 02       		.byte	0x2
+ 494 0044 29       		.byte	0x29
+ 495 0045 49000000 		.4byte	0x49
+ 496 0049 02       		.uleb128 0x2
+ 497 004a 02       		.byte	0x2
+ 498 004b 05       		.byte	0x5
+ 499 004c 74020000 		.4byte	.LASF4
+ 500 0050 02       		.uleb128 0x2
+ 501 0051 02       		.byte	0x2
+ 502 0052 07       		.byte	0x7
+ 503 0053 43010000 		.4byte	.LASF5
+ 504 0057 03       		.uleb128 0x3
+ 505 0058 4F000000 		.4byte	.LASF6
+ 506 005c 02       		.byte	0x2
+ 507 005d 3F       		.byte	0x3f
+ 508 005e 62000000 		.4byte	0x62
+ 509 0062 02       		.uleb128 0x2
+ 510 0063 04       		.byte	0x4
+ 511 0064 05       		.byte	0x5
+ 512 0065 59000000 		.4byte	.LASF7
+ 513 0069 02       		.uleb128 0x2
+ 514 006a 04       		.byte	0x4
+ 515 006b 07       		.byte	0x7
+ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\ccUqSPP7.s 			page 16
+
+
+ 516 006c 31010000 		.4byte	.LASF8
+ 517 0070 02       		.uleb128 0x2
+ 518 0071 08       		.byte	0x8
+ 519 0072 05       		.byte	0x5
+ 520 0073 2D020000 		.4byte	.LASF9
+ 521 0077 02       		.uleb128 0x2
+ 522 0078 08       		.byte	0x8
+ 523 0079 07       		.byte	0x7
+ 524 007a D2010000 		.4byte	.LASF10
+ 525 007e 04       		.uleb128 0x4
+ 526 007f 04       		.byte	0x4
+ 527 0080 05       		.byte	0x5
+ 528 0081 696E7400 		.ascii	"int\000"
+ 529 0085 02       		.uleb128 0x2
+ 530 0086 04       		.byte	0x4
+ 531 0087 07       		.byte	0x7
+ 532 0088 C5010000 		.4byte	.LASF11
+ 533 008c 03       		.uleb128 0x3
+ 534 008d E9010000 		.4byte	.LASF12
+ 535 0091 03       		.byte	0x3
+ 536 0092 18       		.byte	0x18
+ 537 0093 2C000000 		.4byte	0x2c
+ 538 0097 03       		.uleb128 0x3
+ 539 0098 F1010000 		.4byte	.LASF13
+ 540 009c 03       		.byte	0x3
+ 541 009d 20       		.byte	0x20
+ 542 009e 3E000000 		.4byte	0x3e
+ 543 00a2 03       		.uleb128 0x3
+ 544 00a3 16020000 		.4byte	.LASF14
+ 545 00a7 03       		.byte	0x3
+ 546 00a8 2C       		.byte	0x2c
+ 547 00a9 57000000 		.4byte	0x57
+ 548 00ad 05       		.uleb128 0x5
+ 549 00ae 2B010000 		.4byte	.LASF15
+ 550 00b2 04       		.byte	0x4
+ 551 00b3 E801     		.2byte	0x1e8
+ 552 00b5 49000000 		.4byte	0x49
+ 553 00b9 02       		.uleb128 0x2
+ 554 00ba 04       		.byte	0x4
+ 555 00bb 04       		.byte	0x4
+ 556 00bc 80000000 		.4byte	.LASF16
+ 557 00c0 02       		.uleb128 0x2
+ 558 00c1 08       		.byte	0x8
+ 559 00c2 04       		.byte	0x4
+ 560 00c3 7A010000 		.4byte	.LASF17
+ 561 00c7 02       		.uleb128 0x2
+ 562 00c8 01       		.byte	0x1
+ 563 00c9 08       		.byte	0x8
+ 564 00ca 53020000 		.4byte	.LASF18
+ 565 00ce 06       		.uleb128 0x6
+ 566 00cf 01       		.byte	0x1
+ 567 00d0 37000000 		.4byte	0x37
+ 568 00d4 05       		.byte	0x5
+ 569 00d5 15       		.byte	0x15
+ 570 00d6 E7000000 		.4byte	0xe7
+ 571 00da 07       		.uleb128 0x7
+ 572 00db 7E020000 		.4byte	.LASF19
+ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\ccUqSPP7.s 			page 17
+
+
+ 573 00df 00       		.byte	0
+ 574 00e0 07       		.uleb128 0x7
+ 575 00e1 97020000 		.4byte	.LASF20
+ 576 00e5 01       		.byte	0x1
+ 577 00e6 00       		.byte	0
+ 578 00e7 03       		.uleb128 0x3
+ 579 00e8 76000000 		.4byte	.LASF21
+ 580 00ec 05       		.byte	0x5
+ 581 00ed 18       		.byte	0x18
+ 582 00ee CE000000 		.4byte	0xce
+ 583 00f2 02       		.uleb128 0x2
+ 584 00f3 08       		.byte	0x8
+ 585 00f4 04       		.byte	0x4
+ 586 00f5 9D020000 		.4byte	.LASF22
+ 587 00f9 02       		.uleb128 0x2
+ 588 00fa 04       		.byte	0x4
+ 589 00fb 07       		.byte	0x7
+ 590 00fc 1E020000 		.4byte	.LASF23
+ 591 0100 08       		.uleb128 0x8
+ 592 0101 A2010000 		.4byte	.LASF47
+ 593 0105 01       		.byte	0x1
+ 594 0106 41       		.byte	0x41
+ 595 0107 7E000000 		.4byte	0x7e
+ 596 010b 00000000 		.4byte	.LFB64
+ 597 010f 2C020000 		.4byte	.LFE64-.LFB64
+ 598 0113 01       		.uleb128 0x1
+ 599 0114 9C       		.byte	0x9c
+ 600 0115 A2050000 		.4byte	0x5a2
+ 601 0119 09       		.uleb128 0x9
+ 602 011a 00000000 		.4byte	.LASF24
+ 603 011e 01       		.byte	0x1
+ 604 011f 4C       		.byte	0x4c
+ 605 0120 A2050000 		.4byte	0x5a2
+ 606 0124 03       		.uleb128 0x3
+ 607 0125 91       		.byte	0x91
+ 608 0126 BC7F     		.sleb128 -68
+ 609 0128 09       		.uleb128 0x9
+ 610 0129 F2020000 		.4byte	.LASF25
+ 611 012d 01       		.byte	0x1
+ 612 012e 5F       		.byte	0x5f
+ 613 012f 8C000000 		.4byte	0x8c
+ 614 0133 03       		.uleb128 0x3
+ 615 0134 91       		.byte	0x91
+ 616 0135 BB7F     		.sleb128 -69
+ 617 0137 0A       		.uleb128 0xa
+ 618 0138 27020000 		.4byte	.LASF26
+ 619 013c 01       		.byte	0x1
+ 620 013d 60       		.byte	0x60
+ 621 013e E7000000 		.4byte	0xe7
+ 622 0142 00000000 		.4byte	.LLST0
+ 623 0146 09       		.uleb128 0x9
+ 624 0147 06020000 		.4byte	.LASF27
+ 625 014b 01       		.byte	0x1
+ 626 014c 71       		.byte	0x71
+ 627 014d 8C000000 		.4byte	0x8c
+ 628 0151 03       		.uleb128 0x3
+ 629 0152 91       		.byte	0x91
+ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\ccUqSPP7.s 			page 18
+
+
+ 630 0153 BA7F     		.sleb128 -70
+ 631 0155 09       		.uleb128 0x9
+ 632 0156 B1010000 		.4byte	.LASF28
+ 633 015a 01       		.byte	0x1
+ 634 015b 83       		.byte	0x83
+ 635 015c 8C000000 		.4byte	0x8c
+ 636 0160 03       		.uleb128 0x3
+ 637 0161 91       		.byte	0x91
+ 638 0162 B97F     		.sleb128 -71
+ 639 0164 09       		.uleb128 0x9
+ 640 0165 BB010000 		.4byte	.LASF29
+ 641 0169 01       		.byte	0x1
+ 642 016a C2       		.byte	0xc2
+ 643 016b 8C000000 		.4byte	0x8c
+ 644 016f 03       		.uleb128 0x3
+ 645 0170 91       		.byte	0x91
+ 646 0171 B87F     		.sleb128 -72
+ 647 0173 0B       		.uleb128 0xb
+ 648 0174 4F757400 		.ascii	"Out\000"
+ 649 0178 01       		.byte	0x1
+ 650 0179 EA       		.byte	0xea
+ 651 017a 97000000 		.4byte	0x97
+ 652 017e B8000000 		.4byte	.LLST1
+ 653 0182 0C       		.uleb128 0xc
+ 654 0183 08000000 		.4byte	.LASF30
+ 655 0187 01       		.byte	0x1
+ 656 0188 EB       		.byte	0xeb
+ 657 0189 8C000000 		.4byte	0x8c
+ 658 018d A07F     		.sleb128 -96
+ 659 018f 0C       		.uleb128 0xc
+ 660 0190 73010000 		.4byte	.LASF31
+ 661 0194 01       		.byte	0x1
+ 662 0195 EC       		.byte	0xec
+ 663 0196 8C000000 		.4byte	0x8c
+ 664 019a 40       		.sleb128 -64
+ 665 019b 09       		.uleb128 0x9
+ 666 019c 86000000 		.4byte	.LASF32
+ 667 01a0 01       		.byte	0x1
+ 668 01a1 ED       		.byte	0xed
+ 669 01a2 B2050000 		.4byte	0x5b2
+ 670 01a6 03       		.uleb128 0x3
+ 671 01a7 91       		.byte	0x91
+ 672 01a8 B07F     		.sleb128 -80
+ 673 01aa 09       		.uleb128 0x9
+ 674 01ab 87020000 		.4byte	.LASF33
+ 675 01af 01       		.byte	0x1
+ 676 01b0 EE       		.byte	0xee
+ 677 01b1 C2050000 		.4byte	0x5c2
+ 678 01b5 03       		.uleb128 0x3
+ 679 01b6 91       		.byte	0x91
+ 680 01b7 A87F     		.sleb128 -88
+ 681 01b9 0B       		.uleb128 0xb
+ 682 01ba 6900     		.ascii	"i\000"
+ 683 01bc 01       		.byte	0x1
+ 684 01bd F4       		.byte	0xf4
+ 685 01be 7E000000 		.4byte	0x7e
+ 686 01c2 FC000000 		.4byte	.LLST2
+ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\ccUqSPP7.s 			page 19
+
+
+ 687 01c6 0D       		.uleb128 0xd
+ 688 01c7 14000000 		.4byte	.LBB2
+ 689 01cb 22000000 		.4byte	.LBE2-.LBB2
+ 690 01cf 2A020000 		.4byte	0x22a
+ 691 01d3 0B       		.uleb128 0xb
+ 692 01d4 6900     		.ascii	"i\000"
+ 693 01d6 01       		.byte	0x1
+ 694 01d7 4F       		.byte	0x4f
+ 695 01d8 7E000000 		.4byte	0x7e
+ 696 01dc 32010000 		.4byte	.LLST3
+ 697 01e0 0E       		.uleb128 0xe
+ 698 01e1 1E000000 		.4byte	.LVL4
+ 699 01e5 E3050000 		.4byte	0x5e3
+ 700 01e9 F4010000 		.4byte	0x1f4
+ 701 01ed 0F       		.uleb128 0xf
+ 702 01ee 01       		.uleb128 0x1
+ 703 01ef 50       		.byte	0x50
+ 704 01f0 02       		.uleb128 0x2
+ 705 01f1 74       		.byte	0x74
+ 706 01f2 00       		.sleb128 0
+ 707 01f3 00       		.byte	0
+ 708 01f4 0E       		.uleb128 0xe
+ 709 01f5 2A000000 		.4byte	.LVL5
+ 710 01f9 EE050000 		.4byte	0x5ee
+ 711 01fd 18020000 		.4byte	0x218
+ 712 0201 0F       		.uleb128 0xf
+ 713 0202 01       		.uleb128 0x1
+ 714 0203 50       		.byte	0x50
+ 715 0204 03       		.uleb128 0x3
+ 716 0205 91       		.byte	0x91
+ 717 0206 BC7F     		.sleb128 -68
+ 718 0208 0F       		.uleb128 0xf
+ 719 0209 01       		.uleb128 0x1
+ 720 020a 51       		.byte	0x51
+ 721 020b 05       		.uleb128 0x5
+ 722 020c 03       		.byte	0x3
+ 723 020d 00000000 		.4byte	.LC0
+ 724 0211 0F       		.uleb128 0xf
+ 725 0212 01       		.uleb128 0x1
+ 726 0213 52       		.byte	0x52
+ 727 0214 02       		.uleb128 0x2
+ 728 0215 74       		.byte	0x74
+ 729 0216 00       		.sleb128 0
+ 730 0217 00       		.byte	0
+ 731 0218 10       		.uleb128 0x10
+ 732 0219 30000000 		.4byte	.LVL6
+ 733 021d F9050000 		.4byte	0x5f9
+ 734 0221 0F       		.uleb128 0xf
+ 735 0222 01       		.uleb128 0x1
+ 736 0223 50       		.byte	0x50
+ 737 0224 03       		.uleb128 0x3
+ 738 0225 91       		.byte	0x91
+ 739 0226 BC7F     		.sleb128 -68
+ 740 0228 00       		.byte	0
+ 741 0229 00       		.byte	0
+ 742 022a 11       		.uleb128 0x11
+ 743 022b 0A000000 		.4byte	.LVL0
+ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\ccUqSPP7.s 			page 20
+
+
+ 744 022f 04060000 		.4byte	0x604
+ 745 0233 11       		.uleb128 0x11
+ 746 0234 0E000000 		.4byte	.LVL1
+ 747 0238 0F060000 		.4byte	0x60f
+ 748 023c 0E       		.uleb128 0xe
+ 749 023d 14000000 		.4byte	.LVL2
+ 750 0241 1A060000 		.4byte	0x61a
+ 751 0245 4F020000 		.4byte	0x24f
+ 752 0249 0F       		.uleb128 0xf
+ 753 024a 01       		.uleb128 0x1
+ 754 024b 50       		.byte	0x50
+ 755 024c 01       		.uleb128 0x1
+ 756 024d 35       		.byte	0x35
+ 757 024e 00       		.byte	0
+ 758 024f 0E       		.uleb128 0xe
+ 759 0250 42000000 		.4byte	.LVL8
+ 760 0254 25060000 		.4byte	0x625
+ 761 0258 6E020000 		.4byte	0x26e
+ 762 025c 0F       		.uleb128 0xf
+ 763 025d 01       		.uleb128 0x1
+ 764 025e 50       		.byte	0x50
+ 765 025f 01       		.uleb128 0x1
+ 766 0260 48       		.byte	0x48
+ 767 0261 0F       		.uleb128 0xf
+ 768 0262 01       		.uleb128 0x1
+ 769 0263 51       		.byte	0x51
+ 770 0264 01       		.uleb128 0x1
+ 771 0265 3F       		.byte	0x3f
+ 772 0266 0F       		.uleb128 0xf
+ 773 0267 01       		.uleb128 0x1
+ 774 0268 52       		.byte	0x52
+ 775 0269 03       		.uleb128 0x3
+ 776 026a 91       		.byte	0x91
+ 777 026b BB7F     		.sleb128 -69
+ 778 026d 00       		.byte	0
+ 779 026e 0E       		.uleb128 0xe
+ 780 026f 50000000 		.4byte	.LVL10
+ 781 0273 EE050000 		.4byte	0x5ee
+ 782 0277 8C020000 		.4byte	0x28c
+ 783 027b 0F       		.uleb128 0xf
+ 784 027c 01       		.uleb128 0x1
+ 785 027d 50       		.byte	0x50
+ 786 027e 03       		.uleb128 0x3
+ 787 027f 91       		.byte	0x91
+ 788 0280 BC7F     		.sleb128 -68
+ 789 0282 0F       		.uleb128 0xf
+ 790 0283 01       		.uleb128 0x1
+ 791 0284 51       		.byte	0x51
+ 792 0285 05       		.uleb128 0x5
+ 793 0286 03       		.byte	0x3
+ 794 0287 20000000 		.4byte	.LC1
+ 795 028b 00       		.byte	0
+ 796 028c 0E       		.uleb128 0xe
+ 797 028d 56000000 		.4byte	.LVL11
+ 798 0291 F9050000 		.4byte	0x5f9
+ 799 0295 A1020000 		.4byte	0x2a1
+ 800 0299 0F       		.uleb128 0xf
+ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\ccUqSPP7.s 			page 21
+
+
+ 801 029a 01       		.uleb128 0x1
+ 802 029b 50       		.byte	0x50
+ 803 029c 03       		.uleb128 0x3
+ 804 029d 91       		.byte	0x91
+ 805 029e BC7F     		.sleb128 -68
+ 806 02a0 00       		.byte	0
+ 807 02a1 0E       		.uleb128 0xe
+ 808 02a2 5E000000 		.4byte	.LVL14
+ 809 02a6 F9050000 		.4byte	0x5f9
+ 810 02aa B8020000 		.4byte	0x2b8
+ 811 02ae 0F       		.uleb128 0xf
+ 812 02af 01       		.uleb128 0x1
+ 813 02b0 50       		.byte	0x50
+ 814 02b1 05       		.uleb128 0x5
+ 815 02b2 03       		.byte	0x3
+ 816 02b3 48000000 		.4byte	.LC2
+ 817 02b7 00       		.byte	0
+ 818 02b8 0E       		.uleb128 0xe
+ 819 02b9 6A000000 		.4byte	.LVL15
+ 820 02bd 25060000 		.4byte	0x625
+ 821 02c1 D8020000 		.4byte	0x2d8
+ 822 02c5 0F       		.uleb128 0xf
+ 823 02c6 01       		.uleb128 0x1
+ 824 02c7 50       		.byte	0x50
+ 825 02c8 01       		.uleb128 0x1
+ 826 02c9 48       		.byte	0x48
+ 827 02ca 0F       		.uleb128 0xf
+ 828 02cb 01       		.uleb128 0x1
+ 829 02cc 51       		.byte	0x51
+ 830 02cd 02       		.uleb128 0x2
+ 831 02ce 08       		.byte	0x8
+ 832 02cf 27       		.byte	0x27
+ 833 02d0 0F       		.uleb128 0xf
+ 834 02d1 01       		.uleb128 0x1
+ 835 02d2 52       		.byte	0x52
+ 836 02d3 03       		.uleb128 0x3
+ 837 02d4 91       		.byte	0x91
+ 838 02d5 BA7F     		.sleb128 -70
+ 839 02d7 00       		.byte	0
+ 840 02d8 0E       		.uleb128 0xe
+ 841 02d9 78000000 		.4byte	.LVL17
+ 842 02dd EE050000 		.4byte	0x5ee
+ 843 02e1 F6020000 		.4byte	0x2f6
+ 844 02e5 0F       		.uleb128 0xf
+ 845 02e6 01       		.uleb128 0x1
+ 846 02e7 50       		.byte	0x50
+ 847 02e8 03       		.uleb128 0x3
+ 848 02e9 91       		.byte	0x91
+ 849 02ea BC7F     		.sleb128 -68
+ 850 02ec 0F       		.uleb128 0xf
+ 851 02ed 01       		.uleb128 0x1
+ 852 02ee 51       		.byte	0x51
+ 853 02ef 05       		.uleb128 0x5
+ 854 02f0 03       		.byte	0x3
+ 855 02f1 6C000000 		.4byte	.LC3
+ 856 02f5 00       		.byte	0
+ 857 02f6 0E       		.uleb128 0xe
+ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\ccUqSPP7.s 			page 22
+
+
+ 858 02f7 7E000000 		.4byte	.LVL18
+ 859 02fb F9050000 		.4byte	0x5f9
+ 860 02ff 0B030000 		.4byte	0x30b
+ 861 0303 0F       		.uleb128 0xf
+ 862 0304 01       		.uleb128 0x1
+ 863 0305 50       		.byte	0x50
+ 864 0306 03       		.uleb128 0x3
+ 865 0307 91       		.byte	0x91
+ 866 0308 BC7F     		.sleb128 -68
+ 867 030a 00       		.byte	0
+ 868 030b 0E       		.uleb128 0xe
+ 869 030c 86000000 		.4byte	.LVL21
+ 870 0310 F9050000 		.4byte	0x5f9
+ 871 0314 22030000 		.4byte	0x322
+ 872 0318 0F       		.uleb128 0xf
+ 873 0319 01       		.uleb128 0x1
+ 874 031a 50       		.byte	0x50
+ 875 031b 05       		.uleb128 0x5
+ 876 031c 03       		.byte	0x3
+ 877 031d 88000000 		.4byte	.LC4
+ 878 0321 00       		.byte	0
+ 879 0322 0E       		.uleb128 0xe
+ 880 0323 92000000 		.4byte	.LVL22
+ 881 0327 25060000 		.4byte	0x625
+ 882 032b 42030000 		.4byte	0x342
+ 883 032f 0F       		.uleb128 0xf
+ 884 0330 01       		.uleb128 0x1
+ 885 0331 50       		.byte	0x50
+ 886 0332 01       		.uleb128 0x1
+ 887 0333 48       		.byte	0x48
+ 888 0334 0F       		.uleb128 0xf
+ 889 0335 01       		.uleb128 0x1
+ 890 0336 51       		.byte	0x51
+ 891 0337 02       		.uleb128 0x2
+ 892 0338 08       		.byte	0x8
+ 893 0339 20       		.byte	0x20
+ 894 033a 0F       		.uleb128 0xf
+ 895 033b 01       		.uleb128 0x1
+ 896 033c 52       		.byte	0x52
+ 897 033d 03       		.uleb128 0x3
+ 898 033e 91       		.byte	0x91
+ 899 033f B97F     		.sleb128 -71
+ 900 0341 00       		.byte	0
+ 901 0342 0E       		.uleb128 0xe
+ 902 0343 A0000000 		.4byte	.LVL24
+ 903 0347 EE050000 		.4byte	0x5ee
+ 904 034b 60030000 		.4byte	0x360
+ 905 034f 0F       		.uleb128 0xf
+ 906 0350 01       		.uleb128 0x1
+ 907 0351 50       		.byte	0x50
+ 908 0352 03       		.uleb128 0x3
+ 909 0353 91       		.byte	0x91
+ 910 0354 BC7F     		.sleb128 -68
+ 911 0356 0F       		.uleb128 0xf
+ 912 0357 01       		.uleb128 0x1
+ 913 0358 51       		.byte	0x51
+ 914 0359 05       		.uleb128 0x5
+ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\ccUqSPP7.s 			page 23
+
+
+ 915 035a 03       		.byte	0x3
+ 916 035b C4000000 		.4byte	.LC5
+ 917 035f 00       		.byte	0
+ 918 0360 0E       		.uleb128 0xe
+ 919 0361 A6000000 		.4byte	.LVL25
+ 920 0365 F9050000 		.4byte	0x5f9
+ 921 0369 75030000 		.4byte	0x375
+ 922 036d 0F       		.uleb128 0xf
+ 923 036e 01       		.uleb128 0x1
+ 924 036f 50       		.byte	0x50
+ 925 0370 03       		.uleb128 0x3
+ 926 0371 91       		.byte	0x91
+ 927 0372 BC7F     		.sleb128 -68
+ 928 0374 00       		.byte	0
+ 929 0375 0E       		.uleb128 0xe
+ 930 0376 AE000000 		.4byte	.LVL28
+ 931 037a F9050000 		.4byte	0x5f9
+ 932 037e 8C030000 		.4byte	0x38c
+ 933 0382 0F       		.uleb128 0xf
+ 934 0383 01       		.uleb128 0x1
+ 935 0384 50       		.byte	0x50
+ 936 0385 05       		.uleb128 0x5
+ 937 0386 03       		.byte	0x3
+ 938 0387 E4000000 		.4byte	.LC6
+ 939 038b 00       		.byte	0
+ 940 038c 0E       		.uleb128 0xe
+ 941 038d B4000000 		.4byte	.LVL29
+ 942 0391 F9050000 		.4byte	0x5f9
+ 943 0395 A3030000 		.4byte	0x3a3
+ 944 0399 0F       		.uleb128 0xf
+ 945 039a 01       		.uleb128 0x1
+ 946 039b 50       		.byte	0x50
+ 947 039c 05       		.uleb128 0x5
+ 948 039d 03       		.byte	0x3
+ 949 039e 20010000 		.4byte	.LC7
+ 950 03a2 00       		.byte	0
+ 951 03a3 0E       		.uleb128 0xe
+ 952 03a4 CA000000 		.4byte	.LVL30
+ 953 03a8 30060000 		.4byte	0x630
+ 954 03ac C2030000 		.4byte	0x3c2
+ 955 03b0 0F       		.uleb128 0xf
+ 956 03b1 01       		.uleb128 0x1
+ 957 03b2 50       		.byte	0x50
+ 958 03b3 01       		.uleb128 0x1
+ 959 03b4 48       		.byte	0x48
+ 960 03b5 0F       		.uleb128 0xf
+ 961 03b6 01       		.uleb128 0x1
+ 962 03b7 51       		.byte	0x51
+ 963 03b8 02       		.uleb128 0x2
+ 964 03b9 08       		.byte	0x8
+ 965 03ba 20       		.byte	0x20
+ 966 03bb 0F       		.uleb128 0xf
+ 967 03bc 01       		.uleb128 0x1
+ 968 03bd 52       		.byte	0x52
+ 969 03be 02       		.uleb128 0x2
+ 970 03bf 08       		.byte	0x8
+ 971 03c0 57       		.byte	0x57
+ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\ccUqSPP7.s 			page 24
+
+
+ 972 03c1 00       		.byte	0
+ 973 03c2 0E       		.uleb128 0xe
+ 974 03c3 D8000000 		.4byte	.LVL32
+ 975 03c7 EE050000 		.4byte	0x5ee
+ 976 03cb E0030000 		.4byte	0x3e0
+ 977 03cf 0F       		.uleb128 0xf
+ 978 03d0 01       		.uleb128 0x1
+ 979 03d1 50       		.byte	0x50
+ 980 03d2 03       		.uleb128 0x3
+ 981 03d3 91       		.byte	0x91
+ 982 03d4 BC7F     		.sleb128 -68
+ 983 03d6 0F       		.uleb128 0xf
+ 984 03d7 01       		.uleb128 0x1
+ 985 03d8 51       		.byte	0x51
+ 986 03d9 05       		.uleb128 0x5
+ 987 03da 03       		.byte	0x3
+ 988 03db 3C010000 		.4byte	.LC8
+ 989 03df 00       		.byte	0
+ 990 03e0 0E       		.uleb128 0xe
+ 991 03e1 DE000000 		.4byte	.LVL33
+ 992 03e5 F9050000 		.4byte	0x5f9
+ 993 03e9 F5030000 		.4byte	0x3f5
+ 994 03ed 0F       		.uleb128 0xf
+ 995 03ee 01       		.uleb128 0x1
+ 996 03ef 50       		.byte	0x50
+ 997 03f0 03       		.uleb128 0x3
+ 998 03f1 91       		.byte	0x91
+ 999 03f2 BC7F     		.sleb128 -68
+ 1000 03f4 00       		.byte	0
+ 1001 03f5 0E       		.uleb128 0xe
+ 1002 03f6 E6000000 		.4byte	.LVL36
+ 1003 03fa F9050000 		.4byte	0x5f9
+ 1004 03fe 0C040000 		.4byte	0x40c
+ 1005 0402 0F       		.uleb128 0xf
+ 1006 0403 01       		.uleb128 0x1
+ 1007 0404 50       		.byte	0x50
+ 1008 0405 05       		.uleb128 0x5
+ 1009 0406 03       		.byte	0x3
+ 1010 0407 74010000 		.4byte	.LC9
+ 1011 040b 00       		.byte	0
+ 1012 040c 0E       		.uleb128 0xe
+ 1013 040d F2000000 		.4byte	.LVL37
+ 1014 0411 25060000 		.4byte	0x625
+ 1015 0415 2C040000 		.4byte	0x42c
+ 1016 0419 0F       		.uleb128 0xf
+ 1017 041a 01       		.uleb128 0x1
+ 1018 041b 50       		.byte	0x50
+ 1019 041c 01       		.uleb128 0x1
+ 1020 041d 48       		.byte	0x48
+ 1021 041e 0F       		.uleb128 0xf
+ 1022 041f 01       		.uleb128 0x1
+ 1023 0420 51       		.byte	0x51
+ 1024 0421 02       		.uleb128 0x2
+ 1025 0422 08       		.byte	0x8
+ 1026 0423 20       		.byte	0x20
+ 1027 0424 0F       		.uleb128 0xf
+ 1028 0425 01       		.uleb128 0x1
+ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\ccUqSPP7.s 			page 25
+
+
+ 1029 0426 52       		.byte	0x52
+ 1030 0427 03       		.uleb128 0x3
+ 1031 0428 91       		.byte	0x91
+ 1032 0429 B97F     		.sleb128 -71
+ 1033 042b 00       		.byte	0
+ 1034 042c 0E       		.uleb128 0xe
+ 1035 042d 00010000 		.4byte	.LVL39
+ 1036 0431 EE050000 		.4byte	0x5ee
+ 1037 0435 4A040000 		.4byte	0x44a
+ 1038 0439 0F       		.uleb128 0xf
+ 1039 043a 01       		.uleb128 0x1
+ 1040 043b 50       		.byte	0x50
+ 1041 043c 03       		.uleb128 0x3
+ 1042 043d 91       		.byte	0x91
+ 1043 043e BC7F     		.sleb128 -68
+ 1044 0440 0F       		.uleb128 0xf
+ 1045 0441 01       		.uleb128 0x1
+ 1046 0442 51       		.byte	0x51
+ 1047 0443 05       		.uleb128 0x5
+ 1048 0444 03       		.byte	0x3
+ 1049 0445 B0010000 		.4byte	.LC10
+ 1050 0449 00       		.byte	0
+ 1051 044a 0E       		.uleb128 0xe
+ 1052 044b 06010000 		.4byte	.LVL40
+ 1053 044f F9050000 		.4byte	0x5f9
+ 1054 0453 5F040000 		.4byte	0x45f
+ 1055 0457 0F       		.uleb128 0xf
+ 1056 0458 01       		.uleb128 0x1
+ 1057 0459 50       		.byte	0x50
+ 1058 045a 03       		.uleb128 0x3
+ 1059 045b 91       		.byte	0x91
+ 1060 045c BC7F     		.sleb128 -68
+ 1061 045e 00       		.byte	0
+ 1062 045f 0E       		.uleb128 0xe
+ 1063 0460 0E010000 		.4byte	.LVL43
+ 1064 0464 F9050000 		.4byte	0x5f9
+ 1065 0468 76040000 		.4byte	0x476
+ 1066 046c 0F       		.uleb128 0xf
+ 1067 046d 01       		.uleb128 0x1
+ 1068 046e 50       		.byte	0x50
+ 1069 046f 05       		.uleb128 0x5
+ 1070 0470 03       		.byte	0x3
+ 1071 0471 E4000000 		.4byte	.LC6
+ 1072 0475 00       		.byte	0
+ 1073 0476 0E       		.uleb128 0xe
+ 1074 0477 18010000 		.4byte	.LVL44
+ 1075 047b 25060000 		.4byte	0x625
+ 1076 047f 96040000 		.4byte	0x496
+ 1077 0483 0F       		.uleb128 0xf
+ 1078 0484 01       		.uleb128 0x1
+ 1079 0485 50       		.byte	0x50
+ 1080 0486 01       		.uleb128 0x1
+ 1081 0487 48       		.byte	0x48
+ 1082 0488 0F       		.uleb128 0xf
+ 1083 0489 01       		.uleb128 0x1
+ 1084 048a 51       		.byte	0x51
+ 1085 048b 02       		.uleb128 0x2
+ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\ccUqSPP7.s 			page 26
+
+
+ 1086 048c 08       		.byte	0x8
+ 1087 048d 23       		.byte	0x23
+ 1088 048e 0F       		.uleb128 0xf
+ 1089 048f 01       		.uleb128 0x1
+ 1090 0490 52       		.byte	0x52
+ 1091 0491 03       		.uleb128 0x3
+ 1092 0492 91       		.byte	0x91
+ 1093 0493 B87F     		.sleb128 -72
+ 1094 0495 00       		.byte	0
+ 1095 0496 0E       		.uleb128 0xe
+ 1096 0497 26010000 		.4byte	.LVL46
+ 1097 049b EE050000 		.4byte	0x5ee
+ 1098 049f B4040000 		.4byte	0x4b4
+ 1099 04a3 0F       		.uleb128 0xf
+ 1100 04a4 01       		.uleb128 0x1
+ 1101 04a5 50       		.byte	0x50
+ 1102 04a6 03       		.uleb128 0x3
+ 1103 04a7 91       		.byte	0x91
+ 1104 04a8 BC7F     		.sleb128 -68
+ 1105 04aa 0F       		.uleb128 0xf
+ 1106 04ab 01       		.uleb128 0x1
+ 1107 04ac 51       		.byte	0x51
+ 1108 04ad 05       		.uleb128 0x5
+ 1109 04ae 03       		.byte	0x3
+ 1110 04af E8010000 		.4byte	.LC11
+ 1111 04b3 00       		.byte	0
+ 1112 04b4 0E       		.uleb128 0xe
+ 1113 04b5 2C010000 		.4byte	.LVL47
+ 1114 04b9 F9050000 		.4byte	0x5f9
+ 1115 04bd C9040000 		.4byte	0x4c9
+ 1116 04c1 0F       		.uleb128 0xf
+ 1117 04c2 01       		.uleb128 0x1
+ 1118 04c3 50       		.byte	0x50
+ 1119 04c4 03       		.uleb128 0x3
+ 1120 04c5 91       		.byte	0x91
+ 1121 04c6 BC7F     		.sleb128 -68
+ 1122 04c8 00       		.byte	0
+ 1123 04c9 0E       		.uleb128 0xe
+ 1124 04ca 34010000 		.4byte	.LVL50
+ 1125 04ce F9050000 		.4byte	0x5f9
+ 1126 04d2 E0040000 		.4byte	0x4e0
+ 1127 04d6 0F       		.uleb128 0xf
+ 1128 04d7 01       		.uleb128 0x1
+ 1129 04d8 50       		.byte	0x50
+ 1130 04d9 05       		.uleb128 0x5
+ 1131 04da 03       		.byte	0x3
+ 1132 04db 08020000 		.4byte	.LC12
+ 1133 04df 00       		.byte	0
+ 1134 04e0 0E       		.uleb128 0xe
+ 1135 04e1 44010000 		.4byte	.LVL52
+ 1136 04e5 30060000 		.4byte	0x630
+ 1137 04e9 FE040000 		.4byte	0x4fe
+ 1138 04ed 0F       		.uleb128 0xf
+ 1139 04ee 01       		.uleb128 0x1
+ 1140 04ef 50       		.byte	0x50
+ 1141 04f0 01       		.uleb128 0x1
+ 1142 04f1 48       		.byte	0x48
+ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\ccUqSPP7.s 			page 27
+
+
+ 1143 04f2 0F       		.uleb128 0xf
+ 1144 04f3 01       		.uleb128 0x1
+ 1145 04f4 51       		.byte	0x51
+ 1146 04f5 02       		.uleb128 0x2
+ 1147 04f6 08       		.byte	0x8
+ 1148 04f7 23       		.byte	0x23
+ 1149 04f8 0F       		.uleb128 0xf
+ 1150 04f9 01       		.uleb128 0x1
+ 1151 04fa 52       		.byte	0x52
+ 1152 04fb 01       		.uleb128 0x1
+ 1153 04fc 30       		.byte	0x30
+ 1154 04fd 00       		.byte	0
+ 1155 04fe 0E       		.uleb128 0xe
+ 1156 04ff 4E010000 		.4byte	.LVL53
+ 1157 0503 25060000 		.4byte	0x625
+ 1158 0507 1D050000 		.4byte	0x51d
+ 1159 050b 0F       		.uleb128 0xf
+ 1160 050c 01       		.uleb128 0x1
+ 1161 050d 50       		.byte	0x50
+ 1162 050e 01       		.uleb128 0x1
+ 1163 050f 48       		.byte	0x48
+ 1164 0510 0F       		.uleb128 0xf
+ 1165 0511 01       		.uleb128 0x1
+ 1166 0512 51       		.byte	0x51
+ 1167 0513 02       		.uleb128 0x2
+ 1168 0514 08       		.byte	0x8
+ 1169 0515 23       		.byte	0x23
+ 1170 0516 0F       		.uleb128 0xf
+ 1171 0517 01       		.uleb128 0x1
+ 1172 0518 52       		.byte	0x52
+ 1173 0519 02       		.uleb128 0x2
+ 1174 051a 74       		.byte	0x74
+ 1175 051b 00       		.sleb128 0
+ 1176 051c 00       		.byte	0
+ 1177 051d 0E       		.uleb128 0xe
+ 1178 051e 5C010000 		.4byte	.LVL55
+ 1179 0522 EE050000 		.4byte	0x5ee
+ 1180 0526 3B050000 		.4byte	0x53b
+ 1181 052a 0F       		.uleb128 0xf
+ 1182 052b 01       		.uleb128 0x1
+ 1183 052c 50       		.byte	0x50
+ 1184 052d 03       		.uleb128 0x3
+ 1185 052e 91       		.byte	0x91
+ 1186 052f BC7F     		.sleb128 -68
+ 1187 0531 0F       		.uleb128 0xf
+ 1188 0532 01       		.uleb128 0x1
+ 1189 0533 51       		.byte	0x51
+ 1190 0534 05       		.uleb128 0x5
+ 1191 0535 03       		.byte	0x3
+ 1192 0536 44020000 		.4byte	.LC13
+ 1193 053a 00       		.byte	0
+ 1194 053b 0E       		.uleb128 0xe
+ 1195 053c 62010000 		.4byte	.LVL56
+ 1196 0540 F9050000 		.4byte	0x5f9
+ 1197 0544 50050000 		.4byte	0x550
+ 1198 0548 0F       		.uleb128 0xf
+ 1199 0549 01       		.uleb128 0x1
+ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\ccUqSPP7.s 			page 28
+
+
+ 1200 054a 50       		.byte	0x50
+ 1201 054b 03       		.uleb128 0x3
+ 1202 054c 91       		.byte	0x91
+ 1203 054d BC7F     		.sleb128 -68
+ 1204 054f 00       		.byte	0
+ 1205 0550 0E       		.uleb128 0xe
+ 1206 0551 6A010000 		.4byte	.LVL59
+ 1207 0555 F9050000 		.4byte	0x5f9
+ 1208 0559 67050000 		.4byte	0x567
+ 1209 055d 0F       		.uleb128 0xf
+ 1210 055e 01       		.uleb128 0x1
+ 1211 055f 50       		.byte	0x50
+ 1212 0560 05       		.uleb128 0x5
+ 1213 0561 03       		.byte	0x3
+ 1214 0562 78020000 		.4byte	.LC14
+ 1215 0566 00       		.byte	0
+ 1216 0567 0E       		.uleb128 0xe
+ 1217 0568 82010000 		.4byte	.LVL61
+ 1218 056c 3B060000 		.4byte	0x63b
+ 1219 0570 8B050000 		.4byte	0x58b
+ 1220 0574 0F       		.uleb128 0xf
+ 1221 0575 01       		.uleb128 0x1
+ 1222 0576 50       		.byte	0x50
+ 1223 0577 01       		.uleb128 0x1
+ 1224 0578 48       		.byte	0x48
+ 1225 0579 0F       		.uleb128 0xf
+ 1226 057a 01       		.uleb128 0x1
+ 1227 057b 51       		.byte	0x51
+ 1228 057c 02       		.uleb128 0x2
+ 1229 057d 08       		.byte	0x8
+ 1230 057e 28       		.byte	0x28
+ 1231 057f 0F       		.uleb128 0xf
+ 1232 0580 01       		.uleb128 0x1
+ 1233 0581 52       		.byte	0x52
+ 1234 0582 01       		.uleb128 0x1
+ 1235 0583 36       		.byte	0x36
+ 1236 0584 0F       		.uleb128 0xf
+ 1237 0585 01       		.uleb128 0x1
+ 1238 0586 53       		.byte	0x53
+ 1239 0587 02       		.uleb128 0x2
+ 1240 0588 7D       		.byte	0x7d
+ 1241 0589 00       		.sleb128 0
+ 1242 058a 00       		.byte	0
+ 1243 058b 10       		.uleb128 0x10
+ 1244 058c E4010000 		.4byte	.LVL74
+ 1245 0590 46060000 		.4byte	0x646
+ 1246 0594 0F       		.uleb128 0xf
+ 1247 0595 01       		.uleb128 0x1
+ 1248 0596 50       		.byte	0x50
+ 1249 0597 03       		.uleb128 0x3
+ 1250 0598 91       		.byte	0x91
+ 1251 0599 B07F     		.sleb128 -80
+ 1252 059b 0F       		.uleb128 0xf
+ 1253 059c 01       		.uleb128 0x1
+ 1254 059d 51       		.byte	0x51
+ 1255 059e 01       		.uleb128 0x1
+ 1256 059f 38       		.byte	0x38
+ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\ccUqSPP7.s 			page 29
+
+
+ 1257 05a0 00       		.byte	0
+ 1258 05a1 00       		.byte	0
+ 1259 05a2 12       		.uleb128 0x12
+ 1260 05a3 C7000000 		.4byte	0xc7
+ 1261 05a7 B2050000 		.4byte	0x5b2
+ 1262 05ab 13       		.uleb128 0x13
+ 1263 05ac F9000000 		.4byte	0xf9
+ 1264 05b0 31       		.byte	0x31
+ 1265 05b1 00       		.byte	0
+ 1266 05b2 12       		.uleb128 0x12
+ 1267 05b3 8C000000 		.4byte	0x8c
+ 1268 05b7 C2050000 		.4byte	0x5c2
+ 1269 05bb 13       		.uleb128 0x13
+ 1270 05bc F9000000 		.4byte	0xf9
+ 1271 05c0 07       		.byte	0x7
+ 1272 05c1 00       		.byte	0
+ 1273 05c2 12       		.uleb128 0x12
+ 1274 05c3 8C000000 		.4byte	0x8c
+ 1275 05c7 D2050000 		.4byte	0x5d2
+ 1276 05cb 13       		.uleb128 0x13
+ 1277 05cc F9000000 		.4byte	0xf9
+ 1278 05d0 05       		.byte	0x5
+ 1279 05d1 00       		.byte	0
+ 1280 05d2 14       		.uleb128 0x14
+ 1281 05d3 F9010000 		.4byte	.LASF48
+ 1282 05d7 0A       		.byte	0xa
+ 1283 05d8 1207     		.2byte	0x712
+ 1284 05da DE050000 		.4byte	0x5de
+ 1285 05de 15       		.uleb128 0x15
+ 1286 05df A2000000 		.4byte	0xa2
+ 1287 05e3 16       		.uleb128 0x16
+ 1288 05e4 2E000000 		.4byte	.LASF34
+ 1289 05e8 2E000000 		.4byte	.LASF34
+ 1290 05ec 06       		.byte	0x6
+ 1291 05ed 5D       		.byte	0x5d
+ 1292 05ee 16       		.uleb128 0x16
+ 1293 05ef FF020000 		.4byte	.LASF35
+ 1294 05f3 FF020000 		.4byte	.LASF35
+ 1295 05f7 07       		.byte	0x7
+ 1296 05f8 E7       		.byte	0xe7
+ 1297 05f9 16       		.uleb128 0x16
+ 1298 05fa 19000000 		.4byte	.LASF36
+ 1299 05fe 19000000 		.4byte	.LASF36
+ 1300 0602 08       		.byte	0x8
+ 1301 0603 8B       		.byte	0x8b
+ 1302 0604 16       		.uleb128 0x16
+ 1303 0605 0F030000 		.4byte	.LASF37
+ 1304 0609 0F030000 		.4byte	.LASF37
+ 1305 060d 06       		.byte	0x6
+ 1306 060e 17       		.byte	0x17
+ 1307 060f 16       		.uleb128 0x16
+ 1308 0610 3B020000 		.4byte	.LASF38
+ 1309 0614 3B020000 		.4byte	.LASF38
+ 1310 0618 08       		.byte	0x8
+ 1311 0619 54       		.byte	0x54
+ 1312 061a 16       		.uleb128 0x16
+ 1313 061b 07030000 		.4byte	.LASF39
+ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\ccUqSPP7.s 			page 30
+
+
+ 1314 061f 07030000 		.4byte	.LASF39
+ 1315 0623 09       		.byte	0x9
+ 1316 0624 76       		.byte	0x76
+ 1317 0625 16       		.uleb128 0x16
+ 1318 0626 58020000 		.4byte	.LASF40
+ 1319 062a 58020000 		.4byte	.LASF40
+ 1320 062e 06       		.byte	0x6
+ 1321 062f 28       		.byte	0x28
+ 1322 0630 16       		.uleb128 0x16
+ 1323 0631 56010000 		.4byte	.LASF41
+ 1324 0635 56010000 		.4byte	.LASF41
+ 1325 0639 06       		.byte	0x6
+ 1326 063a 43       		.byte	0x43
+ 1327 063b 16       		.uleb128 0x16
+ 1328 063c 81010000 		.4byte	.LASF42
+ 1329 0640 81010000 		.4byte	.LASF42
+ 1330 0644 06       		.byte	0x6
+ 1331 0645 36       		.byte	0x36
+ 1332 0646 16       		.uleb128 0x16
+ 1333 0647 62000000 		.4byte	.LASF43
+ 1334 064b 62000000 		.4byte	.LASF43
+ 1335 064f 08       		.byte	0x8
+ 1336 0650 8C       		.byte	0x8c
+ 1337 0651 00       		.byte	0
+ 1338              		.section	.debug_abbrev,"",%progbits
+ 1339              	.Ldebug_abbrev0:
+ 1340 0000 01       		.uleb128 0x1
+ 1341 0001 11       		.uleb128 0x11
+ 1342 0002 01       		.byte	0x1
+ 1343 0003 25       		.uleb128 0x25
+ 1344 0004 0E       		.uleb128 0xe
+ 1345 0005 13       		.uleb128 0x13
+ 1346 0006 0B       		.uleb128 0xb
+ 1347 0007 03       		.uleb128 0x3
+ 1348 0008 0E       		.uleb128 0xe
+ 1349 0009 1B       		.uleb128 0x1b
+ 1350 000a 0E       		.uleb128 0xe
+ 1351 000b 55       		.uleb128 0x55
+ 1352 000c 17       		.uleb128 0x17
+ 1353 000d 11       		.uleb128 0x11
+ 1354 000e 01       		.uleb128 0x1
+ 1355 000f 10       		.uleb128 0x10
+ 1356 0010 17       		.uleb128 0x17
+ 1357 0011 00       		.byte	0
+ 1358 0012 00       		.byte	0
+ 1359 0013 02       		.uleb128 0x2
+ 1360 0014 24       		.uleb128 0x24
+ 1361 0015 00       		.byte	0
+ 1362 0016 0B       		.uleb128 0xb
+ 1363 0017 0B       		.uleb128 0xb
+ 1364 0018 3E       		.uleb128 0x3e
+ 1365 0019 0B       		.uleb128 0xb
+ 1366 001a 03       		.uleb128 0x3
+ 1367 001b 0E       		.uleb128 0xe
+ 1368 001c 00       		.byte	0
+ 1369 001d 00       		.byte	0
+ 1370 001e 03       		.uleb128 0x3
+ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\ccUqSPP7.s 			page 31
+
+
+ 1371 001f 16       		.uleb128 0x16
+ 1372 0020 00       		.byte	0
+ 1373 0021 03       		.uleb128 0x3
+ 1374 0022 0E       		.uleb128 0xe
+ 1375 0023 3A       		.uleb128 0x3a
+ 1376 0024 0B       		.uleb128 0xb
+ 1377 0025 3B       		.uleb128 0x3b
+ 1378 0026 0B       		.uleb128 0xb
+ 1379 0027 49       		.uleb128 0x49
+ 1380 0028 13       		.uleb128 0x13
+ 1381 0029 00       		.byte	0
+ 1382 002a 00       		.byte	0
+ 1383 002b 04       		.uleb128 0x4
+ 1384 002c 24       		.uleb128 0x24
+ 1385 002d 00       		.byte	0
+ 1386 002e 0B       		.uleb128 0xb
+ 1387 002f 0B       		.uleb128 0xb
+ 1388 0030 3E       		.uleb128 0x3e
+ 1389 0031 0B       		.uleb128 0xb
+ 1390 0032 03       		.uleb128 0x3
+ 1391 0033 08       		.uleb128 0x8
+ 1392 0034 00       		.byte	0
+ 1393 0035 00       		.byte	0
+ 1394 0036 05       		.uleb128 0x5
+ 1395 0037 16       		.uleb128 0x16
+ 1396 0038 00       		.byte	0
+ 1397 0039 03       		.uleb128 0x3
+ 1398 003a 0E       		.uleb128 0xe
+ 1399 003b 3A       		.uleb128 0x3a
+ 1400 003c 0B       		.uleb128 0xb
+ 1401 003d 3B       		.uleb128 0x3b
+ 1402 003e 05       		.uleb128 0x5
+ 1403 003f 49       		.uleb128 0x49
+ 1404 0040 13       		.uleb128 0x13
+ 1405 0041 00       		.byte	0
+ 1406 0042 00       		.byte	0
+ 1407 0043 06       		.uleb128 0x6
+ 1408 0044 04       		.uleb128 0x4
+ 1409 0045 01       		.byte	0x1
+ 1410 0046 0B       		.uleb128 0xb
+ 1411 0047 0B       		.uleb128 0xb
+ 1412 0048 49       		.uleb128 0x49
+ 1413 0049 13       		.uleb128 0x13
+ 1414 004a 3A       		.uleb128 0x3a
+ 1415 004b 0B       		.uleb128 0xb
+ 1416 004c 3B       		.uleb128 0x3b
+ 1417 004d 0B       		.uleb128 0xb
+ 1418 004e 01       		.uleb128 0x1
+ 1419 004f 13       		.uleb128 0x13
+ 1420 0050 00       		.byte	0
+ 1421 0051 00       		.byte	0
+ 1422 0052 07       		.uleb128 0x7
+ 1423 0053 28       		.uleb128 0x28
+ 1424 0054 00       		.byte	0
+ 1425 0055 03       		.uleb128 0x3
+ 1426 0056 0E       		.uleb128 0xe
+ 1427 0057 1C       		.uleb128 0x1c
+ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\ccUqSPP7.s 			page 32
+
+
+ 1428 0058 0B       		.uleb128 0xb
+ 1429 0059 00       		.byte	0
+ 1430 005a 00       		.byte	0
+ 1431 005b 08       		.uleb128 0x8
+ 1432 005c 2E       		.uleb128 0x2e
+ 1433 005d 01       		.byte	0x1
+ 1434 005e 3F       		.uleb128 0x3f
+ 1435 005f 19       		.uleb128 0x19
+ 1436 0060 03       		.uleb128 0x3
+ 1437 0061 0E       		.uleb128 0xe
+ 1438 0062 3A       		.uleb128 0x3a
+ 1439 0063 0B       		.uleb128 0xb
+ 1440 0064 3B       		.uleb128 0x3b
+ 1441 0065 0B       		.uleb128 0xb
+ 1442 0066 27       		.uleb128 0x27
+ 1443 0067 19       		.uleb128 0x19
+ 1444 0068 49       		.uleb128 0x49
+ 1445 0069 13       		.uleb128 0x13
+ 1446 006a 8701     		.uleb128 0x87
+ 1447 006c 19       		.uleb128 0x19
+ 1448 006d 11       		.uleb128 0x11
+ 1449 006e 01       		.uleb128 0x1
+ 1450 006f 12       		.uleb128 0x12
+ 1451 0070 06       		.uleb128 0x6
+ 1452 0071 40       		.uleb128 0x40
+ 1453 0072 18       		.uleb128 0x18
+ 1454 0073 9642     		.uleb128 0x2116
+ 1455 0075 19       		.uleb128 0x19
+ 1456 0076 01       		.uleb128 0x1
+ 1457 0077 13       		.uleb128 0x13
+ 1458 0078 00       		.byte	0
+ 1459 0079 00       		.byte	0
+ 1460 007a 09       		.uleb128 0x9
+ 1461 007b 34       		.uleb128 0x34
+ 1462 007c 00       		.byte	0
+ 1463 007d 03       		.uleb128 0x3
+ 1464 007e 0E       		.uleb128 0xe
+ 1465 007f 3A       		.uleb128 0x3a
+ 1466 0080 0B       		.uleb128 0xb
+ 1467 0081 3B       		.uleb128 0x3b
+ 1468 0082 0B       		.uleb128 0xb
+ 1469 0083 49       		.uleb128 0x49
+ 1470 0084 13       		.uleb128 0x13
+ 1471 0085 02       		.uleb128 0x2
+ 1472 0086 18       		.uleb128 0x18
+ 1473 0087 00       		.byte	0
+ 1474 0088 00       		.byte	0
+ 1475 0089 0A       		.uleb128 0xa
+ 1476 008a 34       		.uleb128 0x34
+ 1477 008b 00       		.byte	0
+ 1478 008c 03       		.uleb128 0x3
+ 1479 008d 0E       		.uleb128 0xe
+ 1480 008e 3A       		.uleb128 0x3a
+ 1481 008f 0B       		.uleb128 0xb
+ 1482 0090 3B       		.uleb128 0x3b
+ 1483 0091 0B       		.uleb128 0xb
+ 1484 0092 49       		.uleb128 0x49
+ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\ccUqSPP7.s 			page 33
+
+
+ 1485 0093 13       		.uleb128 0x13
+ 1486 0094 02       		.uleb128 0x2
+ 1487 0095 17       		.uleb128 0x17
+ 1488 0096 00       		.byte	0
+ 1489 0097 00       		.byte	0
+ 1490 0098 0B       		.uleb128 0xb
+ 1491 0099 34       		.uleb128 0x34
+ 1492 009a 00       		.byte	0
+ 1493 009b 03       		.uleb128 0x3
+ 1494 009c 08       		.uleb128 0x8
+ 1495 009d 3A       		.uleb128 0x3a
+ 1496 009e 0B       		.uleb128 0xb
+ 1497 009f 3B       		.uleb128 0x3b
+ 1498 00a0 0B       		.uleb128 0xb
+ 1499 00a1 49       		.uleb128 0x49
+ 1500 00a2 13       		.uleb128 0x13
+ 1501 00a3 02       		.uleb128 0x2
+ 1502 00a4 17       		.uleb128 0x17
+ 1503 00a5 00       		.byte	0
+ 1504 00a6 00       		.byte	0
+ 1505 00a7 0C       		.uleb128 0xc
+ 1506 00a8 34       		.uleb128 0x34
+ 1507 00a9 00       		.byte	0
+ 1508 00aa 03       		.uleb128 0x3
+ 1509 00ab 0E       		.uleb128 0xe
+ 1510 00ac 3A       		.uleb128 0x3a
+ 1511 00ad 0B       		.uleb128 0xb
+ 1512 00ae 3B       		.uleb128 0x3b
+ 1513 00af 0B       		.uleb128 0xb
+ 1514 00b0 49       		.uleb128 0x49
+ 1515 00b1 13       		.uleb128 0x13
+ 1516 00b2 1C       		.uleb128 0x1c
+ 1517 00b3 0D       		.uleb128 0xd
+ 1518 00b4 00       		.byte	0
+ 1519 00b5 00       		.byte	0
+ 1520 00b6 0D       		.uleb128 0xd
+ 1521 00b7 0B       		.uleb128 0xb
+ 1522 00b8 01       		.byte	0x1
+ 1523 00b9 11       		.uleb128 0x11
+ 1524 00ba 01       		.uleb128 0x1
+ 1525 00bb 12       		.uleb128 0x12
+ 1526 00bc 06       		.uleb128 0x6
+ 1527 00bd 01       		.uleb128 0x1
+ 1528 00be 13       		.uleb128 0x13
+ 1529 00bf 00       		.byte	0
+ 1530 00c0 00       		.byte	0
+ 1531 00c1 0E       		.uleb128 0xe
+ 1532 00c2 898201   		.uleb128 0x4109
+ 1533 00c5 01       		.byte	0x1
+ 1534 00c6 11       		.uleb128 0x11
+ 1535 00c7 01       		.uleb128 0x1
+ 1536 00c8 31       		.uleb128 0x31
+ 1537 00c9 13       		.uleb128 0x13
+ 1538 00ca 01       		.uleb128 0x1
+ 1539 00cb 13       		.uleb128 0x13
+ 1540 00cc 00       		.byte	0
+ 1541 00cd 00       		.byte	0
+ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\ccUqSPP7.s 			page 34
+
+
+ 1542 00ce 0F       		.uleb128 0xf
+ 1543 00cf 8A8201   		.uleb128 0x410a
+ 1544 00d2 00       		.byte	0
+ 1545 00d3 02       		.uleb128 0x2
+ 1546 00d4 18       		.uleb128 0x18
+ 1547 00d5 9142     		.uleb128 0x2111
+ 1548 00d7 18       		.uleb128 0x18
+ 1549 00d8 00       		.byte	0
+ 1550 00d9 00       		.byte	0
+ 1551 00da 10       		.uleb128 0x10
+ 1552 00db 898201   		.uleb128 0x4109
+ 1553 00de 01       		.byte	0x1
+ 1554 00df 11       		.uleb128 0x11
+ 1555 00e0 01       		.uleb128 0x1
+ 1556 00e1 31       		.uleb128 0x31
+ 1557 00e2 13       		.uleb128 0x13
+ 1558 00e3 00       		.byte	0
+ 1559 00e4 00       		.byte	0
+ 1560 00e5 11       		.uleb128 0x11
+ 1561 00e6 898201   		.uleb128 0x4109
+ 1562 00e9 00       		.byte	0
+ 1563 00ea 11       		.uleb128 0x11
+ 1564 00eb 01       		.uleb128 0x1
+ 1565 00ec 31       		.uleb128 0x31
+ 1566 00ed 13       		.uleb128 0x13
+ 1567 00ee 00       		.byte	0
+ 1568 00ef 00       		.byte	0
+ 1569 00f0 12       		.uleb128 0x12
+ 1570 00f1 01       		.uleb128 0x1
+ 1571 00f2 01       		.byte	0x1
+ 1572 00f3 49       		.uleb128 0x49
+ 1573 00f4 13       		.uleb128 0x13
+ 1574 00f5 01       		.uleb128 0x1
+ 1575 00f6 13       		.uleb128 0x13
+ 1576 00f7 00       		.byte	0
+ 1577 00f8 00       		.byte	0
+ 1578 00f9 13       		.uleb128 0x13
+ 1579 00fa 21       		.uleb128 0x21
+ 1580 00fb 00       		.byte	0
+ 1581 00fc 49       		.uleb128 0x49
+ 1582 00fd 13       		.uleb128 0x13
+ 1583 00fe 2F       		.uleb128 0x2f
+ 1584 00ff 0B       		.uleb128 0xb
+ 1585 0100 00       		.byte	0
+ 1586 0101 00       		.byte	0
+ 1587 0102 14       		.uleb128 0x14
+ 1588 0103 34       		.uleb128 0x34
+ 1589 0104 00       		.byte	0
+ 1590 0105 03       		.uleb128 0x3
+ 1591 0106 0E       		.uleb128 0xe
+ 1592 0107 3A       		.uleb128 0x3a
+ 1593 0108 0B       		.uleb128 0xb
+ 1594 0109 3B       		.uleb128 0x3b
+ 1595 010a 05       		.uleb128 0x5
+ 1596 010b 49       		.uleb128 0x49
+ 1597 010c 13       		.uleb128 0x13
+ 1598 010d 3F       		.uleb128 0x3f
+ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\ccUqSPP7.s 			page 35
+
+
+ 1599 010e 19       		.uleb128 0x19
+ 1600 010f 3C       		.uleb128 0x3c
+ 1601 0110 19       		.uleb128 0x19
+ 1602 0111 00       		.byte	0
+ 1603 0112 00       		.byte	0
+ 1604 0113 15       		.uleb128 0x15
+ 1605 0114 35       		.uleb128 0x35
+ 1606 0115 00       		.byte	0
+ 1607 0116 49       		.uleb128 0x49
+ 1608 0117 13       		.uleb128 0x13
+ 1609 0118 00       		.byte	0
+ 1610 0119 00       		.byte	0
+ 1611 011a 16       		.uleb128 0x16
+ 1612 011b 2E       		.uleb128 0x2e
+ 1613 011c 00       		.byte	0
+ 1614 011d 3F       		.uleb128 0x3f
+ 1615 011e 19       		.uleb128 0x19
+ 1616 011f 3C       		.uleb128 0x3c
+ 1617 0120 19       		.uleb128 0x19
+ 1618 0121 6E       		.uleb128 0x6e
+ 1619 0122 0E       		.uleb128 0xe
+ 1620 0123 03       		.uleb128 0x3
+ 1621 0124 0E       		.uleb128 0xe
+ 1622 0125 3A       		.uleb128 0x3a
+ 1623 0126 0B       		.uleb128 0xb
+ 1624 0127 3B       		.uleb128 0x3b
+ 1625 0128 0B       		.uleb128 0xb
+ 1626 0129 00       		.byte	0
+ 1627 012a 00       		.byte	0
+ 1628 012b 00       		.byte	0
+ 1629              		.section	.debug_loc,"",%progbits
+ 1630              	.Ldebug_loc0:
+ 1631              	.LLST0:
+ 1632 0000 42000000 		.4byte	.LVL8
+ 1633 0004 4C000000 		.4byte	.LVL9
+ 1634 0008 0100     		.2byte	0x1
+ 1635 000a 50       		.byte	0x50
+ 1636 000b 58000000 		.4byte	.LVL12
+ 1637 000f 5A000000 		.4byte	.LVL13
+ 1638 0013 0100     		.2byte	0x1
+ 1639 0015 50       		.byte	0x50
+ 1640 0016 6A000000 		.4byte	.LVL15
+ 1641 001a 74000000 		.4byte	.LVL16
+ 1642 001e 0100     		.2byte	0x1
+ 1643 0020 50       		.byte	0x50
+ 1644 0021 80000000 		.4byte	.LVL19
+ 1645 0025 82000000 		.4byte	.LVL20
+ 1646 0029 0100     		.2byte	0x1
+ 1647 002b 50       		.byte	0x50
+ 1648 002c 92000000 		.4byte	.LVL22
+ 1649 0030 9C000000 		.4byte	.LVL23
+ 1650 0034 0100     		.2byte	0x1
+ 1651 0036 50       		.byte	0x50
+ 1652 0037 A8000000 		.4byte	.LVL26
+ 1653 003b AA000000 		.4byte	.LVL27
+ 1654 003f 0100     		.2byte	0x1
+ 1655 0041 50       		.byte	0x50
+ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\ccUqSPP7.s 			page 36
+
+
+ 1656 0042 CA000000 		.4byte	.LVL30
+ 1657 0046 D4000000 		.4byte	.LVL31
+ 1658 004a 0100     		.2byte	0x1
+ 1659 004c 50       		.byte	0x50
+ 1660 004d E0000000 		.4byte	.LVL34
+ 1661 0051 E2000000 		.4byte	.LVL35
+ 1662 0055 0100     		.2byte	0x1
+ 1663 0057 50       		.byte	0x50
+ 1664 0058 F2000000 		.4byte	.LVL37
+ 1665 005c FC000000 		.4byte	.LVL38
+ 1666 0060 0100     		.2byte	0x1
+ 1667 0062 50       		.byte	0x50
+ 1668 0063 08010000 		.4byte	.LVL41
+ 1669 0067 0A010000 		.4byte	.LVL42
+ 1670 006b 0100     		.2byte	0x1
+ 1671 006d 50       		.byte	0x50
+ 1672 006e 18010000 		.4byte	.LVL44
+ 1673 0072 22010000 		.4byte	.LVL45
+ 1674 0076 0100     		.2byte	0x1
+ 1675 0078 50       		.byte	0x50
+ 1676 0079 2E010000 		.4byte	.LVL48
+ 1677 007d 30010000 		.4byte	.LVL49
+ 1678 0081 0100     		.2byte	0x1
+ 1679 0083 50       		.byte	0x50
+ 1680 0084 4E010000 		.4byte	.LVL53
+ 1681 0088 58010000 		.4byte	.LVL54
+ 1682 008c 0100     		.2byte	0x1
+ 1683 008e 50       		.byte	0x50
+ 1684 008f 64010000 		.4byte	.LVL57
+ 1685 0093 66010000 		.4byte	.LVL58
+ 1686 0097 0100     		.2byte	0x1
+ 1687 0099 50       		.byte	0x50
+ 1688 009a 82010000 		.4byte	.LVL61
+ 1689 009e 92010000 		.4byte	.LVL62
+ 1690 00a2 0100     		.2byte	0x1
+ 1691 00a4 50       		.byte	0x50
+ 1692 00a5 D4010000 		.4byte	.LVL72
+ 1693 00a9 D6010000 		.4byte	.LVL73
+ 1694 00ad 0100     		.2byte	0x1
+ 1695 00af 50       		.byte	0x50
+ 1696 00b0 00000000 		.4byte	0
+ 1697 00b4 00000000 		.4byte	0
+ 1698              	.LLST1:
+ 1699 00b8 A8010000 		.4byte	.LVL63
+ 1700 00bc AC010000 		.4byte	.LVL64
+ 1701 00c0 0900     		.2byte	0x9
+ 1702 00c2 70       		.byte	0x70
+ 1703 00c3 00       		.sleb128 0
+ 1704 00c4 09       		.byte	0x9
+ 1705 00c5 F4       		.byte	0xf4
+ 1706 00c6 24       		.byte	0x24
+ 1707 00c7 09       		.byte	0x9
+ 1708 00c8 FA       		.byte	0xfa
+ 1709 00c9 26       		.byte	0x26
+ 1710 00ca 9F       		.byte	0x9f
+ 1711 00cb AC010000 		.4byte	.LVL64
+ 1712 00cf AF010000 		.4byte	.LVL65-1
+ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\ccUqSPP7.s 			page 37
+
+
+ 1713 00d3 1400     		.2byte	0x14
+ 1714 00d5 75       		.byte	0x75
+ 1715 00d6 B87F     		.sleb128 -72
+ 1716 00d8 94       		.byte	0x94
+ 1717 00d9 01       		.byte	0x1
+ 1718 00da 08       		.byte	0x8
+ 1719 00db FF       		.byte	0xff
+ 1720 00dc 1A       		.byte	0x1a
+ 1721 00dd 38       		.byte	0x38
+ 1722 00de 24       		.byte	0x24
+ 1723 00df 73       		.byte	0x73
+ 1724 00e0 00       		.sleb128 0
+ 1725 00e1 21       		.byte	0x21
+ 1726 00e2 09       		.byte	0x9
+ 1727 00e3 F4       		.byte	0xf4
+ 1728 00e4 24       		.byte	0x24
+ 1729 00e5 09       		.byte	0x9
+ 1730 00e6 FA       		.byte	0xfa
+ 1731 00e7 26       		.byte	0x26
+ 1732 00e8 9F       		.byte	0x9f
+ 1733 00e9 C0010000 		.4byte	.LVL68
+ 1734 00ed CA010000 		.4byte	.LVL70
+ 1735 00f1 0100     		.2byte	0x1
+ 1736 00f3 50       		.byte	0x50
+ 1737 00f4 00000000 		.4byte	0
+ 1738 00f8 00000000 		.4byte	0
+ 1739              	.LLST2:
+ 1740 00fc 92010000 		.4byte	.LVL62
+ 1741 0100 C6010000 		.4byte	.LVL69
+ 1742 0104 0100     		.2byte	0x1
+ 1743 0106 54       		.byte	0x54
+ 1744 0107 C6010000 		.4byte	.LVL69
+ 1745 010b D2010000 		.4byte	.LVL71
+ 1746 010f 0300     		.2byte	0x3
+ 1747 0111 74       		.byte	0x74
+ 1748 0112 7E       		.sleb128 -2
+ 1749 0113 9F       		.byte	0x9f
+ 1750 0114 D2010000 		.4byte	.LVL71
+ 1751 0118 D4010000 		.4byte	.LVL72
+ 1752 011c 0100     		.2byte	0x1
+ 1753 011e 54       		.byte	0x54
+ 1754 011f D6010000 		.4byte	.LVL73
+ 1755 0123 2C020000 		.4byte	.LFE64
+ 1756 0127 0100     		.2byte	0x1
+ 1757 0129 54       		.byte	0x54
+ 1758 012a 00000000 		.4byte	0
+ 1759 012e 00000000 		.4byte	0
+ 1760              	.LLST3:
+ 1761 0132 14000000 		.4byte	.LVL2
+ 1762 0136 18000000 		.4byte	.LVL3
+ 1763 013a 0200     		.2byte	0x2
+ 1764 013c 30       		.byte	0x30
+ 1765 013d 9F       		.byte	0x9f
+ 1766 013e 18000000 		.4byte	.LVL3
+ 1767 0142 38010000 		.4byte	.LVL51
+ 1768 0146 0100     		.2byte	0x1
+ 1769 0148 54       		.byte	0x54
+ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\ccUqSPP7.s 			page 38
+
+
+ 1770 0149 00000000 		.4byte	0
+ 1771 014d 00000000 		.4byte	0
+ 1772              		.section	.debug_aranges,"",%progbits
+ 1773 0000 1C000000 		.4byte	0x1c
+ 1774 0004 0200     		.2byte	0x2
+ 1775 0006 00000000 		.4byte	.Ldebug_info0
+ 1776 000a 04       		.byte	0x4
+ 1777 000b 00       		.byte	0
+ 1778 000c 0000     		.2byte	0
+ 1779 000e 0000     		.2byte	0
+ 1780 0010 00000000 		.4byte	.LFB64
+ 1781 0014 2C020000 		.4byte	.LFE64-.LFB64
+ 1782 0018 00000000 		.4byte	0
+ 1783 001c 00000000 		.4byte	0
+ 1784              		.section	.debug_ranges,"",%progbits
+ 1785              	.Ldebug_ranges0:
+ 1786 0000 00000000 		.4byte	.LFB64
+ 1787 0004 2C020000 		.4byte	.LFE64
+ 1788 0008 00000000 		.4byte	0
+ 1789 000c 00000000 		.4byte	0
+ 1790              		.section	.debug_line,"",%progbits
+ 1791              	.Ldebug_line0:
+ 1792 0000 78020000 		.section	.debug_str,"MS",%progbits,1
+ 1792      0200FD01 
+ 1792      00000201 
+ 1792      FB0E0D00 
+ 1792      01010101 
+ 1793              	.LASF24:
+ 1794 0000 6D657373 		.ascii	"message\000"
+ 1794      61676500 
+ 1795              	.LASF30:
+ 1796 0008 68656164 		.ascii	"header\000"
+ 1796      657200
+ 1797              	.LASF2:
+ 1798 000f 5F5F7569 		.ascii	"__uint8_t\000"
+ 1798      6E74385F 
+ 1798      7400
+ 1799              	.LASF36:
+ 1800 0019 55415254 		.ascii	"UART_Debug_PutString\000"
+ 1800      5F446562 
+ 1800      75675F50 
+ 1800      75745374 
+ 1800      72696E67 
+ 1801              	.LASF34:
+ 1802 002e 4932435F 		.ascii	"I2C_Peripheral_IsDeviceConnected\000"
+ 1802      50657269 
+ 1802      70686572 
+ 1802      616C5F49 
+ 1802      73446576 
+ 1803              	.LASF6:
+ 1804 004f 5F5F696E 		.ascii	"__int32_t\000"
+ 1804      7433325F 
+ 1804      7400
+ 1805              	.LASF7:
+ 1806 0059 6C6F6E67 		.ascii	"long int\000"
+ 1806      20696E74 
+ 1806      00
+ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\ccUqSPP7.s 			page 39
+
+
+ 1807              	.LASF43:
+ 1808 0062 55415254 		.ascii	"UART_Debug_PutArray\000"
+ 1808      5F446562 
+ 1808      75675F50 
+ 1808      75744172 
+ 1808      72617900 
+ 1809              	.LASF21:
+ 1810 0076 4572726F 		.ascii	"ErrorCode\000"
+ 1810      72436F64 
+ 1810      6500
+ 1811              	.LASF16:
+ 1812 0080 666C6F61 		.ascii	"float\000"
+ 1812      7400
+ 1813              	.LASF32:
+ 1814 0086 4F757441 		.ascii	"OutArray\000"
+ 1814      72726179 
+ 1814      00
+ 1815              	.LASF1:
+ 1816 008f 756E7369 		.ascii	"unsigned char\000"
+ 1816      676E6564 
+ 1816      20636861 
+ 1816      7200
+ 1817              	.LASF44:
+ 1818 009d 474E5520 		.ascii	"GNU C11 5.4.1 20160609 (release) [ARM/embedded-5-br"
+ 1818      43313120 
+ 1818      352E342E 
+ 1818      31203230 
+ 1818      31363036 
+ 1819 00d0 616E6368 		.ascii	"anch revision 237715] -mcpu=cortex-m3 -mthumb -g -O"
+ 1819      20726576 
+ 1819      6973696F 
+ 1819      6E203233 
+ 1819      37373135 
+ 1820 0103 67202D66 		.ascii	"g -ffunction-sections -ffat-lto-objects\000"
+ 1820      66756E63 
+ 1820      74696F6E 
+ 1820      2D736563 
+ 1820      74696F6E 
+ 1821              	.LASF15:
+ 1822 012b 696E7431 		.ascii	"int16\000"
+ 1822      3600
+ 1823              	.LASF8:
+ 1824 0131 6C6F6E67 		.ascii	"long unsigned int\000"
+ 1824      20756E73 
+ 1824      69676E65 
+ 1824      6420696E 
+ 1824      7400
+ 1825              	.LASF5:
+ 1826 0143 73686F72 		.ascii	"short unsigned int\000"
+ 1826      7420756E 
+ 1826      7369676E 
+ 1826      65642069 
+ 1826      6E7400
+ 1827              	.LASF41:
+ 1828 0156 4932435F 		.ascii	"I2C_Peripheral_WriteRegister\000"
+ 1828      50657269 
+ 1828      70686572 
+ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\ccUqSPP7.s 			page 40
+
+
+ 1828      616C5F57 
+ 1828      72697465 
+ 1829              	.LASF31:
+ 1830 0173 666F6F74 		.ascii	"footer\000"
+ 1830      657200
+ 1831              	.LASF17:
+ 1832 017a 646F7562 		.ascii	"double\000"
+ 1832      6C6500
+ 1833              	.LASF42:
+ 1834 0181 4932435F 		.ascii	"I2C_Peripheral_ReadRegisterMulti\000"
+ 1834      50657269 
+ 1834      70686572 
+ 1834      616C5F52 
+ 1834      65616452 
+ 1835              	.LASF47:
+ 1836 01a2 6D61696E 		.ascii	"main\000"
+ 1836      00
+ 1837              	.LASF3:
+ 1838 01a7 5F5F696E 		.ascii	"__int16_t\000"
+ 1838      7431365F 
+ 1838      7400
+ 1839              	.LASF28:
+ 1840 01b1 6374726C 		.ascii	"ctrl_reg1\000"
+ 1840      5F726567 
+ 1840      3100
+ 1841              	.LASF29:
+ 1842 01bb 6374726C 		.ascii	"ctrl_reg4\000"
+ 1842      5F726567 
+ 1842      3400
+ 1843              	.LASF11:
+ 1844 01c5 756E7369 		.ascii	"unsigned int\000"
+ 1844      676E6564 
+ 1844      20696E74 
+ 1844      00
+ 1845              	.LASF10:
+ 1846 01d2 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 1846      206C6F6E 
+ 1846      6720756E 
+ 1846      7369676E 
+ 1846      65642069 
+ 1847              	.LASF12:
+ 1848 01e9 75696E74 		.ascii	"uint8_t\000"
+ 1848      385F7400 
+ 1849              	.LASF13:
+ 1850 01f1 696E7431 		.ascii	"int16_t\000"
+ 1850      365F7400 
+ 1851              	.LASF48:
+ 1852 01f9 49544D5F 		.ascii	"ITM_RxBuffer\000"
+ 1852      52784275 
+ 1852      66666572 
+ 1852      00
+ 1853              	.LASF27:
+ 1854 0206 73746174 		.ascii	"status_register\000"
+ 1854      75735F72 
+ 1854      65676973 
+ 1854      74657200 
+ 1855              	.LASF14:
+ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\ccUqSPP7.s 			page 41
+
+
+ 1856 0216 696E7433 		.ascii	"int32_t\000"
+ 1856      325F7400 
+ 1857              	.LASF23:
+ 1858 021e 73697A65 		.ascii	"sizetype\000"
+ 1858      74797065 
+ 1858      00
+ 1859              	.LASF26:
+ 1860 0227 6572726F 		.ascii	"error\000"
+ 1860      7200
+ 1861              	.LASF9:
+ 1862 022d 6C6F6E67 		.ascii	"long long int\000"
+ 1862      206C6F6E 
+ 1862      6720696E 
+ 1862      7400
+ 1863              	.LASF38:
+ 1864 023b 55415254 		.ascii	"UART_Debug_Start\000"
+ 1864      5F446562 
+ 1864      75675F53 
+ 1864      74617274 
+ 1864      00
+ 1865              	.LASF45:
+ 1866 024c 6D61696E 		.ascii	"main.c\000"
+ 1866      2E6300
+ 1867              	.LASF18:
+ 1868 0253 63686172 		.ascii	"char\000"
+ 1868      00
+ 1869              	.LASF40:
+ 1870 0258 4932435F 		.ascii	"I2C_Peripheral_ReadRegister\000"
+ 1870      50657269 
+ 1870      70686572 
+ 1870      616C5F52 
+ 1870      65616452 
+ 1871              	.LASF4:
+ 1872 0274 73686F72 		.ascii	"short int\000"
+ 1872      7420696E 
+ 1872      7400
+ 1873              	.LASF19:
+ 1874 027e 4E4F5F45 		.ascii	"NO_ERROR\000"
+ 1874      52524F52 
+ 1874      00
+ 1875              	.LASF33:
+ 1876 0287 78797A5F 		.ascii	"xyz_positioning\000"
+ 1876      706F7369 
+ 1876      74696F6E 
+ 1876      696E6700 
+ 1877              	.LASF20:
+ 1878 0297 4552524F 		.ascii	"ERROR\000"
+ 1878      5200
+ 1879              	.LASF22:
+ 1880 029d 6C6F6E67 		.ascii	"long double\000"
+ 1880      20646F75 
+ 1880      626C6500 
+ 1881              	.LASF0:
+ 1882 02a9 7369676E 		.ascii	"signed char\000"
+ 1882      65642063 
+ 1882      68617200 
+ 1883              	.LASF46:
+ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\ccUqSPP7.s 			page 42
+
+
+ 1884 02b5 433A5C55 		.ascii	"C:\\Users\\Ilaria\\Desktop\\PSoC_03\\AY1920_II_HW_0"
+ 1884      73657273 
+ 1884      5C496C61 
+ 1884      7269615C 
+ 1884      4465736B 
+ 1885 02e3 355F5052 		.ascii	"5_PROJ_2.cydsn\000"
+ 1885      4F4A5F32 
+ 1885      2E637964 
+ 1885      736E00
+ 1886              	.LASF25:
+ 1887 02f2 77686F5F 		.ascii	"who_am_i_reg\000"
+ 1887      616D5F69 
+ 1887      5F726567 
+ 1887      00
+ 1888              	.LASF35:
+ 1889 02ff 73707269 		.ascii	"sprintf\000"
+ 1889      6E746600 
+ 1890              	.LASF39:
+ 1891 0307 43794465 		.ascii	"CyDelay\000"
+ 1891      6C617900 
+ 1892              	.LASF37:
+ 1893 030f 4932435F 		.ascii	"I2C_Peripheral_Start\000"
+ 1893      50657269 
+ 1893      70686572 
+ 1893      616C5F53 
+ 1893      74617274 
+ 1894              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 5.4.1 20160609 (release) [ARM/embedded-5-bran
