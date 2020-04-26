@@ -260,7 +260,7 @@ int main(void)
                  for (i = 0; i<TRANSMIT_BUFFER_SIZE-2; i+=2)
                 {
                     Out = (int16)((xyz_positioning[i] | (xyz_positioning[i+1]<<8)))>>6;
-                    Out *= 4;/*conversion into m/s2*/
+                    Out *= 4*0.0098;/*conversion into m/s2*/
                     OutArray[i+1] = (uint8_t)(Out & 0xFF);
                     OutArray[i+2] = (uint8_t)(Out >> 8);  
                     //sprintf(message, "acceleration %d\r\n", Out);           
