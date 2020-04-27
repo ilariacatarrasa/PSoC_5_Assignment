@@ -227,7 +227,10 @@ int main(void)
         UART_Debug_PutString("Error occurred during I2C comm to read control register4\r\n");   
     }
     
-    Timer_Start(); 
+    /*Start of Timer*/
+    Timer_Start();
+    
+    /*Start of interrupt execution*/
     isr_Send_StartEx(isr_SendData);  
    
     for(;;)
