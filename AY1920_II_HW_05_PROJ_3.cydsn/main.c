@@ -232,12 +232,7 @@ int main(void)
    
     for(;;)
     {
-              
-         
-        //SendDataUART(DEVICE_ADDRESS, REGISTER, ITERATIONS, ARRAY);
-        
-          
-        
+      
     }
 }
 
