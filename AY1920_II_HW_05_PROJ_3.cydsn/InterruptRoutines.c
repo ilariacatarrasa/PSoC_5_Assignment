@@ -44,7 +44,7 @@ CY_ISR(isr_SendData)
      
     if (error == NO_ERROR)
     {
-        if(status_register & 0x88)
+        if(status_register & 0x08)
         {        
              //If overrun occurred and new values are available read and send UART values
                 error = I2C_Peripheral_ReadRegisterMulti(LIS3DH_DEVICE_ADDRESS,
