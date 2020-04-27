@@ -6,7 +6,7 @@
 * a I2C Slave device (LIS3DH Accelerometer).
 *
 * \author Ilaria Catarrasa
-* \date , 2020
+* \date 28/04/2020
 */
 
 // Include required header files
@@ -144,8 +144,7 @@ int main(void)
     
     /******************************************/
     /*            I2C Writing                 */
-    /******************************************/
-    
+    /******************************************/    
         
     UART_Debug_PutString("\r\nWriting new values..\r\n");
     
@@ -185,11 +184,7 @@ int main(void)
     {
         UART_Debug_PutString("Error occurred during I2C comm to read control register 1\r\n");   
     }
-    
-    /******************************************/
-     /* Enabling Interrupt based on the duration of ODR chosen. */
-     /******************************************/             
-        
+               
     uint8_t ctrl_reg4;
 
     error = I2C_Peripheral_ReadRegister(LIS3DH_DEVICE_ADDRESS,
@@ -229,9 +224,11 @@ int main(void)
     {
         UART_Debug_PutString("Error occurred during I2C comm to read control register4\r\n");   
     }
-
     
+    /*Start of Timer*/
     Timer_Start(); 
+    
+    /*Start of interrupt execution*/
     isr_Send_StartEx(isr_SendData); 
         
     for(;;)

@@ -63,18 +63,15 @@ CY_ISR(isr_SendData)
                     }
                 //UART_Debug_PutString("Read data complete.\r\n");    
                 UART_Debug_PutArray(OutArray, TRANSMIT_BUFFER_SIZE); 
-            }
-                              
+            }                             
                 
         }
         else
         {
            //UART_Debug_PutString("Data Not available.\r\n "); 
-        }
-             
+        }            
     
-    }
-    
+    }  
     
 
 }
