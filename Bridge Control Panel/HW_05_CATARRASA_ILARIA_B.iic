@@ -1,8 +1,3 @@
-;LETTURA
-;stringa per selezionare il registro
-;w 08 03 p
-;stringa di ricezione
-;r 08 x p
-;SCRITTURA
-;w 08 00 3F p
-rx8 [h=A0] @0x @1x @0y @1y @0z @1z [t=C0]
+;READ Acceleration Axial Data in m/s2
+;Set Bit rate at 19200 bps
+rx8 [h=A0] @0x @1x @2x @3x @0y @1y @2y @3y @0z @1z @2z @3z [t=C0]

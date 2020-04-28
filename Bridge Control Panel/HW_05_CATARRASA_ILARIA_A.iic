@@ -1,8 +1,3 @@
-;LETTURA
-;stringa per selezionare il registro
-;w 08 03 p
-;stringa di ricezione
-;r 08 x p
-;SCRITTURA
-;w 08 00 3F p
+;READ Acceleration Axial Data in mg
+;Set Bit rate 9600 bps 
 rx8 [h=A0] @0x @1x @0y @1y @0z @1z [t=C0]
