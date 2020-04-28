@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\ccCTl2YJ.s 			page 1
+ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\ccWUX0rX.s 			page 1
 
 
    1              		.syntax unified
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\ccCTl2YJ.s 			page 1
   28:main.c        **** *   \brief Address of the Status register
   29:main.c        **** */
   30:main.c        **** #define LIS3DH_STATUS_REG 0x27
-ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\ccCTl2YJ.s 			page 2
+ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\ccWUX0rX.s 			page 2
 
 
   31:main.c        **** 
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\ccCTl2YJ.s 			page 1
   70:main.c        ****     I2C_Peripheral_Start();
   43              		.loc 1 70 0
   44              		.thumb
-ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\ccCTl2YJ.s 			page 3
+ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\ccWUX0rX.s 			page 3
 
 
   45              		.syntax unified
@@ -178,7 +178,7 @@ ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\ccCTl2YJ.s 			page 1
   82 0032 7F2C     		cmp	r4, #127
   83 0034 F0DD     		ble	.L4
   84              	.LBE2:
-ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\ccCTl2YJ.s 			page 4
+ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\ccWUX0rX.s 			page 4
 
 
   86:main.c        ****         }
@@ -238,7 +238,7 @@ ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\ccCTl2YJ.s 			page 1
  112:main.c        ****     
  113:main.c        ****     uint8_t status_register; 
  114:main.c        ****     error = I2C_Peripheral_ReadRegister(LIS3DH_DEVICE_ADDRESS,
-ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\ccCTl2YJ.s 			page 5
+ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\ccWUX0rX.s 			page 5
 
 
  113              		.loc 1 114 0
@@ -298,7 +298,7 @@ ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\ccCTl2YJ.s 			page 1
  135:main.c        ****     
  136:main.c        ****     if (error == NO_ERROR)
  147              		.loc 1 136 0
-ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\ccCTl2YJ.s 			page 6
+ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\ccWUX0rX.s 			page 6
 
 
  148 0092 48B9     		cbnz	r0, .L9
@@ -358,7 +358,7 @@ ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\ccCTl2YJ.s 			page 1
  181 00c2 2021     		movs	r1, #32
  182 00c4 1820     		movs	r0, #24
  183 00c6 FFF7FEFF 		bl	I2C_Peripheral_WriteRegister
-ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\ccCTl2YJ.s 			page 7
+ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\ccWUX0rX.s 			page 7
 
 
  184              	.LVL30:
@@ -418,7 +418,7 @@ ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\ccCTl2YJ.s 			page 1
  181:main.c        ****     {
  182:main.c        ****         sprintf(message, "CONTROL REGISTER 1 after overwrite operation: 0x%02X\r\n", ctrl_reg1);
  215              		.loc 1 182 0
-ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\ccCTl2YJ.s 			page 8
+ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\ccWUX0rX.s 			page 8
 
 
  216 00f4 9DF80120 		ldrb	r2, [sp, #1]	@ zero_extendqisi2
@@ -478,7 +478,7 @@ ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\ccCTl2YJ.s 			page 1
  253              	.LVL47:
  254 012c 02E0     		b	.L16
  255              	.LVL48:
-ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\ccCTl2YJ.s 			page 9
+ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\ccWUX0rX.s 			page 9
 
 
  256              	.L15:
@@ -538,7 +538,7 @@ ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\ccCTl2YJ.s 			page 1
  287              	.LVL55:
  223:main.c        ****         UART_Debug_PutString(message); 
  288              		.loc 1 223 0
-ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\ccCTl2YJ.s 			page 10
+ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\ccWUX0rX.s 			page 10
 
 
  289 015c 01A8     		add	r0, sp, #4
@@ -559,12 +559,15 @@ ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\ccCTl2YJ.s 			page 1
  300              	.L18:
  228:main.c        ****     }
  229:main.c        ****     
- 230:main.c        ****     Timer_Start(); 
- 301              		.loc 1 230 0
+ 230:main.c        ****     /*Start of Timer*/
+ 231:main.c        ****     Timer_Start();
+ 301              		.loc 1 231 0
  302 016a FFF7FEFF 		bl	Timer_Start
  303              	.LVL60:
- 231:main.c        ****     isr_Send_StartEx(isr_SendData);  
- 304              		.loc 1 231 0
+ 232:main.c        ****     
+ 233:main.c        ****     /*Start of interrupt execution*/
+ 234:main.c        ****     isr_Send_StartEx(isr_SendData);  
+ 304              		.loc 1 234 0
  305 016e 1148     		ldr	r0, .L21+60
  306 0170 FFF7FEFF 		bl	isr_Send_StartEx
  307              	.LVL61:
@@ -592,15 +595,15 @@ ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\ccCTl2YJ.s 			page 1
  329              		.cfi_endproc
  330              	.LFE64:
  331              		.size	main, .-main
- 332              		.comm	OutArray,8,4
+ 332              		.comm	OutArray,14,4
  333              		.section	.rodata.str1.4,"aMS",%progbits,1
  334              		.align	2
+ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\ccWUX0rX.s 			page 11
+
+
  335              	.LC0:
  336 0000 44657669 		.ascii	"Device 0x%02X is connected\015\012\000"
  336      63652030 
-ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\ccCTl2YJ.s 			page 11
-
-
  336      78253032 
  336      58206973 
  336      20636F6E 
@@ -655,12 +658,12 @@ ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\ccCTl2YJ.s 			page 1
  357      6974696E 
  357      67206E65 
  357      77207661 
+ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\ccWUX0rX.s 			page 12
+
+
  357      6C756573 
  358 0139 000000   		.space	3
  359              	.LC8:
-ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\ccCTl2YJ.s 			page 12
-
-
  360 013c 434F4E54 		.ascii	"CONTROL REGISTER 1 successfully written as: 0x%02X\015"
  360      524F4C20 
  360      52454749 
@@ -715,12 +718,12 @@ ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\ccCTl2YJ.s 			page 1
  382      63757272 
  382      65642064 
  382      7572696E 
+ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\ccWUX0rX.s 			page 13
+
+
  383 02ab 73746572 		.ascii	"ster4\015\012\000"
  383      340D0A00 
  384              		.text
-ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\ccCTl2YJ.s 			page 13
-
-
  385              	.Letext0:
  386              		.file 2 "c:\\program files (x86)\\cypress\\psoc creator\\4.3\\psoc creator\\import\\gnu\\arm\\5.4.
  387              		.file 3 "c:\\program files (x86)\\cypress\\psoc creator\\4.3\\psoc creator\\import\\gnu\\arm\\5.4.
@@ -775,12 +778,12 @@ ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\ccCTl2YJ.s 			page 1
  436 0053 57000000 		.4byte	0x57
  437 0057 02       		.uleb128 0x2
  438 0058 04       		.byte	0x4
+ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\ccWUX0rX.s 			page 14
+
+
  439 0059 05       		.byte	0x5
  440 005a 7A000000 		.4byte	.LASF6
  441 005e 02       		.uleb128 0x2
-ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\ccCTl2YJ.s 			page 14
-
-
  442 005f 04       		.byte	0x4
  443 0060 07       		.byte	0x7
  444 0061 49010000 		.4byte	.LASF7
@@ -835,12 +838,12 @@ ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\ccCTl2YJ.s 			page 1
  493 00bf 86020000 		.4byte	.LASF17
  494 00c3 01       		.byte	0x1
  495 00c4 00       		.byte	0
+ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\ccWUX0rX.s 			page 15
+
+
  496 00c5 03       		.uleb128 0x3
  497 00c6 94000000 		.4byte	.LASF18
  498 00ca 04       		.byte	0x4
-ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\ccCTl2YJ.s 			page 15
-
-
  499 00cb 18       		.byte	0x18
  500 00cc AC000000 		.4byte	0xac
  501 00d0 02       		.uleb128 0x2
@@ -895,12 +898,12 @@ ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\ccCTl2YJ.s 			page 1
  550 0131 B9010000 		.4byte	.LASF25
  551 0135 01       		.byte	0x1
  552 0136 83       		.byte	0x83
+ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\ccWUX0rX.s 			page 16
+
+
  553 0137 81000000 		.4byte	0x81
  554 013b 02       		.uleb128 0x2
  555 013c 91       		.byte	0x91
-ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\ccCTl2YJ.s 			page 16
-
-
  556 013d 41       		.sleb128 -63
  557 013e 08       		.uleb128 0x8
  558 013f CF010000 		.4byte	.LASF26
@@ -955,12 +958,12 @@ ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\ccCTl2YJ.s 			page 1
  607 019b 00       		.sleb128 0
  608 019c 00       		.byte	0
  609 019d 0E       		.uleb128 0xe
+ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\ccWUX0rX.s 			page 17
+
+
  610 019e 30000000 		.4byte	.LVL6
  611 01a2 44050000 		.4byte	0x544
  612 01a6 0D       		.uleb128 0xd
-ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\ccCTl2YJ.s 			page 17
-
-
  613 01a7 01       		.uleb128 0x1
  614 01a8 50       		.byte	0x50
  615 01a9 02       		.uleb128 0x2
@@ -1015,12 +1018,12 @@ ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\ccCTl2YJ.s 			page 1
  664 0201 02       		.uleb128 0x2
  665 0202 91       		.byte	0x91
  666 0203 44       		.sleb128 -60
+ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\ccWUX0rX.s 			page 18
+
+
  667 0204 0D       		.uleb128 0xd
  668 0205 01       		.uleb128 0x1
  669 0206 51       		.byte	0x51
-ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\ccCTl2YJ.s 			page 18
-
-
  670 0207 05       		.uleb128 0x5
  671 0208 03       		.byte	0x3
  672 0209 20000000 		.4byte	.LC1
@@ -1075,12 +1078,12 @@ ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\ccCTl2YJ.s 			page 1
  721 0261 75020000 		.4byte	0x275
  722 0265 0D       		.uleb128 0xd
  723 0266 01       		.uleb128 0x1
+ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\ccWUX0rX.s 			page 19
+
+
  724 0267 50       		.byte	0x50
  725 0268 02       		.uleb128 0x2
  726 0269 91       		.byte	0x91
-ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\ccCTl2YJ.s 			page 19
-
-
  727 026a 44       		.sleb128 -60
  728 026b 0D       		.uleb128 0xd
  729 026c 01       		.uleb128 0x1
@@ -1135,12 +1138,12 @@ ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\ccCTl2YJ.s 			page 1
  778 02be 00       		.byte	0
  779 02bf 0C       		.uleb128 0xc
  780 02c0 A0000000 		.4byte	.LVL24
+ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\ccWUX0rX.s 			page 20
+
+
  781 02c4 39050000 		.4byte	0x539
  782 02c8 DC020000 		.4byte	0x2dc
  783 02cc 0D       		.uleb128 0xd
-ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\ccCTl2YJ.s 			page 20
-
-
  784 02cd 01       		.uleb128 0x1
  785 02ce 50       		.byte	0x50
  786 02cf 02       		.uleb128 0x2
@@ -1195,12 +1198,12 @@ ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\ccCTl2YJ.s 			page 1
  835 032d 50       		.byte	0x50
  836 032e 01       		.uleb128 0x1
  837 032f 48       		.byte	0x48
+ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\ccWUX0rX.s 			page 21
+
+
  838 0330 0D       		.uleb128 0xd
  839 0331 01       		.uleb128 0x1
  840 0332 51       		.byte	0x51
-ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\ccCTl2YJ.s 			page 21
-
-
  841 0333 02       		.uleb128 0x2
  842 0334 08       		.byte	0x8
  843 0335 20       		.byte	0x20
@@ -1255,12 +1258,12 @@ ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\ccCTl2YJ.s 			page 1
  892 038a 70050000 		.4byte	0x570
  893 038e A4030000 		.4byte	0x3a4
  894 0392 0D       		.uleb128 0xd
+ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\ccWUX0rX.s 			page 22
+
+
  895 0393 01       		.uleb128 0x1
  896 0394 50       		.byte	0x50
  897 0395 01       		.uleb128 0x1
-ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\ccCTl2YJ.s 			page 22
-
-
  898 0396 48       		.byte	0x48
  899 0397 0D       		.uleb128 0xd
  900 0398 01       		.uleb128 0x1
@@ -1315,12 +1318,12 @@ ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\ccCTl2YJ.s 			page 1
  949 03e7 E4000000 		.4byte	.LC6
  950 03eb 00       		.byte	0
  951 03ec 0C       		.uleb128 0xc
+ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\ccWUX0rX.s 			page 23
+
+
  952 03ed 18010000 		.4byte	.LVL44
  953 03f1 70050000 		.4byte	0x570
  954 03f5 0B040000 		.4byte	0x40b
-ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\ccCTl2YJ.s 			page 23
-
-
  955 03f9 0D       		.uleb128 0xd
  956 03fa 01       		.uleb128 0x1
  957 03fb 50       		.byte	0x50
@@ -1375,12 +1378,12 @@ ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\ccCTl2YJ.s 			page 1
  1006 044a 01       		.uleb128 0x1
  1007 044b 50       		.byte	0x50
  1008 044c 05       		.uleb128 0x5
+ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\ccWUX0rX.s 			page 24
+
+
  1009 044d 03       		.byte	0x3
  1010 044e 08020000 		.4byte	.LC12
  1011 0452 00       		.byte	0
-ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\ccCTl2YJ.s 			page 24
-
-
  1012 0453 0C       		.uleb128 0xc
  1013 0454 44010000 		.4byte	.LVL52
  1014 0458 7B050000 		.4byte	0x57b
@@ -1435,12 +1438,12 @@ ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\ccCTl2YJ.s 			page 1
  1063 04a1 02       		.uleb128 0x2
  1064 04a2 91       		.byte	0x91
  1065 04a3 44       		.sleb128 -60
+ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\ccWUX0rX.s 			page 25
+
+
  1066 04a4 0D       		.uleb128 0xd
  1067 04a5 01       		.uleb128 0x1
  1068 04a6 51       		.byte	0x51
-ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\ccCTl2YJ.s 			page 25
-
-
  1069 04a7 05       		.uleb128 0x5
  1070 04a8 03       		.byte	0x3
  1071 04a9 44020000 		.4byte	.LC13
@@ -1493,14 +1496,14 @@ ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\ccCTl2YJ.s 			page 1
  1118 0512 1D050000 		.4byte	0x51d
  1119 0516 11       		.uleb128 0x11
  1120 0517 D7000000 		.4byte	0xd7
- 1121 051b 07       		.byte	0x7
+ 1121 051b 0D       		.byte	0xd
  1122 051c 00       		.byte	0
+ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\ccWUX0rX.s 			page 26
+
+
  1123 051d 14       		.uleb128 0x14
  1124 051e A4000000 		.4byte	.LASF28
  1125 0522 06       		.byte	0x6
-ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\ccCTl2YJ.s 			page 26
-
-
  1126 0523 15       		.byte	0x15
  1127 0524 0D050000 		.4byte	0x50d
  1128 0528 05       		.uleb128 0x5
@@ -1555,12 +1558,12 @@ ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\ccCTl2YJ.s 			page 1
  1177 0592 83000000 		.4byte	.LASF38
  1178 0596 83000000 		.4byte	.LASF38
  1179 059a 0C       		.byte	0xc
+ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\ccWUX0rX.s 			page 27
+
+
  1180 059b 18       		.byte	0x18
  1181 059c 00       		.byte	0
  1182              		.section	.debug_abbrev,"",%progbits
-ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\ccCTl2YJ.s 			page 27
-
-
  1183              	.Ldebug_abbrev0:
  1184 0000 01       		.uleb128 0x1
  1185 0001 11       		.uleb128 0x11
@@ -1615,12 +1618,12 @@ ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\ccCTl2YJ.s 			page 1
  1234 0032 03       		.uleb128 0x3
  1235 0033 08       		.uleb128 0x8
  1236 0034 00       		.byte	0
+ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\ccWUX0rX.s 			page 28
+
+
  1237 0035 00       		.byte	0
  1238 0036 05       		.uleb128 0x5
  1239 0037 04       		.uleb128 0x4
-ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\ccCTl2YJ.s 			page 28
-
-
  1240 0038 01       		.byte	0x1
  1241 0039 0B       		.uleb128 0xb
  1242 003a 0B       		.uleb128 0xb
@@ -1675,12 +1678,12 @@ ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\ccCTl2YJ.s 			page 1
  1291 006d 08       		.uleb128 0x8
  1292 006e 34       		.uleb128 0x34
  1293 006f 00       		.byte	0
+ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\ccWUX0rX.s 			page 29
+
+
  1294 0070 03       		.uleb128 0x3
  1295 0071 0E       		.uleb128 0xe
  1296 0072 3A       		.uleb128 0x3a
-ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\ccCTl2YJ.s 			page 29
-
-
  1297 0073 0B       		.uleb128 0xb
  1298 0074 3B       		.uleb128 0x3b
  1299 0075 0B       		.uleb128 0xb
@@ -1735,12 +1738,12 @@ ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\ccCTl2YJ.s 			page 1
  1348 00a6 898201   		.uleb128 0x4109
  1349 00a9 01       		.byte	0x1
  1350 00aa 11       		.uleb128 0x11
+ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\ccWUX0rX.s 			page 30
+
+
  1351 00ab 01       		.uleb128 0x1
  1352 00ac 31       		.uleb128 0x31
  1353 00ad 13       		.uleb128 0x13
-ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\ccCTl2YJ.s 			page 30
-
-
  1354 00ae 01       		.uleb128 0x1
  1355 00af 13       		.uleb128 0x13
  1356 00b0 00       		.byte	0
@@ -1795,12 +1798,12 @@ ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\ccCTl2YJ.s 			page 1
  1405 00e8 00       		.byte	0
  1406 00e9 03       		.uleb128 0x3
  1407 00ea 0E       		.uleb128 0xe
+ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\ccWUX0rX.s 			page 31
+
+
  1408 00eb 3A       		.uleb128 0x3a
  1409 00ec 0B       		.uleb128 0xb
  1410 00ed 3B       		.uleb128 0x3b
-ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\ccCTl2YJ.s 			page 31
-
-
  1411 00ee 05       		.uleb128 0x5
  1412 00ef 49       		.uleb128 0x49
  1413 00f0 13       		.uleb128 0x13
@@ -1855,12 +1858,12 @@ ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\ccCTl2YJ.s 			page 1
  1462              		.section	.debug_loc,"",%progbits
  1463              	.Ldebug_loc0:
  1464              	.LLST0:
+ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\ccWUX0rX.s 			page 32
+
+
  1465 0000 42000000 		.4byte	.LVL8
  1466 0004 4C000000 		.4byte	.LVL9
  1467 0008 0100     		.2byte	0x1
-ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\ccCTl2YJ.s 			page 32
-
-
  1468 000a 50       		.byte	0x50
  1469 000b 58000000 		.4byte	.LVL12
  1470 000f 5A000000 		.4byte	.LVL13
@@ -1915,12 +1918,12 @@ ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\ccCTl2YJ.s 			page 1
  1519 0097 0100     		.2byte	0x1
  1520 0099 50       		.byte	0x50
  1521 009a 00000000 		.4byte	0
+ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\ccWUX0rX.s 			page 33
+
+
  1522 009e 00000000 		.4byte	0
  1523              	.LLST1:
  1524 00a2 14000000 		.4byte	.LVL2
-ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\ccCTl2YJ.s 			page 33
-
-
  1525 00a6 18000000 		.4byte	.LVL3
  1526 00aa 0200     		.2byte	0x2
  1527 00ac 30       		.byte	0x30
@@ -1975,12 +1978,12 @@ ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\ccCTl2YJ.s 			page 1
  1562      736E00
  1563              	.LASF29:
  1564 004f 4932435F 		.ascii	"I2C_Peripheral_IsDeviceConnected\000"
+ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\ccWUX0rX.s 			page 34
+
+
  1564      50657269 
  1564      70686572 
  1564      616C5F49 
-ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\ccCTl2YJ.s 			page 34
-
-
  1564      73446576 
  1565              	.LASF5:
  1566 0070 5F5F696E 		.ascii	"__int32_t\000"
@@ -2035,12 +2038,12 @@ ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\ccCTl2YJ.s 			page 1
  1584      6420696E 
  1584      7400
  1585              	.LASF3:
+ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\ccWUX0rX.s 			page 35
+
+
  1586 015b 73686F72 		.ascii	"short unsigned int\000"
  1586      7420756E 
  1586      7369676E 
-ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\ccCTl2YJ.s 			page 35
-
-
  1586      65642069 
  1586      6E7400
  1587              	.LASF27:
@@ -2095,12 +2098,12 @@ ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\ccCTl2YJ.s 			page 1
  1609              	.LASF24:
  1610 0205 73746174 		.ascii	"status_register\000"
  1610      75735F72 
+ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\ccWUX0rX.s 			page 36
+
+
  1610      65676973 
  1610      74657200 
  1611              	.LASF12:
-ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\ccCTl2YJ.s 			page 36
-
-
  1612 0215 696E7433 		.ascii	"int32_t\000"
  1612      325F7400 
  1613              	.LASF20:
@@ -2155,12 +2158,12 @@ ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\ccCTl2YJ.s 			page 1
  1637              	.LASF22:
  1638 02a4 77686F5F 		.ascii	"who_am_i_reg\000"
  1638      616D5F69 
+ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\ccWUX0rX.s 			page 37
+
+
  1638      5F726567 
  1638      00
  1639              	.LASF30:
-ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\ccCTl2YJ.s 			page 37
-
-
  1640 02b1 73707269 		.ascii	"sprintf\000"
  1640      6E746600 
  1641              	.LASF34:

@@ -14,7 +14,7 @@
     #include "project.h"
     
     /*Define Byte and Buffer Size*/
-    #define LENGTH_BYTE 6
+    #define LENGTH_BYTE 12
     #define TRANSMIT_BUFFER_SIZE 1+LENGTH_BYTE+1
     
     /*send buffer array*/
