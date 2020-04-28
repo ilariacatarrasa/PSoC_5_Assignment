@@ -24,7 +24,8 @@
 #define LIS3DH_STATUS_REG 0x27
 
 uint8_t xyz_positioning[LENGTH_BYTE];             
-int16_t Out;
+int16_t Out_ms2;
+int32 Out_mms2;
 uint8_t header = 0xA0;
 uint8_t footer = 0xC0;
  /*legth wuthout header and footer*/
@@ -55,18 +56,18 @@ CY_ISR(isr_SendData)
                 {
                     for (i = 0; i<LENGTH_BYTE; i+=4)
                     {                                                 
-                        Out = (int16)((xyz_positioning[i/2] | (xyz_positioning[i/2+1]<<8))) >> 4; //
+                        Out_ms2 = (int16)((xyz_positioning[i/2] | (xyz_positioning[i/2+1]<<8))) >> 4; //
                         
-                        Out = (float) Out*2*9.81*0.001;     /*conversion from mg into m/s2: 
+                        Out_ms2 = (float) Out_ms2*2*9.81*0.001;     /*conversion from mg into m/s2: 
                                                             * 2 is Typ. spec. from datasheet,                                                            
                                                             * 9.8 is the conversion factor to m/s2 
                                                             * 0.001 is to convert from msec to sec*/
                         
-                        Out = (int32) Out*1000;             //conversion into mm/s2 for saving decimal values
-                        OutArray[i+1] = (uint8_t)(Out & 0xFF);  //I send the data in 4 byte to save also the decimals
-                        OutArray[i+2] = (uint8_t)(Out >> 8);
-                        OutArray[i+3] = (uint8_t)(Out >> 16);
-                        OutArray[i+4] = (uint8_t)(Out >> 24);
+                        Out_mms2 = (int32) Out_ms2*1000;             //conversion into mm/s2 for saving decimal values
+                        OutArray[i+1] = (uint8_t)(Out_mms2 & 0xFF);  //I send the data in 4 byte to save also the decimals
+                        OutArray[i+2] = (uint8_t)(Out_mms2 >> 8);
+                        OutArray[i+3] = (uint8_t)(Out_mms2 >> 16);
+                        OutArray[i+4] = (uint8_t)(Out_mms2 >> 24);
                     }
                     
                     //UART_Debug_PutString("Read data complete.\r\n");    
