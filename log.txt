@@ -1,0 +1,179 @@
+commit 3e2ae501fce52e61576e87ccaf0f685c1d468d69
+Author: Ilaria <ilaria.catarrasa@mail.polimi.it>
+Date:   Tue Apr 28 13:22:16 2020 +0200
+
+    Added Bridge Control Panel Files corrected for both projects
+
+commit 1faa924d61a4880240028d8166790c967d0b83d6
+Author: Ilaria <ilaria.catarrasa@mail.polimi.it>
+Date:   Tue Apr 28 13:14:51 2020 +0200
+
+    Added some comments to explain the code
+
+commit bb745ef8a3362f7fc709c86476b63d2d64fa603d
+Author: Ilaria <ilaria.catarrasa@mail.polimi.it>
+Date:   Tue Apr 28 13:05:54 2020 +0200
+
+    Corrected the text description in the TopDesign
+
+commit 2d121d5a606ffdeb59c5d5966627ec4be8b44f7b
+Author: Ilaria <ilaria.catarrasa@mail.polimi.it>
+Date:   Tue Apr 28 12:59:27 2020 +0200
+
+    Corrected data types to be sent
+
+commit 0dc656d5a39ef8749b38ab681ba11a12c671cf67
+Author: Ilaria <ilaria.catarrasa@mail.polimi.it>
+Date:   Tue Apr 28 12:50:46 2020 +0200
+
+    Corrected points from 3.4 to 3.6 with 19200 baudrate and 12 bytes sent
+
+commit 2945a8a442bf26ea7bbc5a9c60859681eba4a1ac
+Author: Ilaria <ilaria.catarrasa@mail.polimi.it>
+Date:   Mon Apr 27 19:48:46 2020 +0200
+
+    Changed a coment in both of the Top Designs (Poj 2 and 3)
+
+commit 15ddfea377510de5e6520829b613523e8859e54a
+Author: Ilaria <ilaria.catarrasa@mail.polimi.it>
+Date:   Mon Apr 27 19:35:26 2020 +0200
+
+    Addition of last comment in Proj 2 for specifying where the ISR starts
+
+commit 8d70ce5d7209c0729e21b937fde11f09f434c449
+Author: Ilaria <ilaria.catarrasa@mail.polimi.it>
+Date:   Mon Apr 27 18:15:48 2020 +0200
+
+    Deletion of spaces and uneuseful codes
+
+commit d061bb06e4a1c3f1d435705dee832f885b2c9395
+Author: Ilaria <ilaria.catarrasa@mail.polimi.it>
+Date:   Mon Apr 27 17:47:43 2020 +0200
+
+    Completed points from 2.3 to 2.6.
+
+commit 4c4fb861726617b5718bb83e2ad7d528b188c3ff
+Author: Ilaria <ilaria.catarrasa@mail.polimi.it>
+Date:   Mon Apr 27 17:36:30 2020 +0200
+
+    Refinition of comments
+
+commit c87a26629503cd487dcfc008e1d8e54997be93eb
+Author: Ilaria <ilaria.catarrasa@mail.polimi.it>
+Date:   Mon Apr 27 17:12:06 2020 +0200
+
+    Added comments in TopDesign section
+
+commit e693cc22924bfd28224dc8efae99f1bfe3b8127b
+Author: Ilaria <ilaria.catarrasa@mail.polimi.it>
+Date:   Mon Apr 27 17:07:36 2020 +0200
+
+    Added comments in TopDesign section
+
+commit 1da2294b0de49622aadffcf3ad66bf601c48813e
+Author: Ilaria <ilaria.catarrasa@mail.polimi.it>
+Date:   Mon Apr 27 16:58:58 2020 +0200
+
+    Refined coding with comments and definition
+
+commit 6bad2c23e6e09740af6fd7d398166fb417239733
+Author: Ilaria <ilaria.catarrasa@mail.polimi.it>
+Date:   Mon Apr 27 16:34:15 2020 +0200
+
+    Completed all points, resolved last point with ISR (sent data at constant rate)
+
+commit 79485a89286428a571eebdbd36bcbf13a9e1e983
+Author: Ilaria <ilaria.catarrasa@mail.polimi.it>
+Date:   Mon Apr 27 16:27:47 2020 +0200
+
+    completed points from 3.2 to 3.6, using ISR for last point
+
+commit 6625274d7794a57c0e0da45551ff1bb8f7b4d518
+Author: Ilaria <ilaria.catarrasa@mail.polimi.it>
+Date:   Mon Apr 27 16:24:57 2020 +0200
+
+    Insert ISR for sending data at constant rate
+
+commit 94ac6ed816bb016332988a405d8f40ba5ef7d32a
+Author: Ilaria <ilaria.catarrasa@mail.polimi.it>
+Date:   Sun Apr 26 18:44:57 2020 +0200
+
+    Added file .txt containing github link (for beep folder)
+
+commit 234fb0abc146ea26d1760ec6f8844b393311acd3
+Author: Ilaria <ilaria.catarrasa@mail.polimi.it>
+Date:   Sun Apr 26 18:34:10 2020 +0200
+
+    Bridge Control Panel files added to the directory
+
+commit 5ad60e2e36b8053127ee7db1b7a6ddc06352de9d
+Author: Ilaria <ilaria.catarrasa@mail.polimi.it>
+Date:   Sun Apr 26 18:17:34 2020 +0200
+
+    Corrected Project 3 (cfg reg and conversion)
+
+commit 7d25b7602aa3864743c4e49bf9c0b36ef29c196b
+Author: Ilaria <ilaria.catarrasa@mail.polimi.it>
+Date:   Sun Apr 26 17:34:50 2020 +0200
+
+    Creation Project 3 and Completed point 3.1
+
+commit 80a26e12266c0221541bbca405d154707a3b81b6
+Author: Ilaria <ilaria.catarrasa@mail.polimi.it>
+Date:   Sun Apr 26 16:53:10 2020 +0200
+
+    Added correct mg scale for data sent to UART
+
+commit c04c6d612f8281d26862cbce314896165c2f3f55
+Author: Ilaria <ilaria.catarrasa@mail.polimi.it>
+Date:   Sun Apr 26 16:38:40 2020 +0200
+
+    Refined points 2.2 and 2.3 still constant rate not assured for sending the data
+
+commit 6fb43d34093f2a0e16389bb120c19a5a6688c1eb
+Author: Ilaria <ilaria.catarrasa@mail.polimi.it>
+Date:   Sat Apr 25 19:24:41 2020 +0200
+
+    Competed 2.2 and 2.3
+
+commit ebc1395d1cf9a21c502609096f38615632705b2e
+Author: Ilaria <ilaria.catarrasa@mail.polimi.it>
+Date:   Fri Apr 24 19:28:28 2020 +0200
+
+    Completed 2.2
+
+commit e6d7079353460197a2d8f712dc04a36ca279602c
+Author: Ilaria <ilaria.catarrasa@mail.polimi.it>
+Date:   Fri Apr 24 19:18:16 2020 +0200
+
+    Completed 2.1
+
+commit b14a35b212b6444e9eef28a89c1ab9a382e7a752
+Author: Ilaria <ilaria.catarrasa@mail.polimi.it>
+Date:   Thu Apr 23 19:38:58 2020 +0200
+
+    Renamed Project 1 and creation of Project 2
+
+commit 25fe319d54af8e8da55e26f65d74b906641f4bc9
+Author: Ilaria <ilaria.catarrasa@mail.polimi.it>
+Date:   Wed Apr 22 18:29:43 2020 +0200
+
+    Added I2C Multi-read function in main.c
+
+commit 8fff37af5fef63faea5c6963432e800f3fd56ac4
+Author: Ilaria <ilaria.catarrasa@mail.polimi.it>
+Date:   Wed Apr 22 18:21:54 2020 +0200
+
+    Added I2C Multi-read/write functions in I2C_Interface.c
+
+commit 0a194e4b2f63fa1c110202474839f169522f03af
+Author: Ilaria <ilaria.catarrasa@mail.polimi.it>
+Date:   Wed Apr 22 17:43:20 2020 +0200
+
+    My first commit
+
+commit 4acdd2fcfeb157ba27170c7f5c13156d07afb20f
+Author: Ilaria <ilaria.catarrasa@mail.polimi.it>
+Date:   Wed Apr 22 17:27:33 2020 +0200
+
+    My first commit

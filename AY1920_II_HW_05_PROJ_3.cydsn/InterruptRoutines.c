@@ -26,7 +26,7 @@ int32 Out_mms2;
 uint8_t header = 0xA0;
 uint8_t footer = 0xC0;
  /*legth wuthout header and footer*/
-int i = 0, j = 0;
+int i = 0;
 
 
 CY_ISR(isr_SendData)
@@ -55,12 +55,13 @@ CY_ISR(isr_SendData)
                     {                                                 
                         Out_ms2 = (int16)((xyz_positioning[i/2] | (xyz_positioning[i/2+1]<<8))) >> 4; //
                         
-                        Out_ms2 = (float) Out_ms2*2*9.81*0.001;     /*conversion from mg into m/s2: 
-                                                            * 2 is Typ. spec. from datasheet,                                                            
-                                                            * 9.8 is the conversion factor to m/s2 
-                                                            * 0.001 is to convert from msec to sec*/
+                        Out_ms2 = (float) Out_ms2*2*9.81*0.001*1000;     /*conversion from mg into m/s2: 
+                                                                        * 2 is Typ. spec. from datasheet,                                                            
+                                                                        * 9.8 is the conversion factor to m/s2 
+                                                                        * 0.001 is to convert from msec to sec
+                                                                        * 1000 conversion into mm/s2 for saving decimal values*/
                         
-                        Out_mms2 = (int32) Out_ms2*1000;             //conversion into mm/s2 for saving decimal values
+                        Out_mms2 = (int32) Out_ms2;             //
                         OutArray[i+1] = (uint8_t)(Out_mms2 & 0xFF);  //I send the data in 4 byte to save also the decimals
                         OutArray[i+2] = (uint8_t)(Out_mms2 >> 8);
                         OutArray[i+3] = (uint8_t)(Out_mms2 >> 16);

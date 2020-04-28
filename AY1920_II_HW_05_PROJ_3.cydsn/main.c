@@ -35,17 +35,17 @@
 #define LIS3DH_CTRL_REG1 0x20
 
 /**
-*   \brief Hex value to set normal mode to the accelerator
+*   \brief Hex value to set high resolution mode to the accelerator
     \x,y,z Enabled, 100 Hz Power mode  
 */
-#define LIS3DH_NORMAL_MODE_CTRL_REG1 0x57
+#define LIS3DH_HR_MODE_CTRL_REG1 0x57
 
 /**
 *   \brief Address of the Control register 4
     \+- 4g FSR
 */
 #define LIS3DH_CTRL_REG4 0x23
-#define LIS3DH_CTRL_REG4_FSR_SET 0x90
+#define LIS3DH_CTRL_REG4_FSR_SET 0x98
 
 /**
 *   \brief Address of the X, Y, Z output LSB and MSB registers
@@ -150,9 +150,9 @@ int main(void)
         
     UART_Debug_PutString("\r\nWriting new values..\r\n");
     
-    if (ctrl_reg1 != LIS3DH_NORMAL_MODE_CTRL_REG1)
+    if (ctrl_reg1 != LIS3DH_HR_MODE_CTRL_REG1)
     {
-        ctrl_reg1 = LIS3DH_NORMAL_MODE_CTRL_REG1;
+        ctrl_reg1 = LIS3DH_HR_MODE_CTRL_REG1;
     
         error = I2C_Peripheral_WriteRegister(LIS3DH_DEVICE_ADDRESS,
                                              LIS3DH_CTRL_REG1,
