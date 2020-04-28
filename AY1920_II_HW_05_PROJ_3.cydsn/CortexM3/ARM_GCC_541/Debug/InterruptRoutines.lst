@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\cc11i1nl.s 			page 1
+ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\ccZT6uU3.s 			page 1
 
 
    1              		.syntax unified
@@ -35,44 +35,41 @@ ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\cc11i1nl.s 			page 1
   32              		.file 1 "InterruptRoutines.c"
    1:InterruptRoutines.c **** /* ========================================
    2:InterruptRoutines.c ****  *
-   3:InterruptRoutines.c ****  * Copyright YOUR COMPANY, THE YEAR
-   4:InterruptRoutines.c ****  * All Rights Reserved
-   5:InterruptRoutines.c ****  * UNPUBLISHED, LICENSED SOFTWARE.
-   6:InterruptRoutines.c ****  *
-   7:InterruptRoutines.c ****  * CONFIDENTIAL AND PROPRIETARY INFORMATION
-   8:InterruptRoutines.c ****  * WHICH IS THE PROPERTY OF your company.
-   9:InterruptRoutines.c ****  *
-  10:InterruptRoutines.c ****  * ========================================
-  11:InterruptRoutines.c **** */
-  12:InterruptRoutines.c **** /*Include headers*/
-  13:InterruptRoutines.c **** #include "InterruptRoutines.h"
-  14:InterruptRoutines.c **** #include "I2C_Interface.h"
-  15:InterruptRoutines.c **** #include "project.h"
-  16:InterruptRoutines.c **** #include "stdio.h"
+   3:InterruptRoutines.c ****  * Interrupt routines for sending the data at at constant rate 
+   4:InterruptRoutines.c ****  *
+   5:InterruptRoutines.c ****  * Author: Ilaria Catarrasa
+   6:InterruptRoutines.c ****  * ========================================
+   7:InterruptRoutines.c **** */
+   8:InterruptRoutines.c **** 
+   9:InterruptRoutines.c **** /*Include headers*/
+  10:InterruptRoutines.c **** #include "InterruptRoutines.h"
+  11:InterruptRoutines.c **** #include "I2C_Interface.h"
+  12:InterruptRoutines.c **** #include "project.h"
+  13:InterruptRoutines.c **** #include "stdio.h"
+  14:InterruptRoutines.c **** 
+  15:InterruptRoutines.c **** /*Include required header files*/
+  16:InterruptRoutines.c **** #include "project.h"
   17:InterruptRoutines.c **** 
-  18:InterruptRoutines.c **** /*Include required header files*/
-  19:InterruptRoutines.c **** #include "project.h"
+  18:InterruptRoutines.c **** #define LIS3DH_DEVICE_ADDRESS 0x18
+  19:InterruptRoutines.c **** #define LIS3DH_OUT_X_L 0x28
   20:InterruptRoutines.c **** 
-  21:InterruptRoutines.c **** #define LIS3DH_DEVICE_ADDRESS 0x18
-  22:InterruptRoutines.c **** #define LIS3DH_OUT_X_L 0x28
-  23:InterruptRoutines.c **** 
-  24:InterruptRoutines.c **** #define LIS3DH_STATUS_REG 0x27
-  25:InterruptRoutines.c **** 
-ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\cc11i1nl.s 			page 2
+  21:InterruptRoutines.c **** #define LIS3DH_STATUS_REG 0x27
+  22:InterruptRoutines.c **** 
+  23:InterruptRoutines.c **** uint8_t xyz_positioning[LENGTH_BYTE];             
+  24:InterruptRoutines.c **** int16_t Out_ms2;
+  25:InterruptRoutines.c **** int32 Out_mms2;
+ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\ccZT6uU3.s 			page 2
 
 
-  26:InterruptRoutines.c **** uint8_t xyz_positioning[LENGTH_BYTE];             
-  27:InterruptRoutines.c **** int16_t Out_ms2;
-  28:InterruptRoutines.c **** int32 Out_mms2;
-  29:InterruptRoutines.c **** uint8_t header = 0xA0;
-  30:InterruptRoutines.c **** uint8_t footer = 0xC0;
-  31:InterruptRoutines.c ****  /*legth wuthout header and footer*/
-  32:InterruptRoutines.c **** int i = 0, j = 0;
-  33:InterruptRoutines.c **** 
-  34:InterruptRoutines.c **** 
-  35:InterruptRoutines.c **** CY_ISR(isr_SendData)
-  36:InterruptRoutines.c **** {    
-  33              		.loc 1 36 0
+  26:InterruptRoutines.c **** uint8_t header = 0xA0;
+  27:InterruptRoutines.c **** uint8_t footer = 0xC0;
+  28:InterruptRoutines.c ****  /*legth wuthout header and footer*/
+  29:InterruptRoutines.c **** int i = 0, j = 0;
+  30:InterruptRoutines.c **** 
+  31:InterruptRoutines.c **** 
+  32:InterruptRoutines.c **** CY_ISR(isr_SendData)
+  33:InterruptRoutines.c **** {    
+  33              		.loc 1 33 0
   34              		.cfi_startproc
   35              		@ args = 0, pretend = 0, frame = 8
   36              		@ frame_needed = 0, uses_anonymous_args = 0
@@ -82,72 +79,72 @@ ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\cc11i1nl.s 			page 1
   40              		.cfi_offset 14, -4
   41 0002 82B0     		sub	sp, sp, #8
   42              		.cfi_def_cfa_offset 16
-  37:InterruptRoutines.c ****     OutArray[0] = header;
-  43              		.loc 1 37 0
+  34:InterruptRoutines.c ****     OutArray[0] = header;
+  43              		.loc 1 34 0
   44 0004 344B     		ldr	r3, .L6+16
   45 0006 354A     		ldr	r2, .L6+20
   46 0008 1178     		ldrb	r1, [r2]	@ zero_extendqisi2
   47 000a 1970     		strb	r1, [r3]
-  38:InterruptRoutines.c ****     OutArray[TRANSMIT_BUFFER_SIZE-1] = footer;
-  48              		.loc 1 38 0
+  35:InterruptRoutines.c ****     OutArray[TRANSMIT_BUFFER_SIZE-1] = footer;
+  48              		.loc 1 35 0
   49 000c 5278     		ldrb	r2, [r2, #1]	@ zero_extendqisi2
   50 000e 5A73     		strb	r2, [r3, #13]
-  39:InterruptRoutines.c ****     
-  40:InterruptRoutines.c ****     uint8_t status_register; 
-  41:InterruptRoutines.c ****     
-  42:InterruptRoutines.c ****     ErrorCode error = I2C_Peripheral_ReadRegister(LIS3DH_DEVICE_ADDRESS,
-  51              		.loc 1 42 0
+  36:InterruptRoutines.c ****     
+  37:InterruptRoutines.c ****     uint8_t status_register; 
+  38:InterruptRoutines.c ****     
+  39:InterruptRoutines.c ****     ErrorCode error = I2C_Peripheral_ReadRegister(LIS3DH_DEVICE_ADDRESS,
+  51              		.loc 1 39 0
   52 0010 0DF10702 		add	r2, sp, #7
   53 0014 2721     		movs	r1, #39
   54 0016 1820     		movs	r0, #24
   55 0018 FFF7FEFF 		bl	I2C_Peripheral_ReadRegister
   56              	.LVL0:
-  43:InterruptRoutines.c ****                                         LIS3DH_STATUS_REG,
-  44:InterruptRoutines.c ****                                         &status_register);
-  45:InterruptRoutines.c ****      
-  46:InterruptRoutines.c ****     if (error == NO_ERROR)
-  57              		.loc 1 46 0
+  40:InterruptRoutines.c ****                                         LIS3DH_STATUS_REG,
+  41:InterruptRoutines.c ****                                         &status_register);
+  42:InterruptRoutines.c ****      
+  43:InterruptRoutines.c ****     if (error == NO_ERROR)
+  57              		.loc 1 43 0
   58 001c 0028     		cmp	r0, #0
   59 001e 4FD1     		bne	.L1
-  47:InterruptRoutines.c ****     {
-  48:InterruptRoutines.c ****         if(status_register & 0x08)
-  60              		.loc 1 48 0
+  44:InterruptRoutines.c ****     {
+  45:InterruptRoutines.c ****         if(status_register & 0x08)
+  60              		.loc 1 45 0
   61 0020 9DF80730 		ldrb	r3, [sp, #7]	@ zero_extendqisi2
   62 0024 13F0080F 		tst	r3, #8
   63 0028 4AD0     		beq	.L1
-  49:InterruptRoutines.c ****         {        
-  50:InterruptRoutines.c ****              //If overrun occurred and new values are available read and send UART values
-  51:InterruptRoutines.c ****                 error = I2C_Peripheral_ReadRegisterMulti(LIS3DH_DEVICE_ADDRESS,
-ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\cc11i1nl.s 			page 3
-
-
-  64              		.loc 1 51 0
+  46:InterruptRoutines.c ****         {        
+  47:InterruptRoutines.c ****              //If overrun occurred and new values are available read and send UART values
+  48:InterruptRoutines.c ****                 error = I2C_Peripheral_ReadRegisterMulti(LIS3DH_DEVICE_ADDRESS,
+  64              		.loc 1 48 0
   65 002a 2D4B     		ldr	r3, .L6+24
   66 002c 0622     		movs	r2, #6
+ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\ccZT6uU3.s 			page 3
+
+
   67 002e 2821     		movs	r1, #40
   68 0030 1820     		movs	r0, #24
   69              	.LVL1:
   70 0032 FFF7FEFF 		bl	I2C_Peripheral_ReadRegisterMulti
   71              	.LVL2:
-  52:InterruptRoutines.c ****                                                 LIS3DH_OUT_X_L,
-  53:InterruptRoutines.c ****                                                 6,
-  54:InterruptRoutines.c ****                                                 &xyz_positioning[0]);
-  55:InterruptRoutines.c ****                 if (error == NO_ERROR)
-  72              		.loc 1 55 0
+  49:InterruptRoutines.c ****                                                 LIS3DH_OUT_X_L,
+  50:InterruptRoutines.c ****                                                 6,
+  51:InterruptRoutines.c ****                                                 &xyz_positioning[0]);
+  52:InterruptRoutines.c ****                 if (error == NO_ERROR)
+  72              		.loc 1 52 0
   73 0036 0028     		cmp	r0, #0
   74 0038 42D1     		bne	.L1
-  56:InterruptRoutines.c ****                 {
-  57:InterruptRoutines.c ****                     for (i = 0; i<LENGTH_BYTE; i+=4)
-  75              		.loc 1 57 0
+  53:InterruptRoutines.c ****                 {
+  54:InterruptRoutines.c ****                     for (i = 0; i<LENGTH_BYTE; i+=4)
+  75              		.loc 1 54 0
   76 003a 0022     		movs	r2, #0
   77 003c 294B     		ldr	r3, .L6+28
   78 003e 1A60     		str	r2, [r3]
   79 0040 36E0     		b	.L3
   80              	.LVL3:
   81              	.L4:
-  58:InterruptRoutines.c ****                     {                                                 
-  59:InterruptRoutines.c ****                         Out_ms2 = (int16)((xyz_positioning[i/2] | (xyz_positioning[i/2+1]<<8))) >> 
-  82              		.loc 1 59 0 discriminator 3
+  55:InterruptRoutines.c ****                     {                                                 
+  56:InterruptRoutines.c ****                         Out_ms2 = (int16)((xyz_positioning[i/2] | (xyz_positioning[i/2+1]<<8))) >> 
+  82              		.loc 1 56 0 discriminator 3
   83 0042 04EBD473 		add	r3, r4, r4, lsr #31
   84 0046 5B10     		asrs	r3, r3, #1
   85 0048 2549     		ldr	r1, .L6+24
@@ -155,9 +152,9 @@ ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\cc11i1nl.s 			page 1
   87 004c 0133     		adds	r3, r3, #1
   88 004e C85C     		ldrb	r0, [r1, r3]	@ zero_extendqisi2
   89 0050 42EA0020 		orr	r0, r2, r0, lsl #8
-  60:InterruptRoutines.c ****                         
-  61:InterruptRoutines.c ****                         Out_ms2 = (float) Out_ms2*2*9.81*0.001;     /*conversion from mg into m/s2:
-  90              		.loc 1 61 0 discriminator 3
+  57:InterruptRoutines.c ****                         
+  58:InterruptRoutines.c ****                         Out_ms2 = (float) Out_ms2*2*9.81*0.001;     /*conversion from mg into m/s2:
+  90              		.loc 1 58 0 discriminator 3
   91 0054 40F30B10 		sbfx	r0, r0, #4, #12
   92 0058 FFF7FEFF 		bl	__aeabi_i2f
   93              	.LVL4:
@@ -178,80 +175,80 @@ ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\cc11i1nl.s 			page 1
  108              	.LVL9:
  109 007e 00B2     		sxth	r0, r0
  110 0080 194B     		ldr	r3, .L6+32
-ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\cc11i1nl.s 			page 4
-
-
  111 0082 1880     		strh	r0, [r3]	@ movhi
-  62:InterruptRoutines.c ****                                                             * 2 is Typ. spec. from datasheet,      
-  63:InterruptRoutines.c ****                                                             * 9.8 is the conversion factor to m/s2 
-  64:InterruptRoutines.c ****                                                             * 0.001 is to convert from msec to sec*
-  65:InterruptRoutines.c ****                         
-  66:InterruptRoutines.c ****                         Out_mms2 = (int32) Out_ms2*1000;             //conversion into mm/s2 for sa
- 112              		.loc 1 66 0 discriminator 3
+  59:InterruptRoutines.c ****                                                             * 2 is Typ. spec. from datasheet,      
+  60:InterruptRoutines.c ****                                                             * 9.8 is the conversion factor to m/s2 
+ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\ccZT6uU3.s 			page 4
+
+
+  61:InterruptRoutines.c ****                                                             * 0.001 is to convert from msec to sec*
+  62:InterruptRoutines.c ****                         
+  63:InterruptRoutines.c ****                         Out_mms2 = (int32) Out_ms2*1000;             //conversion into mm/s2 for sa
+ 112              		.loc 1 63 0 discriminator 3
  113 0084 4FF47A73 		mov	r3, #1000
  114 0088 03FB00F0 		mul	r0, r3, r0
  115 008c 174B     		ldr	r3, .L6+36
  116 008e 1860     		str	r0, [r3]
-  67:InterruptRoutines.c ****                         OutArray[i+1] = (uint8_t)(Out_mms2 & 0xFF);  //I send the data in 4 byte to
- 117              		.loc 1 67 0 discriminator 3
+  64:InterruptRoutines.c ****                         OutArray[i+1] = (uint8_t)(Out_mms2 & 0xFF);  //I send the data in 4 byte to
+ 117              		.loc 1 64 0 discriminator 3
  118 0090 621C     		adds	r2, r4, #1
  119 0092 114B     		ldr	r3, .L6+16
  120 0094 9854     		strb	r0, [r3, r2]
-  68:InterruptRoutines.c ****                         OutArray[i+2] = (uint8_t)(Out_mms2 >> 8);
- 121              		.loc 1 68 0 discriminator 3
+  65:InterruptRoutines.c ****                         OutArray[i+2] = (uint8_t)(Out_mms2 >> 8);
+ 121              		.loc 1 65 0 discriminator 3
  122 0096 A21C     		adds	r2, r4, #2
  123 0098 C0F30721 		ubfx	r1, r0, #8, #8
  124 009c 9954     		strb	r1, [r3, r2]
-  69:InterruptRoutines.c ****                         OutArray[i+3] = (uint8_t)(Out_mms2 >> 16);
- 125              		.loc 1 69 0 discriminator 3
+  66:InterruptRoutines.c ****                         OutArray[i+3] = (uint8_t)(Out_mms2 >> 16);
+ 125              		.loc 1 66 0 discriminator 3
  126 009e E21C     		adds	r2, r4, #3
  127 00a0 C0F30741 		ubfx	r1, r0, #16, #8
  128 00a4 9954     		strb	r1, [r3, r2]
-  70:InterruptRoutines.c ****                         OutArray[i+4] = (uint8_t)(Out_mms2 >> 24);
- 129              		.loc 1 70 0 discriminator 3
+  67:InterruptRoutines.c ****                         OutArray[i+4] = (uint8_t)(Out_mms2 >> 24);
+ 129              		.loc 1 67 0 discriminator 3
  130 00a6 0434     		adds	r4, r4, #4
  131 00a8 000E     		lsrs	r0, r0, #24
  132 00aa 1855     		strb	r0, [r3, r4]
-  57:InterruptRoutines.c ****                     {                                                 
- 133              		.loc 1 57 0 discriminator 3
+  54:InterruptRoutines.c ****                     {                                                 
+ 133              		.loc 1 54 0 discriminator 3
  134 00ac 0D4B     		ldr	r3, .L6+28
  135 00ae 1C60     		str	r4, [r3]
  136              	.L3:
-  57:InterruptRoutines.c ****                     {                                                 
- 137              		.loc 1 57 0 is_stmt 0 discriminator 1
+  54:InterruptRoutines.c ****                     {                                                 
+ 137              		.loc 1 54 0 is_stmt 0 discriminator 1
  138 00b0 0C4B     		ldr	r3, .L6+28
  139 00b2 1C68     		ldr	r4, [r3]
  140 00b4 0B2C     		cmp	r4, #11
  141 00b6 C4DD     		ble	.L4
-  71:InterruptRoutines.c ****                     }
-  72:InterruptRoutines.c ****                     
-  73:InterruptRoutines.c ****                     //UART_Debug_PutString("Read data complete.\r\n");    
-  74:InterruptRoutines.c ****                     UART_Debug_PutArray(OutArray, TRANSMIT_BUFFER_SIZE); 
- 142              		.loc 1 74 0 is_stmt 1
+  68:InterruptRoutines.c ****                     }
+  69:InterruptRoutines.c ****                     
+  70:InterruptRoutines.c ****                     //UART_Debug_PutString("Read data complete.\r\n");    
+  71:InterruptRoutines.c ****                     UART_Debug_PutArray(OutArray, TRANSMIT_BUFFER_SIZE); 
+ 142              		.loc 1 71 0 is_stmt 1
  143 00b8 0E21     		movs	r1, #14
  144 00ba 0748     		ldr	r0, .L6+16
  145 00bc FFF7FEFF 		bl	UART_Debug_PutArray
  146              	.LVL10:
  147              	.L1:
-  75:InterruptRoutines.c ****                 }                              
-  76:InterruptRoutines.c ****                 
-  77:InterruptRoutines.c ****         }
-  78:InterruptRoutines.c ****         else
-  79:InterruptRoutines.c ****         {
-ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\cc11i1nl.s 			page 5
+  72:InterruptRoutines.c ****                 }                              
+  73:InterruptRoutines.c ****                 
+  74:InterruptRoutines.c ****         }
+  75:InterruptRoutines.c ****         else
+  76:InterruptRoutines.c ****         {
+  77:InterruptRoutines.c ****            //UART_Debug_PutString("Data Not available.\r\n "); 
+  78:InterruptRoutines.c ****         }
+  79:InterruptRoutines.c ****         
+ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\ccZT6uU3.s 			page 5
 
 
-  80:InterruptRoutines.c ****            //UART_Debug_PutString("Data Not available.\r\n "); 
-  81:InterruptRoutines.c ****         }
-  82:InterruptRoutines.c ****         
-  83:InterruptRoutines.c ****         
+  80:InterruptRoutines.c ****         
+  81:InterruptRoutines.c ****     
+  82:InterruptRoutines.c ****     }
+  83:InterruptRoutines.c ****     
   84:InterruptRoutines.c ****     
-  85:InterruptRoutines.c ****     }
-  86:InterruptRoutines.c ****     
-  87:InterruptRoutines.c ****     
-  88:InterruptRoutines.c **** 
-  89:InterruptRoutines.c **** }
- 148              		.loc 1 89 0
+  85:InterruptRoutines.c **** 
+  86:InterruptRoutines.c **** }
+ 148              		.loc 1 86 0
  149 00c0 02B0     		add	sp, sp, #8
  150              		.cfi_def_cfa_offset 8
  151              		@ sp needed
@@ -298,12 +295,12 @@ ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\cc11i1nl.s 			page 1
  192              	i:
  193 0000 00000000 		.space	4
  194              		.type	j, %object
-ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\cc11i1nl.s 			page 6
-
-
  195              		.size	j, 4
  196              	j:
  197 0004 00000000 		.space	4
+ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\ccZT6uU3.s 			page 6
+
+
  198              		.text
  199              	.Letext0:
  200              		.file 2 "c:\\program files (x86)\\cypress\\psoc creator\\4.3\\psoc creator\\import\\gnu\\arm\\5.4.
@@ -358,12 +355,12 @@ ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\cc11i1nl.s 			page 1
  249 0058 4E000000 		.4byte	.LASF6
  250 005c 02       		.byte	0x2
  251 005d 3F       		.byte	0x3f
-ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\cc11i1nl.s 			page 7
-
-
  252 005e 62000000 		.4byte	0x62
  253 0062 02       		.uleb128 0x2
  254 0063 04       		.byte	0x4
+ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\ccZT6uU3.s 			page 7
+
+
  255 0064 05       		.byte	0x5
  256 0065 58000000 		.4byte	.LASF7
  257 0069 02       		.uleb128 0x2
@@ -418,12 +415,12 @@ ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\cc11i1nl.s 			page 1
  306 00cc 02       		.uleb128 0x2
  307 00cd 08       		.byte	0x8
  308 00ce 04       		.byte	0x4
-ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\cc11i1nl.s 			page 8
-
-
  309 00cf 61010000 		.4byte	.LASF18
  310 00d3 02       		.uleb128 0x2
  311 00d4 01       		.byte	0x1
+ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\ccZT6uU3.s 			page 8
+
+
  312 00d5 08       		.byte	0x8
  313 00d6 29020000 		.4byte	.LASF19
  314 00da 02       		.uleb128 0x2
@@ -455,7 +452,7 @@ ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\cc11i1nl.s 			page 1
  340 010c 08       		.uleb128 0x8
  341 010d FE010000 		.4byte	.LASF40
  342 0111 01       		.byte	0x1
- 343 0112 23       		.byte	0x23
+ 343 0112 20       		.byte	0x20
  344 0113 00000000 		.4byte	.LFB64
  345 0117 F0000000 		.4byte	.LFE64-.LFB64
  346 011b 01       		.uleb128 0x1
@@ -464,7 +461,7 @@ ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\cc11i1nl.s 			page 1
  349 0121 09       		.uleb128 0x9
  350 0122 DD010000 		.4byte	.LASF25
  351 0126 01       		.byte	0x1
- 352 0127 28       		.byte	0x28
+ 352 0127 25       		.byte	0x25
  353 0128 8C000000 		.4byte	0x8c
  354 012c 02       		.uleb128 0x2
  355 012d 91       		.byte	0x91
@@ -472,18 +469,18 @@ ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\cc11i1nl.s 			page 1
  357 012f 0A       		.uleb128 0xa
  358 0130 5B010000 		.4byte	.LASF26
  359 0134 01       		.byte	0x1
- 360 0135 2A       		.byte	0x2a
+ 360 0135 27       		.byte	0x27
  361 0136 01010000 		.4byte	0x101
  362 013a 00000000 		.4byte	.LLST0
  363 013e 0B       		.uleb128 0xb
  364 013f 1C000000 		.4byte	.LVL0
  365 0143 52020000 		.4byte	0x252
-ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\cc11i1nl.s 			page 9
-
-
  366 0147 5D010000 		.4byte	0x15d
  367 014b 0C       		.uleb128 0xc
  368 014c 01       		.uleb128 0x1
+ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\ccZT6uU3.s 			page 9
+
+
  369 014d 50       		.byte	0x50
  370 014e 01       		.uleb128 0x1
  371 014f 48       		.byte	0x48
@@ -538,12 +535,12 @@ ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\cc11i1nl.s 			page 1
  420 0192 00000000 		.4byte	OutArray
  421 0196 0C       		.uleb128 0xc
  422 0197 01       		.uleb128 0x1
-ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\cc11i1nl.s 			page 10
-
-
  423 0198 51       		.byte	0x51
  424 0199 01       		.uleb128 0x1
  425 019a 3E       		.byte	0x3e
+ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\ccZT6uU3.s 			page 10
+
+
  426 019b 00       		.byte	0
  427 019c 00       		.byte	0
  428 019d 0E       		.uleb128 0xe
@@ -563,7 +560,7 @@ ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\cc11i1nl.s 			page 1
  442 01be 12       		.uleb128 0x12
  443 01bf 98000000 		.4byte	.LASF28
  444 01c3 07       		.byte	0x7
- 445 01c4 15       		.byte	0x15
+ 445 01c4 12       		.byte	0x12
  446 01c5 AE010000 		.4byte	0x1ae
  447 01c9 05       		.uleb128 0x5
  448 01ca 03       		.byte	0x3
@@ -578,7 +575,7 @@ ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\cc11i1nl.s 			page 1
  457 01df 12       		.uleb128 0x12
  458 01e0 19020000 		.4byte	.LASF29
  459 01e4 01       		.byte	0x1
- 460 01e5 1A       		.byte	0x1a
+ 460 01e5 17       		.byte	0x17
  461 01e6 CF010000 		.4byte	0x1cf
  462 01ea 05       		.uleb128 0x5
  463 01eb 03       		.byte	0x3
@@ -586,7 +583,7 @@ ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\cc11i1nl.s 			page 1
  465 01f0 12       		.uleb128 0x12
  466 01f1 82020000 		.4byte	.LASF30
  467 01f5 01       		.byte	0x1
- 468 01f6 1B       		.byte	0x1b
+ 468 01f6 18       		.byte	0x18
  469 01f7 97000000 		.4byte	0x97
  470 01fb 05       		.uleb128 0x5
  471 01fc 03       		.byte	0x3
@@ -594,18 +591,18 @@ ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\cc11i1nl.s 			page 1
  473 0201 12       		.uleb128 0x12
  474 0202 CC010000 		.4byte	.LASF31
  475 0206 01       		.byte	0x1
- 476 0207 1C       		.byte	0x1c
+ 476 0207 19       		.byte	0x19
  477 0208 B9000000 		.4byte	0xb9
  478 020c 05       		.uleb128 0x5
  479 020d 03       		.byte	0x3
-ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\cc11i1nl.s 			page 11
-
-
  480 020e 00000000 		.4byte	Out_mms2
  481 0212 12       		.uleb128 0x12
  482 0213 00000000 		.4byte	.LASF32
+ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\ccZT6uU3.s 			page 11
+
+
  483 0217 01       		.byte	0x1
- 484 0218 1D       		.byte	0x1d
+ 484 0218 1A       		.byte	0x1a
  485 0219 8C000000 		.4byte	0x8c
  486 021d 05       		.uleb128 0x5
  487 021e 03       		.byte	0x3
@@ -613,7 +610,7 @@ ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\cc11i1nl.s 			page 1
  489 0223 12       		.uleb128 0x12
  490 0224 5D020000 		.4byte	.LASF33
  491 0228 01       		.byte	0x1
- 492 0229 1E       		.byte	0x1e
+ 492 0229 1B       		.byte	0x1b
  493 022a 8C000000 		.4byte	0x8c
  494 022e 05       		.uleb128 0x5
  495 022f 03       		.byte	0x3
@@ -621,7 +618,7 @@ ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\cc11i1nl.s 			page 1
  497 0234 13       		.uleb128 0x13
  498 0235 6900     		.ascii	"i\000"
  499 0237 01       		.byte	0x1
- 500 0238 20       		.byte	0x20
+ 500 0238 1D       		.byte	0x1d
  501 0239 7E000000 		.4byte	0x7e
  502 023d 05       		.uleb128 0x5
  503 023e 03       		.byte	0x3
@@ -629,7 +626,7 @@ ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\cc11i1nl.s 			page 1
  505 0243 13       		.uleb128 0x13
  506 0244 6A00     		.ascii	"j\000"
  507 0246 01       		.byte	0x1
- 508 0247 20       		.byte	0x20
+ 508 0247 1D       		.byte	0x1d
  509 0248 7E000000 		.4byte	0x7e
  510 024c 05       		.uleb128 0x5
  511 024d 03       		.byte	0x3
@@ -658,12 +655,12 @@ ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\cc11i1nl.s 			page 1
  534 0003 25       		.uleb128 0x25
  535 0004 0E       		.uleb128 0xe
  536 0005 13       		.uleb128 0x13
-ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\cc11i1nl.s 			page 12
-
-
  537 0006 0B       		.uleb128 0xb
  538 0007 03       		.uleb128 0x3
  539 0008 0E       		.uleb128 0xe
+ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\ccZT6uU3.s 			page 12
+
+
  540 0009 1B       		.uleb128 0x1b
  541 000a 0E       		.uleb128 0xe
  542 000b 55       		.uleb128 0x55
@@ -718,12 +715,12 @@ ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\cc11i1nl.s 			page 1
  591 003c 0B       		.uleb128 0xb
  592 003d 3B       		.uleb128 0x3b
  593 003e 05       		.uleb128 0x5
-ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\cc11i1nl.s 			page 13
-
-
  594 003f 49       		.uleb128 0x49
  595 0040 13       		.uleb128 0x13
  596 0041 00       		.byte	0
+ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\ccZT6uU3.s 			page 13
+
+
  597 0042 00       		.byte	0
  598 0043 06       		.uleb128 0x6
  599 0044 04       		.uleb128 0x4
@@ -778,12 +775,12 @@ ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\cc11i1nl.s 			page 1
  648 0076 34       		.uleb128 0x34
  649 0077 00       		.byte	0
  650 0078 03       		.uleb128 0x3
-ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\cc11i1nl.s 			page 14
-
-
  651 0079 0E       		.uleb128 0xe
  652 007a 3A       		.uleb128 0x3a
  653 007b 0B       		.uleb128 0xb
+ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\ccZT6uU3.s 			page 14
+
+
  654 007c 3B       		.uleb128 0x3b
  655 007d 0B       		.uleb128 0xb
  656 007e 49       		.uleb128 0x49
@@ -838,12 +835,12 @@ ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\cc11i1nl.s 			page 1
  705 00b6 00       		.byte	0
  706 00b7 0E       		.uleb128 0xe
  707 00b8 34       		.uleb128 0x34
-ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\cc11i1nl.s 			page 15
-
-
  708 00b9 00       		.byte	0
  709 00ba 03       		.uleb128 0x3
  710 00bb 0E       		.uleb128 0xe
+ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\ccZT6uU3.s 			page 15
+
+
  711 00bc 3A       		.uleb128 0x3a
  712 00bd 0B       		.uleb128 0xb
  713 00be 3B       		.uleb128 0x3b
@@ -898,12 +895,12 @@ ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\cc11i1nl.s 			page 1
  762 00ef 18       		.uleb128 0x18
  763 00f0 00       		.byte	0
  764 00f1 00       		.byte	0
-ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\cc11i1nl.s 			page 16
-
-
  765 00f2 13       		.uleb128 0x13
  766 00f3 34       		.uleb128 0x34
  767 00f4 00       		.byte	0
+ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\ccZT6uU3.s 			page 16
+
+
  768 00f5 03       		.uleb128 0x3
  769 00f6 08       		.uleb128 0x8
  770 00f7 3A       		.uleb128 0x3a
@@ -958,12 +955,12 @@ ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\cc11i1nl.s 			page 1
  819 000c 0000     		.2byte	0
  820 000e 0000     		.2byte	0
  821 0010 00000000 		.4byte	.LFB64
-ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\cc11i1nl.s 			page 17
-
-
  822 0014 F0000000 		.4byte	.LFE64-.LFB64
  823 0018 00000000 		.4byte	0
  824 001c 00000000 		.4byte	0
+ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\ccZT6uU3.s 			page 17
+
+
  825              		.section	.debug_ranges,"",%progbits
  826              	.Ldebug_ranges0:
  827 0000 00000000 		.4byte	.LFB64
@@ -1018,12 +1015,12 @@ ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\cc11i1nl.s 			page 1
  850 0088 4572726F 		.ascii	"ErrorCode\000"
  850      72436F64 
  850      6500
-ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\cc11i1nl.s 			page 18
-
-
  851              	.LASF17:
  852 0092 666C6F61 		.ascii	"float\000"
  852      7400
+ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\ccZT6uU3.s 			page 18
+
+
  853              	.LASF28:
  854 0098 4F757441 		.ascii	"OutArray\000"
  854      72726179 
@@ -1078,12 +1075,12 @@ ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\cc11i1nl.s 			page 1
  874      7431365F 
  874      7400
  875              	.LASF27:
-ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\cc11i1nl.s 			page 19
-
-
  876 0193 49544D5F 		.ascii	"ITM_RxBuffer\000"
  876      52784275 
  876      66666572 
+ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\ccZT6uU3.s 			page 19
+
+
  876      00
  877              	.LASF11:
  878 01a0 756E7369 		.ascii	"unsigned int\000"
@@ -1138,12 +1135,12 @@ ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\cc11i1nl.s 			page 1
  900      00
  901              	.LASF34:
  902 022e 4932435F 		.ascii	"I2C_Peripheral_ReadRegister\000"
-ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\cc11i1nl.s 			page 20
-
-
  902      50657269 
  902      70686572 
  902      616C5F52 
+ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\ccZT6uU3.s 			page 20
+
+
  902      65616452 
  903              	.LASF4:
  904 024a 73686F72 		.ascii	"short int\000"

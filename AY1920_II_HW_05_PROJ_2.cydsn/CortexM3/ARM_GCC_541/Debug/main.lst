@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\ccVN7anh.s 			page 1
+ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\cc2gi8vT.s 			page 1
 
 
    1              		.syntax unified
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\ccVN7anh.s 			page 1
   28:main.c        **** /**
   29:main.c        **** *   \brief Address of the Status register
   30:main.c        **** */
-ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\ccVN7anh.s 			page 2
+ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\cc2gi8vT.s 			page 2
 
 
   31:main.c        **** #define LIS3DH_STATUS_REG 0x27
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\ccVN7anh.s 			page 1
   43              		.loc 1 69 0
   44              		.thumb
   45              		.syntax unified
-ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\ccVN7anh.s 			page 3
+ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\cc2gi8vT.s 			page 3
 
 
   46 0006 FFF7FEFF 		bl	I2C_Peripheral_Start
@@ -178,7 +178,7 @@ ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\ccVN7anh.s 			page 1
   83 0034 F0DD     		ble	.L4
   84              	.LBE2:
   85:main.c        ****         }
-ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\ccVN7anh.s 			page 4
+ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\cc2gi8vT.s 			page 4
 
 
   86:main.c        ****         
@@ -238,7 +238,7 @@ ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\ccVN7anh.s 			page 1
  112:main.c        ****     uint8_t status_register; 
  113:main.c        ****     error = I2C_Peripheral_ReadRegister(LIS3DH_DEVICE_ADDRESS,
  113              		.loc 1 113 0
-ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\ccVN7anh.s 			page 5
+ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\cc2gi8vT.s 			page 5
 
 
  114 005e 0DF10202 		add	r2, sp, #2
@@ -298,7 +298,7 @@ ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\ccVN7anh.s 			page 1
  135:main.c        ****     if (error == NO_ERROR)
  147              		.loc 1 135 0
  148 0092 48B9     		cbnz	r0, .L9
-ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\ccVN7anh.s 			page 6
+ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\cc2gi8vT.s 			page 6
 
 
  136:main.c        ****     {
@@ -358,7 +358,7 @@ ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\ccVN7anh.s 			page 1
  183 00c6 FFF7FEFF 		bl	I2C_Peripheral_WriteRegister
  184              	.LVL30:
  156:main.c        ****                                              LIS3DH_CTRL_REG1,
-ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\ccVN7anh.s 			page 7
+ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\cc2gi8vT.s 			page 7
 
 
  157:main.c        ****                                              ctrl_reg1);
@@ -418,7 +418,7 @@ ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\ccVN7anh.s 			page 1
  215              		.loc 1 180 0
  216 00f4 9DF80120 		ldrb	r2, [sp, #1]	@ zero_extendqisi2
  217 00f8 2949     		ldr	r1, .L21+40
-ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\ccVN7anh.s 			page 8
+ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\cc2gi8vT.s 			page 8
 
 
  218 00fa 01A8     		add	r0, sp, #4
@@ -478,7 +478,7 @@ ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\ccVN7anh.s 			page 1
  255              	.LVL48:
  256              	.L15:
  198:main.c        ****     }
-ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\ccVN7anh.s 			page 9
+ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\cc2gi8vT.s 			page 9
 
 
  199:main.c        ****     else
@@ -490,82 +490,80 @@ ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\ccVN7anh.s 			page 1
  260 0130 FFF7FEFF 		bl	UART_Debug_PutString
  261              	.LVL50:
  262              	.L16:
- 202:main.c        ****     }
- 203:main.c        ****     
- 204:main.c        ****     
- 205:main.c        ****     
- 206:main.c        ****     /*Update control register 4*/
- 207:main.c        ****     ctrl_reg4 = LIS3DH_CTRL_REG4_FSR_SET; // must be changed to the appropriate value
- 263              		.loc 1 207 0
+ 202:main.c        ****     }    
+ 203:main.c        ****      
+ 204:main.c        ****     /*Update control register 4*/
+ 205:main.c        ****     ctrl_reg4 = LIS3DH_CTRL_REG4_FSR_SET; // must be changed to the appropriate value
+ 263              		.loc 1 205 0
  264 0134 0022     		movs	r2, #0
  265 0136 0EAC     		add	r4, sp, #56
  266              	.LVL51:
  267 0138 04F8382D 		strb	r2, [r4, #-56]!
- 208:main.c        ****     
- 209:main.c        ****     error = I2C_Peripheral_WriteRegister(LIS3DH_DEVICE_ADDRESS,
- 268              		.loc 1 209 0
+ 206:main.c        ****     
+ 207:main.c        ****     error = I2C_Peripheral_WriteRegister(LIS3DH_DEVICE_ADDRESS,
+ 268              		.loc 1 207 0
  269 013c 2321     		movs	r1, #35
  270 013e 1820     		movs	r0, #24
  271 0140 FFF7FEFF 		bl	I2C_Peripheral_WriteRegister
  272              	.LVL52:
- 210:main.c        ****                                          LIS3DH_CTRL_REG4,
- 211:main.c        ****                                          ctrl_reg4);
- 212:main.c        ****     
- 213:main.c        ****     error = I2C_Peripheral_ReadRegister(LIS3DH_DEVICE_ADDRESS,
- 273              		.loc 1 213 0
+ 208:main.c        ****                                          LIS3DH_CTRL_REG4,
+ 209:main.c        ****                                          ctrl_reg4);
+ 210:main.c        ****     
+ 211:main.c        ****     error = I2C_Peripheral_ReadRegister(LIS3DH_DEVICE_ADDRESS,
+ 273              		.loc 1 211 0
  274 0144 2246     		mov	r2, r4
  275 0146 2321     		movs	r1, #35
  276 0148 1820     		movs	r0, #24
  277 014a FFF7FEFF 		bl	I2C_Peripheral_ReadRegister
  278              	.LVL53:
- 214:main.c        ****                                         LIS3DH_CTRL_REG4,
- 215:main.c        ****                                         &ctrl_reg4);
- 216:main.c        ****     
- 217:main.c        ****     
- 218:main.c        ****     if (error == NO_ERROR)
- 279              		.loc 1 218 0
+ 212:main.c        ****                                         LIS3DH_CTRL_REG4,
+ 213:main.c        ****                                         &ctrl_reg4);
+ 214:main.c        ****     
+ 215:main.c        ****     
+ 216:main.c        ****     if (error == NO_ERROR)
+ 279              		.loc 1 216 0
  280 014e 48B9     		cbnz	r0, .L17
- 219:main.c        ****     {
- 220:main.c        ****         sprintf(message, "CONTROL REGISTER 4 after being updated: 0x%02X\r\n", ctrl_reg4);
- 281              		.loc 1 220 0
+ 217:main.c        ****     {
+ 218:main.c        ****         sprintf(message, "CONTROL REGISTER 4 after being updated: 0x%02X\r\n", ctrl_reg4);
+ 281              		.loc 1 218 0
  282 0150 9DF80020 		ldrb	r2, [sp]	@ zero_extendqisi2
  283 0154 1549     		ldr	r1, .L21+52
  284 0156 01A8     		add	r0, sp, #4
  285              	.LVL54:
  286 0158 FFF7FEFF 		bl	sprintf
  287              	.LVL55:
- 221:main.c        ****         UART_Debug_PutString(message); 
- 288              		.loc 1 221 0
+ 219:main.c        ****         UART_Debug_PutString(message); 
+ 288              		.loc 1 219 0
  289 015c 01A8     		add	r0, sp, #4
  290 015e FFF7FEFF 		bl	UART_Debug_PutString
-ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\ccVN7anh.s 			page 10
-
-
  291              	.LVL56:
  292 0162 02E0     		b	.L18
+ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\cc2gi8vT.s 			page 10
+
+
  293              	.LVL57:
  294              	.L17:
- 222:main.c        ****     }
- 223:main.c        ****     else
- 224:main.c        ****     {
- 225:main.c        ****         UART_Debug_PutString("Error occurred during I2C comm to read control register4\r\n");   
- 295              		.loc 1 225 0
+ 220:main.c        ****     }
+ 221:main.c        ****     else
+ 222:main.c        ****     {
+ 223:main.c        ****         UART_Debug_PutString("Error occurred during I2C comm to read control register4\r\n");   
+ 295              		.loc 1 223 0
  296 0164 1248     		ldr	r0, .L21+56
  297              	.LVL58:
  298 0166 FFF7FEFF 		bl	UART_Debug_PutString
  299              	.LVL59:
  300              	.L18:
- 226:main.c        ****     }
- 227:main.c        ****     
- 228:main.c        ****     /*Start of Timer*/
- 229:main.c        ****     Timer_Start(); 
- 301              		.loc 1 229 0
+ 224:main.c        ****     }
+ 225:main.c        ****     
+ 226:main.c        ****     /*Start of Timer*/
+ 227:main.c        ****     Timer_Start(); 
+ 301              		.loc 1 227 0
  302 016a FFF7FEFF 		bl	Timer_Start
  303              	.LVL60:
- 230:main.c        ****     
- 231:main.c        ****     /*Start of interrupt execution*/
- 232:main.c        ****     isr_Send_StartEx(isr_SendData); 
- 304              		.loc 1 232 0
+ 228:main.c        ****     
+ 229:main.c        ****     /*Start of interrupt execution*/
+ 230:main.c        ****     isr_Send_StartEx(isr_SendData); 
+ 304              		.loc 1 230 0
  305 016e 1148     		ldr	r0, .L21+60
  306 0170 FFF7FEFF 		bl	isr_Send_StartEx
  307              	.LVL61:
@@ -598,11 +596,11 @@ ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\ccVN7anh.s 			page 1
  334              		.align	2
  335              	.LC0:
  336 0000 44657669 		.ascii	"Device 0x%02X is connected\015\012\000"
-ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\ccVN7anh.s 			page 11
-
-
  336      63652030 
  336      78253032 
+ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\cc2gi8vT.s 			page 11
+
+
  336      58206973 
  336      20636F6E 
  337 001d 000000   		.space	3
@@ -658,11 +656,11 @@ ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\ccVN7anh.s 			page 1
  357      77207661 
  357      6C756573 
  358 0139 000000   		.space	3
-ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\ccVN7anh.s 			page 12
-
-
  359              	.LC8:
  360 013c 434F4E54 		.ascii	"CONTROL REGISTER 1 successfully written as: 0x%02X\015"
+ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\cc2gi8vT.s 			page 12
+
+
  360      524F4C20 
  360      52454749 
  360      53544552 
@@ -718,11 +716,11 @@ ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\ccVN7anh.s 			page 1
  382      7572696E 
  383 02ab 73746572 		.ascii	"ster4\015\012\000"
  383      340D0A00 
-ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\ccVN7anh.s 			page 13
-
-
  384              		.text
  385              	.Letext0:
+ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\cc2gi8vT.s 			page 13
+
+
  386              		.file 2 "c:\\program files (x86)\\cypress\\psoc creator\\4.3\\psoc creator\\import\\gnu\\arm\\5.4.
  387              		.file 3 "c:\\program files (x86)\\cypress\\psoc creator\\4.3\\psoc creator\\import\\gnu\\arm\\5.4.
  388              		.file 4 "ErrorCodes.h"
@@ -778,11 +776,11 @@ ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\ccVN7anh.s 			page 1
  438 0058 04       		.byte	0x4
  439 0059 05       		.byte	0x5
  440 005a 3D000000 		.4byte	.LASF6
-ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\ccVN7anh.s 			page 14
-
-
  441 005e 02       		.uleb128 0x2
  442 005f 04       		.byte	0x4
+ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\cc2gi8vT.s 			page 14
+
+
  443 0060 07       		.byte	0x7
  444 0061 0C010000 		.4byte	.LASF7
  445 0065 02       		.uleb128 0x2
@@ -838,11 +836,11 @@ ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\ccVN7anh.s 			page 1
  495 00c4 00       		.byte	0
  496 00c5 03       		.uleb128 0x3
  497 00c6 57000000 		.4byte	.LASF18
-ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\ccVN7anh.s 			page 15
-
-
  498 00ca 04       		.byte	0x4
  499 00cb 18       		.byte	0x18
+ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\cc2gi8vT.s 			page 15
+
+
  500 00cc AC000000 		.4byte	0xac
  501 00d0 02       		.uleb128 0x2
  502 00d1 08       		.byte	0x8
@@ -898,11 +896,11 @@ ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\ccVN7anh.s 			page 1
  552 0136 82       		.byte	0x82
  553 0137 81000000 		.4byte	0x81
  554 013b 02       		.uleb128 0x2
-ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\ccVN7anh.s 			page 16
-
-
  555 013c 91       		.byte	0x91
  556 013d 41       		.sleb128 -63
+ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\cc2gi8vT.s 			page 16
+
+
  557 013e 08       		.uleb128 0x8
  558 013f 92010000 		.4byte	.LASF26
  559 0143 01       		.byte	0x1
@@ -958,11 +956,11 @@ ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\ccVN7anh.s 			page 1
  609 019d 0E       		.uleb128 0xe
  610 019e 30000000 		.4byte	.LVL6
  611 01a2 43050000 		.4byte	0x543
-ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\ccVN7anh.s 			page 17
-
-
  612 01a6 0D       		.uleb128 0xd
  613 01a7 01       		.uleb128 0x1
+ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\cc2gi8vT.s 			page 17
+
+
  614 01a8 50       		.byte	0x50
  615 01a9 02       		.uleb128 0x2
  616 01aa 91       		.byte	0x91
@@ -1018,11 +1016,11 @@ ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\ccVN7anh.s 			page 1
  666 0203 44       		.sleb128 -60
  667 0204 0D       		.uleb128 0xd
  668 0205 01       		.uleb128 0x1
-ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\ccVN7anh.s 			page 18
-
-
  669 0206 51       		.byte	0x51
  670 0207 05       		.uleb128 0x5
+ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\cc2gi8vT.s 			page 18
+
+
  671 0208 03       		.byte	0x3
  672 0209 20000000 		.4byte	.LC1
  673 020d 00       		.byte	0
@@ -1078,11 +1076,11 @@ ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\ccVN7anh.s 			page 1
  723 0266 01       		.uleb128 0x1
  724 0267 50       		.byte	0x50
  725 0268 02       		.uleb128 0x2
-ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\ccVN7anh.s 			page 19
-
-
  726 0269 91       		.byte	0x91
  727 026a 44       		.sleb128 -60
+ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\cc2gi8vT.s 			page 19
+
+
  728 026b 0D       		.uleb128 0xd
  729 026c 01       		.uleb128 0x1
  730 026d 51       		.byte	0x51
@@ -1138,11 +1136,11 @@ ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\ccVN7anh.s 			page 1
  780 02c0 A0000000 		.4byte	.LVL24
  781 02c4 38050000 		.4byte	0x538
  782 02c8 DC020000 		.4byte	0x2dc
-ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\ccVN7anh.s 			page 20
-
-
  783 02cc 0D       		.uleb128 0xd
  784 02cd 01       		.uleb128 0x1
+ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\cc2gi8vT.s 			page 20
+
+
  785 02ce 50       		.byte	0x50
  786 02cf 02       		.uleb128 0x2
  787 02d0 91       		.byte	0x91
@@ -1198,11 +1196,11 @@ ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\ccVN7anh.s 			page 1
  837 032f 48       		.byte	0x48
  838 0330 0D       		.uleb128 0xd
  839 0331 01       		.uleb128 0x1
-ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\ccVN7anh.s 			page 21
-
-
  840 0332 51       		.byte	0x51
  841 0333 02       		.uleb128 0x2
+ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\cc2gi8vT.s 			page 21
+
+
  842 0334 08       		.byte	0x8
  843 0335 20       		.byte	0x20
  844 0336 0D       		.uleb128 0xd
@@ -1258,11 +1256,11 @@ ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\ccVN7anh.s 			page 1
  894 0392 0D       		.uleb128 0xd
  895 0393 01       		.uleb128 0x1
  896 0394 50       		.byte	0x50
-ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\ccVN7anh.s 			page 22
-
-
  897 0395 01       		.uleb128 0x1
  898 0396 48       		.byte	0x48
+ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\cc2gi8vT.s 			page 22
+
+
  899 0397 0D       		.uleb128 0xd
  900 0398 01       		.uleb128 0x1
  901 0399 51       		.byte	0x51
@@ -1318,11 +1316,11 @@ ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\ccVN7anh.s 			page 1
  951 03ec 0C       		.uleb128 0xc
  952 03ed 18010000 		.4byte	.LVL44
  953 03f1 6F050000 		.4byte	0x56f
-ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\ccVN7anh.s 			page 23
-
-
  954 03f5 0B040000 		.4byte	0x40b
  955 03f9 0D       		.uleb128 0xd
+ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\cc2gi8vT.s 			page 23
+
+
  956 03fa 01       		.uleb128 0x1
  957 03fb 50       		.byte	0x50
  958 03fc 01       		.uleb128 0x1
@@ -1378,11 +1376,11 @@ ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\ccVN7anh.s 			page 1
  1008 044c 05       		.uleb128 0x5
  1009 044d 03       		.byte	0x3
  1010 044e 08020000 		.4byte	.LC12
-ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\ccVN7anh.s 			page 24
-
-
  1011 0452 00       		.byte	0
  1012 0453 0C       		.uleb128 0xc
+ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\cc2gi8vT.s 			page 24
+
+
  1013 0454 44010000 		.4byte	.LVL52
  1014 0458 7A050000 		.4byte	0x57a
  1015 045c 71040000 		.4byte	0x471
@@ -1438,11 +1436,11 @@ ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\ccVN7anh.s 			page 1
  1065 04a3 0D       		.uleb128 0xd
  1066 04a4 01       		.uleb128 0x1
  1067 04a5 51       		.byte	0x51
-ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\ccVN7anh.s 			page 25
-
-
  1068 04a6 05       		.uleb128 0x5
  1069 04a7 03       		.byte	0x3
+ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\cc2gi8vT.s 			page 25
+
+
  1070 04a8 44020000 		.4byte	.LC13
  1071 04ac 00       		.byte	0
  1072 04ad 0C       		.uleb128 0xc
@@ -1498,11 +1496,11 @@ ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\ccVN7anh.s 			page 1
  1122 051c 14       		.uleb128 0x14
  1123 051d 67000000 		.4byte	.LASF28
  1124 0521 06       		.byte	0x6
-ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\ccVN7anh.s 			page 26
-
-
- 1125 0522 15       		.byte	0x15
+ 1125 0522 11       		.byte	0x11
  1126 0523 0C050000 		.4byte	0x50c
+ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\cc2gi8vT.s 			page 26
+
+
  1127 0527 05       		.uleb128 0x5
  1128 0528 03       		.byte	0x3
  1129 0529 00000000 		.4byte	OutArray
@@ -1558,11 +1556,11 @@ ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\ccVN7anh.s 			page 1
  1179 059a 18       		.byte	0x18
  1180 059b 00       		.byte	0
  1181              		.section	.debug_abbrev,"",%progbits
-ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\ccVN7anh.s 			page 27
-
-
  1182              	.Ldebug_abbrev0:
  1183 0000 01       		.uleb128 0x1
+ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\cc2gi8vT.s 			page 27
+
+
  1184 0001 11       		.uleb128 0x11
  1185 0002 01       		.byte	0x1
  1186 0003 25       		.uleb128 0x25
@@ -1618,11 +1616,11 @@ ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\ccVN7anh.s 			page 1
  1236 0035 00       		.byte	0
  1237 0036 05       		.uleb128 0x5
  1238 0037 04       		.uleb128 0x4
-ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\ccVN7anh.s 			page 28
-
-
  1239 0038 01       		.byte	0x1
  1240 0039 0B       		.uleb128 0xb
+ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\cc2gi8vT.s 			page 28
+
+
  1241 003a 0B       		.uleb128 0xb
  1242 003b 49       		.uleb128 0x49
  1243 003c 13       		.uleb128 0x13
@@ -1678,11 +1676,11 @@ ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\ccVN7anh.s 			page 1
  1293 0070 03       		.uleb128 0x3
  1294 0071 0E       		.uleb128 0xe
  1295 0072 3A       		.uleb128 0x3a
-ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\ccVN7anh.s 			page 29
-
-
  1296 0073 0B       		.uleb128 0xb
  1297 0074 3B       		.uleb128 0x3b
+ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\cc2gi8vT.s 			page 29
+
+
  1298 0075 0B       		.uleb128 0xb
  1299 0076 49       		.uleb128 0x49
  1300 0077 13       		.uleb128 0x13
@@ -1738,11 +1736,11 @@ ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\ccVN7anh.s 			page 1
  1350 00ab 01       		.uleb128 0x1
  1351 00ac 31       		.uleb128 0x31
  1352 00ad 13       		.uleb128 0x13
-ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\ccVN7anh.s 			page 30
-
-
  1353 00ae 01       		.uleb128 0x1
  1354 00af 13       		.uleb128 0x13
+ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\cc2gi8vT.s 			page 30
+
+
  1355 00b0 00       		.byte	0
  1356 00b1 00       		.byte	0
  1357 00b2 0D       		.uleb128 0xd
@@ -1798,11 +1796,11 @@ ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\ccVN7anh.s 			page 1
  1407 00eb 3A       		.uleb128 0x3a
  1408 00ec 0B       		.uleb128 0xb
  1409 00ed 3B       		.uleb128 0x3b
-ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\ccVN7anh.s 			page 31
-
-
  1410 00ee 05       		.uleb128 0x5
  1411 00ef 49       		.uleb128 0x49
+ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\cc2gi8vT.s 			page 31
+
+
  1412 00f0 13       		.uleb128 0x13
  1413 00f1 3F       		.uleb128 0x3f
  1414 00f2 19       		.uleb128 0x19
@@ -1858,11 +1856,11 @@ ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\ccVN7anh.s 			page 1
  1464 0000 42000000 		.4byte	.LVL8
  1465 0004 4C000000 		.4byte	.LVL9
  1466 0008 0100     		.2byte	0x1
-ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\ccVN7anh.s 			page 32
-
-
  1467 000a 50       		.byte	0x50
  1468 000b 58000000 		.4byte	.LVL12
+ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\cc2gi8vT.s 			page 32
+
+
  1469 000f 5A000000 		.4byte	.LVL13
  1470 0013 0100     		.2byte	0x1
  1471 0015 50       		.byte	0x50
@@ -1918,11 +1916,11 @@ ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\ccVN7anh.s 			page 1
  1521 009e 00000000 		.4byte	0
  1522              	.LLST1:
  1523 00a2 14000000 		.4byte	.LVL2
-ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\ccVN7anh.s 			page 33
-
-
  1524 00a6 18000000 		.4byte	.LVL3
  1525 00aa 0200     		.2byte	0x2
+ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\cc2gi8vT.s 			page 33
+
+
  1526 00ac 30       		.byte	0x30
  1527 00ad 9F       		.byte	0x9f
  1528 00ae 18000000 		.4byte	.LVL3
@@ -1978,11 +1976,11 @@ ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\ccVN7anh.s 			page 1
  1564      20696E74 
  1564      00
  1565              	.LASF38:
-ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\ccVN7anh.s 			page 34
-
-
  1566 0046 6973725F 		.ascii	"isr_Send_StartEx\000"
  1566      53656E64 
+ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\cc2gi8vT.s 			page 34
+
+
  1566      5F537461 
  1566      72744578 
  1566      00
@@ -2038,11 +2036,11 @@ ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\ccVN7anh.s 			page 1
  1585              	.LASF14:
  1586 013e 646F7562 		.ascii	"double\000"
  1586      6C6500
-ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\ccVN7anh.s 			page 35
-
-
  1587              	.LASF31:
  1588 0145 55415254 		.ascii	"UART_Debug_PutString\000"
+ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\cc2gi8vT.s 			page 35
+
+
  1588      5F446562 
  1588      75675F50 
  1588      75745374 
@@ -2098,11 +2096,11 @@ ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\ccVN7anh.s 			page 1
  1612 01e9 6572726F 		.ascii	"error\000"
  1612      7200
  1613              	.LASF8:
-ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\ccVN7anh.s 			page 36
-
-
  1614 01ef 6C6F6E67 		.ascii	"long long int\000"
  1614      206C6F6E 
+ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\cc2gi8vT.s 			page 36
+
+
  1614      6720696E 
  1614      7400
  1615              	.LASF33:
@@ -2158,11 +2156,11 @@ ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\ccVN7anh.s 			page 1
  1637      5F726567 
  1637      00
  1638              	.LASF30:
-ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\ccVN7anh.s 			page 37
-
-
  1639 02b1 73707269 		.ascii	"sprintf\000"
  1639      6E746600 
+ARM GAS  C:\Users\Ilaria\AppData\Local\Temp\cc2gi8vT.s 			page 37
+
+
  1640              	.LASF34:
  1641 02b9 43794465 		.ascii	"CyDelay\000"
  1641      6C617900 

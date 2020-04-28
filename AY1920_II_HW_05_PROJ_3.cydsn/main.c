@@ -6,7 +6,7 @@
 * a I2C Slave device (LIS3DH Accelerometer).
 *
 * \author Ilaria Catarrasa
-* \date , 2020
+* \date 28/04/2020
 */
 
 // Include required header files

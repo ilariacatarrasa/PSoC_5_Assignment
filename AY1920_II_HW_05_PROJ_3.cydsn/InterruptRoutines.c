@@ -1,14 +1,11 @@
 /* ========================================
  *
- * Copyright YOUR COMPANY, THE YEAR
- * All Rights Reserved
- * UNPUBLISHED, LICENSED SOFTWARE.
+ * Interrupt routines for sending the data at at constant rate 
  *
- * CONFIDENTIAL AND PROPRIETARY INFORMATION
- * WHICH IS THE PROPERTY OF your company.
- *
+ * Author: Ilaria Catarrasa
  * ========================================
 */
+
 /*Include headers*/
 #include "InterruptRoutines.h"
 #include "I2C_Interface.h"

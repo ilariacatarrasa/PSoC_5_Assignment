@@ -1,14 +1,11 @@
 /* ========================================
  *
- * Copyright YOUR COMPANY, THE YEAR
- * All Rights Reserved
- * UNPUBLISHED, LICENSED SOFTWARE.
+ * Interrupt routines header file for sending the data at at constant rate 
  *
- * CONFIDENTIAL AND PROPRIETARY INFORMATION
- * WHICH IS THE PROPERTY OF your company.
- *
+ * Author: Ilaria Catarrasa
  * ========================================
 */
+
 #ifndef __SEND_DATA_UART__
     #define __SEND_DATA_UART__
     #include "project.h"

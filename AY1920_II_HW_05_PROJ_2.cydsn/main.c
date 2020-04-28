@@ -199,10 +199,8 @@ int main(void)
     else
     {
         UART_Debug_PutString("Error occurred during I2C comm to read control register 4\r\n");   
-    }
-    
-    
-    
+    }    
+     
     /*Update control register 4*/
     ctrl_reg4 = LIS3DH_CTRL_REG4_FSR_SET; // must be changed to the appropriate value
     
